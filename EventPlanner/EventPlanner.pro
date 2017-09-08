@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         eventplanner.cpp \
     eventadminmode.cpp \
-    addingmode.cpp
+    addingmode.cpp \
+    event.cpp
 
 HEADERS += \
         eventplanner.h \
     eventadminmode.h \
-    addingmode.h
+    addingmode.h \
+    event.h
 
 FORMS += \
     eventadminmode.ui \
