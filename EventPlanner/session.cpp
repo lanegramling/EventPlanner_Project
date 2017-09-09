@@ -2,7 +2,9 @@
 #include <QFile>
 #include <QTextStream>
 
-Session::Session() {}
+Session::Session() {
+    //events = new std::list<Event*>();
+}
 
 Session::Session (QString user) : user(user){}
 
@@ -119,8 +121,7 @@ QString Session::getUser() const {
     return user;
 }
 
-void Session::setUser(QString user) {
-
+void Session::setUser(QString User) {
 }
 
 std::list<Event*> Session::getEvents() {

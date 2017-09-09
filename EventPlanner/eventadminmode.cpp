@@ -20,7 +20,7 @@ EventAdminMode::EventAdminMode(QWidget *parent) :
     months = 1;
     EventName = "N";
     person_name = "/A";
-    events->setUser("User");
+    events = new Session();
 }
 
 EventAdminMode::~EventAdminMode()
