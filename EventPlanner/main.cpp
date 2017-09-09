@@ -1,11 +1,14 @@
 #include "eventplanner.h"
 #include "eventadminmode.h"
 #include "addingmode.h"
+#include "session.h"
 #include <QApplication>
 #include <QDesktopWidget>
 
 int main(int argc, char *argv[])
 {
+    Session session;
+    session.readEventsFromFile();
     QApplication prog(argc, argv);
     QDesktopWidget *qDesk = QApplication::desktop();
     EventPlanner w;
