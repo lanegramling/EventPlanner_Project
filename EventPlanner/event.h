@@ -2,27 +2,34 @@
 #define EVENT_H
 #include <list>
 #include <qstring>
+#include <QStringList>
 
 class Event
 {
 public :
-    Event(QString userName, int month, int day, QString eventName, int* time);
+    Event();
+    Event(QString owner, QString eventName, int month, int day, int* time);
     ~Event();
     int getMonth() const;
+    void setMonth(int month);
     int getDay() const;
-    QString getUserName() const;
+    void setDay(int day);
+    QString getOwner() const;
+    void setOwner(QString owne);
     QString getEventName();
+    void setEventName(QString eventName);
     int* getTime() const;
-    std::list<QString> getAttendees() const;
+    void setTime(int* time);
+    QStringList getAttendees() const;
     void addAttendee(QString attendee);
 
 private:
-    QString userName;
+    QString owner;
     QString eventName;
     int month;
     int day;
     int* time;
-    std::list<QString> attendees;
+    QStringList attendees;
 };
 
 #endif // EVENT_H
