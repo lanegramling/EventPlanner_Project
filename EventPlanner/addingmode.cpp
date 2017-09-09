@@ -11,12 +11,21 @@ AddingMode::AddingMode(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
     person_name = "";
+
+    events = new Session();
+    events->readEventsFromFile();
+    //eventslist = new std::list<Event*>();
+    eventslist = events->getEvents();
+    //qDebug() << eventslist->size();
+    //eventslist = new std::list<Event*>(*(events->getEvents()));
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /*
     Load Event class here, and use the event's name to make a List
     Using: ui->listWidget->addItem(QString Event_Name); to Make List_Item
     Example:
     */
+    qDebug() << eventslist.size() ;
+
     ui->listWidget->addItem(QString::number(23) + ". Event_TT");
     ui->listWidget->addItem(QString::number(2) + ". Other example");
     ui->listWidget->item(0)->setBackgroundColor(Qt::red);

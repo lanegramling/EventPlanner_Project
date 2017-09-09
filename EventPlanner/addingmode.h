@@ -1,6 +1,9 @@
 #ifndef ADDINGMODE_H
 #define ADDINGMODE_H
 #include <QMainWindow>
+#include "session.h"
+#include "event.h"
+#include <list>
 namespace Ui{
 class AddingMode;
 }
@@ -21,6 +24,8 @@ private:
     int month;
     int day;
 
+    Session * events;
+    std::list<Event*> eventslist;
 private slots:
     void receiveshow();
     void on_pushButton_2_clicked();

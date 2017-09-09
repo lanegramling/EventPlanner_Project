@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 
+
 Session::Session() {}
 
 Session::Session (QString user) : user(user){}

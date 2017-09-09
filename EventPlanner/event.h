@@ -1,7 +1,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 #include <list>
-#include <qstring>
+#include <QString>
 #include <QStringList>
 
 class Event
