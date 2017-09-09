@@ -120,12 +120,8 @@ QString Session::getUser() const {
     return user;
 }
 
-<<<<<<< HEAD
-void Session::setUser(QString User) {
-=======
 void Session::setUser(QString user) {
 
->>>>>>> 937f62c8fcbefafd6d3a6b0fea18463b109bf997
 }
 
 std::list<Event*> Session::getEvents() {
