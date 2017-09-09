@@ -2,6 +2,7 @@
 #define EVENTADMINMODE_H
 #include <QMainWindow>
 #include <QDebug>
+#include "session.h"
 namespace Ui {
 class EventAdminMode;
 }
@@ -25,6 +26,8 @@ private:
     QString EventName; // Event Name
     QString person_name; //Event creater name
     int* time;
+
+    Session *events;
 
 private slots:
     void receiveshow();

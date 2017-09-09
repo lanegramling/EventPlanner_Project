@@ -20,6 +20,7 @@ EventAdminMode::EventAdminMode(QWidget *parent) :
     months = 1;
     EventName = "N";
     person_name = "/A";
+    events->setUser("User");
 }
 
 EventAdminMode::~EventAdminMode()
@@ -356,7 +357,8 @@ void EventAdminMode::on_pushButton_clicked()
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
-        //store all the data into class Event then put the object to datastructure
+        events->addEvent(person_name,EventName,months,days,time);
+        events->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;
