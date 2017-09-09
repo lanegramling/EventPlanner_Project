@@ -92,6 +92,8 @@ private slots:
     void on_checkBox_47_clicked(bool checked);
     void on_checkBox_48_clicked(bool checked);
 
+    void on_pushButton_5_clicked();
+
 signals:
     void showEventPlanner();
     void quit();
