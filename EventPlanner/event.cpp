@@ -6,11 +6,13 @@ Event::Event() {
 }
 
 Event::Event(QString owner, QString eventName, int month, int day, int* time) :
+<<<<<<< HEAD
     owner(owner),
     eventName(eventName),
     month(month),
     day(day),
     time(time)
+=======
     {Event::attendees << Event::owner;}
 
 Event::~Event() {
