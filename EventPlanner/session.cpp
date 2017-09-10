@@ -3,6 +3,7 @@
 #include <QTextStream>
 
 
+
 Session::Session() {}
 
 Session::Session (QString user) : user(user){}
@@ -95,6 +96,7 @@ bool Session::saveEventsToFile() {
             out << "[";
             for(int i = 0; i < 48; i++) {
                 if (i != 47) {
+
                     out << ((*it)->getTime())[i] << ", ";
                 } else {
                     out << ((*it)->getTime())[i] << "]\n";

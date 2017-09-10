@@ -9,12 +9,14 @@ Event::Event(QString owner, QString eventName, int month, int day, int* time) :
     owner(owner),
     eventName(eventName),
     month(month),
-    day(day),
-    time(time)
-    {Event::attendees << Event::owner;}
+    day(day)
+    {Event::time = new int[48];
+     for(int i = 0; i < 48;i++)
+     {Event::time[i] = time[i];}
+    Event::attendees << Event::owner;}
 
 Event::~Event() {
-    delete time;
+    delete[] time;
 }
 
 int Event::getMonth() const {
@@ -37,7 +39,7 @@ QString Event::getOwner() const {
     return owner;
 }
 
-void Event::setOwner(QString owne) {
+void Event::setOwner(QString owner) {
     Event::owner = owner;
 }
 

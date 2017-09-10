@@ -66,6 +66,7 @@ void EventAdminMode::receiveshow()
 void EventAdminMode::on_pushButton_2_clicked()
 {
     on_pushButton_5_clicked();
+    events->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
@@ -308,7 +309,6 @@ void EventAdminMode::on_pushButton_clicked()
     {
     case QMessageBox::Ok:
         events->addEvent(person_name,EventName,months,days,time);
-        events->saveEventsToFile();
         on_pushButton_5_clicked();
         break;
     case QMessageBox::Cancel:
