@@ -21,10 +21,13 @@ EventAdminMode::EventAdminMode(QWidget *parent) :
     EventName = "N";
     person_name = "/A";
     events = new Session();
+    events->readEventsFromFile();
 }
 
 EventAdminMode::~EventAdminMode()
 {
+    events->saveEventsToFile();
+    delete events;
     delete ui;
     delete[] time;
 }
@@ -66,6 +69,7 @@ void EventAdminMode::receiveshow()
 void EventAdminMode::on_pushButton_2_clicked()
 {
     on_pushButton_5_clicked();
+    events->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
@@ -308,8 +312,8 @@ void EventAdminMode::on_pushButton_clicked()
     {
     case QMessageBox::Ok:
         events->addEvent(person_name,EventName,months,days,time);
-        events->saveEventsToFile();
         on_pushButton_5_clicked();
+        events->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;

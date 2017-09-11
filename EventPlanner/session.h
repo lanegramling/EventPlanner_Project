@@ -18,6 +18,7 @@ public:
     QString getUser() const;
     void setUser(QString user);
     std::list<Event*> getEvents();
+    void printSession();
 
 private:
 
