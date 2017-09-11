@@ -1,31 +1,40 @@
 #include "addingmode.h"
 #include "ui_addingmode.h"
 #include "eventplanner.h"
-//#include <QHBoxLayout>
+#include <QString>
 #include <QDebug>
 
-AddingMode::AddingMode(QWidget *parent) :
+AddingMode::AddingMode(Session* session, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::AddingMode)
+    ui(new Ui::AddingMode),
+    events(session)
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
+    QString ItemName = "";
     person_name = "";
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    /*
-    Load Event class here, and use the event's name to make a List
-    Using: ui->listWidget->addItem(QString Event_Name); to Make List_Item
-    Example:
-    */
-    ui->listWidget->addItem(QString::number(23) + ". Event_TT");
-    ui->listWidget->addItem(QString::number(2) + ". Other example");
-    ui->listWidget->item(0)->setBackgroundColor(Qt::red);
-    ui->listWidget->item(1)->setTextColor(Qt::blue);
-   // ui->listWidget->item(0)->setSizeHint(23);
+
+
+    //events.readEventsFromFile();
+    //eventslist = events.getEvents();
+/*
+    if((events.getEvents()).size() != 0)
+    {
+      //  ui->listWidget->addItem((*((events.getEvents()).begin()))->getAttendees());
+        qDebug()<<(*((events.getEvents()).begin()))->getAttendees();
+        qDebug()<<(*((events.getEvents()).begin()))->getEventName();
+        qDebug()<<(*((events.getEvents()).begin()))->getMonth();
+        qDebug()<<(*((events.getEvents()).begin()))->getDay();
+        ui->listWidget->addItem((*((events.getEvents()).begin()))->getEventName());
+        ui->listWidget->addItem((*((events.getEvents()).begin()))->getOwner());
+    }*/
+
+
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 }
 AddingMode::~AddingMode()
 {
+    events->saveEventsToFile();
     delete ui;
 }
 
@@ -34,6 +43,7 @@ void AddingMode::on_pushButton_2_clicked()
     this->hide();
     person_name = "";
     EventName = "";
+    events->printSession();
     emit showEventPlanner();
 }
 
@@ -98,5 +108,5 @@ void AddingMode::on_lineEdit_2_textChanged(const QString &arg1)
 
 void AddingMode::on_pushButton_4_clicked() // this button will be optional
 {
-    // reload list, and reload data
+
 }

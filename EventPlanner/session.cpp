@@ -1,6 +1,9 @@
 #include "session.h"
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
+
+
 
 Session::Session() {}
 
@@ -94,6 +97,7 @@ bool Session::saveEventsToFile() {
             out << "[";
             for(int i = 0; i < 48; i++) {
                 if (i != 47) {
+
                     out << ((*it)->getTime())[i] << ", ";
                 } else {
                     out << ((*it)->getTime())[i] << "]\n";
@@ -125,4 +129,11 @@ void Session::setUser(QString user) {
 
 std::list<Event*> Session::getEvents() {
     return events;
+}
+
+void Session::printSession() {
+    for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
+        qDebug() << "here";
+        qDebug() << (*it)->getEventName();
+    }
 }

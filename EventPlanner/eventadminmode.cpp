@@ -20,10 +20,14 @@ EventAdminMode::EventAdminMode(QWidget *parent) :
     months = 1;
     EventName = "N";
     person_name = "/A";
+    events = new Session();
+    events->readEventsFromFile();
 }
 
 EventAdminMode::~EventAdminMode()
 {
+    events->saveEventsToFile();
+    delete events;
     delete ui;
     delete[] time;
 }
@@ -64,57 +68,8 @@ void EventAdminMode::receiveshow()
 
 void EventAdminMode::on_pushButton_2_clicked()
 {
-    ui->lineEdit->setText("");
-    EventName = "N";
-    person_name = "/A";
-    ui->checkBox->setChecked(false);
-    ui->checkBox_2->setChecked(false);
-    ui->checkBox_3->setChecked(false);
-    ui->checkBox_4->setChecked(false);
-    ui->checkBox_5->setChecked(false);
-    ui->checkBox_6->setChecked(false);
-    ui->checkBox_7->setChecked(false);
-    ui->checkBox_8->setChecked(false);
-    ui->checkBox_9->setChecked(false);
-    ui->checkBox_10->setChecked(false);
-    ui->checkBox_11->setChecked(false);
-    ui->checkBox_12->setChecked(false);
-    ui->checkBox_13->setChecked(false);
-    ui->checkBox_14->setChecked(false);
-    ui->checkBox_15->setChecked(false);
-    ui->checkBox_16->setChecked(false);
-    ui->checkBox_17->setChecked(false);
-    ui->checkBox_18->setChecked(false);
-    ui->checkBox_19->setChecked(false);
-    ui->checkBox_20->setChecked(false);
-    ui->checkBox_21->setChecked(false);
-    ui->checkBox_22->setChecked(false);
-    ui->checkBox_23->setChecked(false);
-    ui->checkBox_24->setChecked(false);
-    ui->checkBox_25->setChecked(false);
-    ui->checkBox_26->setChecked(false);
-    ui->checkBox_27->setChecked(false);
-    ui->checkBox_28->setChecked(false);
-    ui->checkBox_29->setChecked(false);
-    ui->checkBox_30->setChecked(false);
-    ui->checkBox_31->setChecked(false);
-    ui->checkBox_32->setChecked(false);
-    ui->checkBox_33->setChecked(false);
-    ui->checkBox_34->setChecked(false);
-    ui->checkBox_35->setChecked(false);
-    ui->checkBox_36->setChecked(false);
-    ui->checkBox_37->setChecked(false);
-    ui->checkBox_38->setChecked(false);
-    ui->checkBox_39->setChecked(false);
-    ui->checkBox_40->setChecked(false);
-    ui->checkBox_41->setChecked(false);
-    ui->checkBox_42->setChecked(false);
-    ui->checkBox_43->setChecked(false);
-    ui->checkBox_44->setChecked(false);
-    ui->checkBox_45->setChecked(false);
-    ui->checkBox_46->setChecked(false);
-    ui->checkBox_47->setChecked(false);
-    ui->checkBox_48->setChecked(false);
+    on_pushButton_5_clicked();
+    events->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
@@ -356,7 +311,9 @@ void EventAdminMode::on_pushButton_clicked()
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
-        //store all the data into class Event then put the object to datastructure
+        events->addEvent(person_name,EventName,months,days,time);
+        on_pushButton_5_clicked();
+        events->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;
@@ -369,4 +326,64 @@ void EventAdminMode::on_pushButton_clicked()
 void EventAdminMode::on_lineEdit_2_textChanged(const QString &arg1)
 {
  person_name = arg1;
+}
+
+void EventAdminMode::on_pushButton_5_clicked()
+{
+    ui->lineEdit->setText("");
+    ui->lineEdit_2->setText("");
+    EventName = "N";
+    person_name = "/A";
+    ui->spinBox->setValue(1);
+    ui->spinBox_2->setValue(1);
+    for(int i = 0; i < 48; i++)
+    {time[i] = 0;}
+    ui->checkBox->setChecked(false);
+    ui->checkBox_2->setChecked(false);
+    ui->checkBox_3->setChecked(false);
+    ui->checkBox_4->setChecked(false);
+    ui->checkBox_5->setChecked(false);
+    ui->checkBox_6->setChecked(false);
+    ui->checkBox_7->setChecked(false);
+    ui->checkBox_8->setChecked(false);
+    ui->checkBox_9->setChecked(false);
+    ui->checkBox_10->setChecked(false);
+    ui->checkBox_11->setChecked(false);
+    ui->checkBox_12->setChecked(false);
+    ui->checkBox_13->setChecked(false);
+    ui->checkBox_14->setChecked(false);
+    ui->checkBox_15->setChecked(false);
+    ui->checkBox_16->setChecked(false);
+    ui->checkBox_17->setChecked(false);
+    ui->checkBox_18->setChecked(false);
+    ui->checkBox_19->setChecked(false);
+    ui->checkBox_20->setChecked(false);
+    ui->checkBox_21->setChecked(false);
+    ui->checkBox_22->setChecked(false);
+    ui->checkBox_23->setChecked(false);
+    ui->checkBox_24->setChecked(false);
+    ui->checkBox_25->setChecked(false);
+    ui->checkBox_26->setChecked(false);
+    ui->checkBox_27->setChecked(false);
+    ui->checkBox_28->setChecked(false);
+    ui->checkBox_29->setChecked(false);
+    ui->checkBox_30->setChecked(false);
+    ui->checkBox_31->setChecked(false);
+    ui->checkBox_32->setChecked(false);
+    ui->checkBox_33->setChecked(false);
+    ui->checkBox_34->setChecked(false);
+    ui->checkBox_35->setChecked(false);
+    ui->checkBox_36->setChecked(false);
+    ui->checkBox_37->setChecked(false);
+    ui->checkBox_38->setChecked(false);
+    ui->checkBox_39->setChecked(false);
+    ui->checkBox_40->setChecked(false);
+    ui->checkBox_41->setChecked(false);
+    ui->checkBox_42->setChecked(false);
+    ui->checkBox_43->setChecked(false);
+    ui->checkBox_44->setChecked(false);
+    ui->checkBox_45->setChecked(false);
+    ui->checkBox_46->setChecked(false);
+    ui->checkBox_47->setChecked(false);
+    ui->checkBox_48->setChecked(false);
 }
