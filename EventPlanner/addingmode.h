@@ -12,7 +12,7 @@ class AddingMode : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit AddingMode(QWidget *parent = 0);
+    explicit AddingMode(Session* session, QWidget *parent = 0);
     ~AddingMode();
 private:
     Ui::AddingMode *ui;
@@ -24,8 +24,7 @@ private:
     int month;
     int day;
 
-    Session * events;
-    std::list<Event*> eventslist;
+    Session* events;
 private slots:
     void receiveshow();
     void on_pushButton_2_clicked();
@@ -46,7 +45,6 @@ private slots:
     void on_lineEdit_2_textChanged(const QString &arg1);
 
     void on_pushButton_4_clicked();
-
 signals:
     void showEventPlanner();
 };

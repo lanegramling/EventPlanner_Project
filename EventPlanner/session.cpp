@@ -1,6 +1,7 @@
 #include "session.h"
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 
 
@@ -128,4 +129,11 @@ void Session::setUser(QString user) {
 
 std::list<Event*> Session::getEvents() {
     return events;
+}
+
+void Session::printSession() {
+    for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
+        qDebug() << "here";
+        qDebug() << (*it)->getEventName();
+    }
 }
