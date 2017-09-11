@@ -31,7 +31,13 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-           if (counter == 7) {
+           if (counter < 7)
+           {
+               while(counter < 7){
+               QString line = in.readLine();
+               eventElements.push_back(line);
+               counter++;}
+
                Event* event = new Event();
                event->setOwner(eventElements.at(0));
                event->setEventName(eventElements.at(1));
@@ -68,10 +74,6 @@ bool Session::readEventsFromFile() {
                events.push_back(event);
                counter = 1;
                eventElements.clear();
-           } else {
-               QString line = in.readLine();
-               eventElements.push_back(line);
-               counter++;
            }
        }
        inputFile.close();
@@ -124,6 +126,7 @@ QString Session::getUser() const {
 }
 
 void Session::setUser(QString user) {
+
 
 }
 
