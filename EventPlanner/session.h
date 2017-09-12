@@ -12,13 +12,13 @@ public:
     Session();
     Session(QString user);
     ~Session();
-    void addEvent(QString owner, QString eventName, int month, int day, int* time);
+    void addEvent(QString owner, QString eventName, int month, int day, int year, int* time);
     bool readEventsFromFile();
     bool saveEventsToFile();
     QString getUser() const;
     void setUser(QString user);
-    std::list<Event*> getEvents();
-    void printSession();
+    std::list<Event*>& getEvents();
+    int numberOfEvents() const;
 
 private:
 

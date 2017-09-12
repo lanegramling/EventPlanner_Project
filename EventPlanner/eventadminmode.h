@@ -11,11 +11,11 @@ class EventAdminMode : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit EventAdminMode(QWidget *parent = 0);
+    explicit EventAdminMode(Session *session, QWidget *parent = 0);
     ~EventAdminMode();
 
 
-    QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int* time);
+    QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, int* time);
     // use to make all Information to a string, used for "Make Sure"
 private:
     Ui::EventAdminMode *ui;
@@ -25,9 +25,9 @@ private:
     int days;   // day
     QString EventName; // Event Name
     QString person_name; //Event creater name
-    int* time;
+    int* times;
 
-    Session *events;
+    Session *session;
 
 private slots:
     void receiveshow();
@@ -39,9 +39,6 @@ private slots:
 
     void on_lineEdit_textEdited(const QString &arg1);
     void on_lineEdit_2_textChanged(const QString &arg1);
-
-    void on_spinBox_valueChanged(int arg1);
-    void on_spinBox_2_valueChanged(int arg1);
 
     void on_checkBox_clicked(bool checked);
     void on_checkBox_2_clicked(bool checked);

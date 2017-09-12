@@ -5,11 +5,12 @@ Event::Event() {
 
 }
 
-Event::Event(QString owner, QString eventName, int month, int day, int* time) :
+Event::Event(QString owner, QString eventName, int month, int day, int year, int* time) :
     owner(owner),
     eventName(eventName),
     month(month),
-    day(day)
+    day(day),
+    year(year)
     {Event::time = new int[48];
      for(int i = 0; i < 48;i++)
      {Event::time[i] = time[i];}
@@ -33,6 +34,14 @@ int Event::getDay() const {
 
 void Event::setDay(int day) {
     Event::day = day;
+}
+
+int Event::getYear() const {
+    return year;
+}
+
+void Event::setYear(int year) {
+    Event::year = year;
 }
 
 QString Event::getOwner() const {
