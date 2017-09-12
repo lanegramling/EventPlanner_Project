@@ -5,19 +5,19 @@ Event::Event() {
 
 }
 
-Event::Event(QString owner, QString eventName, int month, int day, int year, int* time) :
+Event::Event(QString owner, QString eventName, int month, int day, int year, QString startTime, QString endTime) :
     owner(owner),
     eventName(eventName),
     month(month),
     day(day),
-    year(year)
-    {Event::time = new int[48];
-     for(int i = 0; i < 48;i++)
-     {Event::time[i] = time[i];}
-    Event::attendees << Event::owner;}
+    year(year),
+    startTime(startTime),
+    endTime(endTime)
+    {
+        Event::attendees << Event::owner;
+    }
 
 Event::~Event() {
-    delete[] time;
 }
 
 int Event::getMonth() const {
@@ -60,12 +60,20 @@ void Event::setEventName(QString eventName) {
     Event::eventName = eventName;
 }
 
-int* Event::getTime() const {
-    return time;
+QString Event::getStartTime() const {
+    return startTime;
 }
 
-void Event::setTime(int* time) {
-    Event::time = time;
+void Event::setStartTime(QString startTime) {
+    Event::startTime = startTime;
+}
+
+QString Event::getEndTime() const {
+    return endTime;
+}
+
+void Event::setEndTime(QString endTime) {
+    Event::endTime = endTime;
 }
 
 QStringList Event::getAttendees() const {
