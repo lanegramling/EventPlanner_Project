@@ -31,12 +31,11 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-           if (counter < 7)
-           {
                while(counter < 7){
-               QString line = in.readLine();
-               eventElements.push_back(line);
-               counter++;}
+                   QString line = in.readLine();
+                   eventElements.push_back(line);
+                   counter++;
+               }
 
                Event* event = new Event();
                event->setOwner(eventElements.at(0));
@@ -74,7 +73,6 @@ bool Session::readEventsFromFile() {
                events.push_back(event);
                counter = 1;
                eventElements.clear();
-           }
        }
        inputFile.close();
        return true;
@@ -117,6 +115,7 @@ bool Session::saveEventsToFile() {
             }
             out << "\n";
         }
+        file.close();
         return true;
     }
 }
@@ -126,17 +125,14 @@ QString Session::getUser() const {
 }
 
 void Session::setUser(QString user) {
-
+    Session::user = user;
 
 }
 
-std::list<Event*> Session::getEvents() {
+std::list<Event*>& Session::getEvents() {
     return events;
 }
 
-void Session::printSession() {
-    for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
-        qDebug() << "here";
-        qDebug() << (*it)->getEventName();
-    }
+int Session::numberOfEvents() const{
+    return (int) events.size();
 }

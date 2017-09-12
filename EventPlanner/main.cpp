@@ -7,15 +7,14 @@
 
 int main(int argc, char *argv[])
 {
-    Session* session = new Session;
-    session->readEventsFromFile();
-    session->printSession();
+    Session session;
+    session.readEventsFromFile();
     QApplication prog(argc, argv);
     QDesktopWidget* qDesk = QApplication::desktop();
     EventPlanner w;
-    EventAdminMode mode1;
+    EventAdminMode mode1(&session);
     //QWidget *parent = 0;
-    AddingMode mode2(session, 0);
+    AddingMode mode2(&session);
     w.move((qDesk->width() - w.width())/2,(qDesk->height() - w.height())/2); // set window in the middle
     mode1.move((qDesk->width() - mode1.width())/2,(qDesk->height() - mode1.height())/2);// same
     mode2.move((qDesk->width() - mode2.width())/2,(qDesk->height() - mode2.height())/2);// same

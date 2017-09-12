@@ -17,8 +17,8 @@ public:
     bool saveEventsToFile();
     QString getUser() const;
     void setUser(QString user);
-    std::list<Event*> getEvents();
-    void printSession();
+    std::list<Event*>& getEvents();
+    int numberOfEvents() const;
 
 private:
 

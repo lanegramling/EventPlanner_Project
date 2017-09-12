@@ -4,37 +4,24 @@
 #include <QString>
 #include <QDebug>
 
-AddingMode::AddingMode(Session* session, QWidget *parent) :
+AddingMode::AddingMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AddingMode),
-    events(session)
+    session(session)
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
     QString ItemName = "";
     person_name = "";
 
-
-    //events.readEventsFromFile();
-    //eventslist = events.getEvents();
-/*
-    if((events.getEvents()).size() != 0)
-    {
-      //  ui->listWidget->addItem((*((events.getEvents()).begin()))->getAttendees());
-        qDebug()<<(*((events.getEvents()).begin()))->getAttendees();
-        qDebug()<<(*((events.getEvents()).begin()))->getEventName();
-        qDebug()<<(*((events.getEvents()).begin()))->getMonth();
-        qDebug()<<(*((events.getEvents()).begin()))->getDay();
-        ui->listWidget->addItem((*((events.getEvents()).begin()))->getEventName());
-        ui->listWidget->addItem((*((events.getEvents()).begin()))->getOwner());
-    }*/
-
-
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+        qDebug() << (*it)->getEventName();
+        ui->listWidget->addItem((*it)->getEventName());
+    }
 }
 AddingMode::~AddingMode()
 {
-    events->saveEventsToFile();
+    session->saveEventsToFile();
     delete ui;
 }
 
@@ -43,12 +30,20 @@ void AddingMode::on_pushButton_2_clicked()
     this->hide();
     person_name = "";
     EventName = "";
-    events->printSession();
     emit showEventPlanner();
 }
 
 void AddingMode::receiveshow()
-{this->show();}
+{
+    if (ui->listWidget->count() != session->numberOfEvents()) {
+        ui->listWidget->clear();
+        for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+            qDebug() << (*it)->getEventName();
+            ui->listWidget->addItem((*it)->getEventName());
+        }
+    }
+    this->show();
+}
 
 void AddingMode::on_lineEdit_textChanged(const QString &arg1)
 {
