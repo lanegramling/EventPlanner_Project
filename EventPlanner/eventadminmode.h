@@ -11,7 +11,7 @@ class EventAdminMode : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit EventAdminMode(QWidget *parent = 0);
+    explicit EventAdminMode(Session *session, QWidget *parent = 0);
     ~EventAdminMode();
 
 
@@ -27,7 +27,7 @@ private:
     QString person_name; //Event creater name
     int* time;
 
-    Session *events;
+    Session *session;
 
 private slots:
     void receiveshow();

@@ -5,9 +5,10 @@
 #include <QMessageBox>
 #include <QPushButton>
 
-EventAdminMode::EventAdminMode(QWidget *parent) :
+EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::EventAdminMode)
+    ui(new Ui::EventAdminMode),
+    session(session)
 {
     ui->setupUi(this);
 
@@ -20,14 +21,11 @@ EventAdminMode::EventAdminMode(QWidget *parent) :
     months = 1;
     EventName = "N";
     person_name = "/A";
-    events = new Session();
-    events->readEventsFromFile();
 }
 
 EventAdminMode::~EventAdminMode()
 {
-    events->saveEventsToFile();
-    delete events;
+    session->saveEventsToFile();
     delete ui;
     delete[] time;
 }
@@ -69,7 +67,7 @@ void EventAdminMode::receiveshow()
 void EventAdminMode::on_pushButton_2_clicked()
 {
     on_pushButton_5_clicked();
-    events->saveEventsToFile();
+    session->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
@@ -311,9 +309,9 @@ void EventAdminMode::on_pushButton_clicked()
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
-        events->addEvent(person_name,EventName,months,days,time);
+        session->addEvent(person_name,EventName,months,days,time);
         on_pushButton_5_clicked();
-        events->saveEventsToFile();
+        session->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;
