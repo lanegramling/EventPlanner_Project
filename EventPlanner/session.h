@@ -12,7 +12,7 @@ public:
     Session();
     Session(QString user);
     ~Session();
-    void addEvent(QString owner, QString eventName, int month, int day, int year, int* time);
+    void addEvent(QString owner, QString eventName, int month, int day, int year, QString startTime, QString endTime);
     bool readEventsFromFile();
     bool saveEventsToFile();
     QString getUser() const;

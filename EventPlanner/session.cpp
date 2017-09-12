@@ -16,8 +16,8 @@ Session::~Session() {
     }
 }
 
-void Session::addEvent(QString owner, QString eventName, int month, int day, int year, int* time) {
-    Event* event = new Event(owner, eventName, month, day, year, time);
+void Session::addEvent(QString owner, QString eventName, int month, int day, int year, QString startTime, QString endTime) {
+    Event* event = new Event(owner, eventName, month, day, year, startTime, endTime);
     events.push_back(event);
 }
 
@@ -31,7 +31,7 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-               while(counter < 8){
+               while(counter < 9){
                    QString line = in.readLine();
                    eventElements.push_back(line);
                    counter++;
@@ -43,26 +43,14 @@ bool Session::readEventsFromFile() {
                event->setMonth(eventElements.at(2).toInt());
                event->setDay(eventElements.at(3).toInt());
                event->setYear(eventElements.at(4).toInt());
-
-               int* time = new int[48];
-               int index = 0;
-               for (int i = 0; i < eventElements.at(5).size(); i++) {
-                   if (eventElements.at(4).at(i) == '1') {
-                       time[index] = 1;
-                       index++;
-                   } else if (eventElements.at(5).at(i) == '0') {
-                       time[index] = 0;
-                       index++;
-                   }
-               }
-               event->setTime(time);
-
-               for (int i = 0; i < eventElements.at(6).size(); i++) {
+               event->setStartTime(eventElements.at(5));
+               event->setEndTime(eventElements.at(6));
+               for (int i = 0; i < eventElements.at(7).size(); i++) {
                    QString attendee = "";
-                   if  (eventElements.at(6).at(i) == '\"') {
-                       for (int j = i + 1; j < eventElements.at(6).size(); j++) {
-                           if (eventElements.at(5).at(j) != '\"') {
-                               attendee.push_back(eventElements.at(6).at(j));
+                   if  (eventElements.at(7).at(i) == '\"') {
+                       for (int j = i + 1; j < eventElements.at(7).size(); j++) {
+                           if (eventElements.at(7).at(j) != '\"') {
+                               attendee.push_back(eventElements.at(7).at(j));
                            } else {
                                i = j + 1;
                                event->addAttendee(attendee);
@@ -95,15 +83,9 @@ bool Session::saveEventsToFile() {
             out << (*it)->getEventName() << "\n";
             out << (*it)->getMonth() << "\n";
             out << (*it)->getDay() << "\n";
-            out << "[";
-            for(int i = 0; i < 48; i++) {
-                if (i != 47) {
-
-                    out << ((*it)->getTime())[i] << ", ";
-                } else {
-                    out << ((*it)->getTime())[i] << "]\n";
-                }
-            }
+            out << (*it)->getYear() << "\n";
+            out << (*it)->getStartTime() << "\n";
+            out << (*it)->getEndTime() << "\n";
             int size = (*it)->getAttendees().size();
             out << "(";
             for (int i = 0; i < size; i++) {
