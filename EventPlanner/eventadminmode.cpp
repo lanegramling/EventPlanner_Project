@@ -8,6 +8,7 @@
 #include <QIcon>
 #include <ctime>
 
+
 EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::EventAdminMode),
