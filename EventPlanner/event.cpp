@@ -5,16 +5,15 @@ Event::Event() {
 
 }
 
-Event::Event(QString owner, QString eventName, int month, int day, int year, QString startTime, QString endTime) :
+Event::Event(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots) :
     owner(owner),
     eventName(eventName),
     month(month),
     day(day),
     year(year),
-    startTime(startTime),
-    endTime(endTime)
+    timeSlots(timeSlots)
     {
-        Event::attendees << Event::owner;
+
     }
 
 Event::~Event() {
@@ -60,26 +59,10 @@ void Event::setEventName(QString eventName) {
     Event::eventName = eventName;
 }
 
-QString Event::getStartTime() const {
-    return startTime;
+QList<TimeSlot> Event::getTimeSlots() {
+    return timeSlots;
 }
 
-void Event::setStartTime(QString startTime) {
-    Event::startTime = startTime;
-}
-
-QString Event::getEndTime() const {
-    return endTime;
-}
-
-void Event::setEndTime(QString endTime) {
-    Event::endTime = endTime;
-}
-
-QStringList Event::getAttendees() const {
-    return attendees;
-}
-
-void Event::addAttendee(QString attendee) {
-    attendees << attendee;
+void Event::setTimeSlots(QList<TimeSlot> timeSlots) {
+    Event::timeSlots = timeSlots;
 }

@@ -1,5 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
+#include "timeslot.h"
 #include <list>
 #include <QString>
 #include <QStringList>
@@ -8,7 +9,7 @@ class Event
 {
 public :
     Event();
-    Event(QString owner, QString eventName, int month, int day, int year, QString startTime, QString endTime);
+    Event(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots);
     ~Event();
     int getMonth() const;
     void setMonth(int month);
@@ -20,12 +21,8 @@ public :
     void setOwner(QString owne);
     QString getEventName();
     void setEventName(QString eventName);
-    QString getStartTime() const;
-    void setStartTime(QString startTime);
-    QString getEndTime() const;
-    void setEndTime(QString endTime);
-    QStringList getAttendees() const;
-    void addAttendee(QString attendee);
+    QList<TimeSlot> getTimeSlots();
+    void setTimeSlots(QList<TimeSlot> timeSlots);
 
 private:
     QString owner;
@@ -33,9 +30,7 @@ private:
     int month;
     int day;
     int year;
-    QString startTime;
-    QString endTime;
-    QStringList attendees;
+    QList<TimeSlot> timeSlots;
 
 };
 
