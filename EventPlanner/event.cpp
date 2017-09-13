@@ -5,19 +5,19 @@ Event::Event() {
     Event::time = new int[48];
 }
 
-Event::Event(QString owner, QString eventName, int month, int day, int year, int time[]) :
+Event::Event(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots) :
+
     owner(owner),
     eventName(eventName),
     month(month),
     day(day),
-    year(year)
-    {Event::time = new int[48];
-     for(int i = 0; i < 48;i++)
-     {Event::time[i] = time[i];}
-    Event::attendees << Event::owner;}
+    year(year),
+    timeSlots(timeSlots)
+    {
+
+    }
 
 Event::~Event() {
-    delete[] time;
 }
 
 int Event::getMonth() const {
@@ -60,21 +60,10 @@ void Event::setEventName(QString eventName) {
     Event::eventName = eventName;
 }
 
-int* Event::getTime() const {
-    return time;
+QList<TimeSlot> Event::getTimeSlots() {
+    return timeSlots;
 }
 
-void Event::setTime(int times[]) {
-    for(int i = 0; i < 48; i++)
-    {
-        time[i] = times[i];
-    }
-}
-
-QStringList Event::getAttendees() const {
-    return attendees;
-}
-
-void Event::addAttendee(QString attendee) {
-    attendees << attendee;
+void Event::setTimeSlots(QList<TimeSlot> timeSlots) {
+    Event::timeSlots = timeSlots;
 }
