@@ -42,3 +42,6 @@ FORMS += \
     eventadminmode.ui \
     eventplanner.ui \
     addingmode.ui
+
+RESOURCES += \
+    picture.qrc \

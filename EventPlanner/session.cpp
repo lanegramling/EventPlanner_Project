@@ -5,19 +5,19 @@
 
 
 
-Session::Session() {}
+Session::Session() {time = new int[48];}
 
 Session::Session (QString user) : user(user){}
 
 Session::~Session() {
-
+     delete[] time;
     for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
         delete *it;
     }
 }
 
-void Session::addEvent(QString owner, QString eventName, int month, int day, int* time) {
-    Event* event = new Event(owner, eventName, month, day, time);
+void Session::addEvent(QString owner, QString eventName, int month, int day, int year, int* time) {
+    Event* event = new Event(owner, eventName, month, day, year, time);
     events.push_back(event);
 }
 
@@ -31,32 +31,36 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-           if (counter == 7) {
+               while(counter < 8){
+                   QString line = in.readLine();
+                   eventElements.push_back(line);
+                   counter++;
+               }
+
                Event* event = new Event();
                event->setOwner(eventElements.at(0));
                event->setEventName(eventElements.at(1));
                event->setMonth(eventElements.at(2).toInt());
                event->setDay(eventElements.at(3).toInt());
-
-               int* time = new int[48];
+               event->setYear(eventElements.at(4).toInt());
                int index = 0;
-               for (int i = 0; i < eventElements.at(4).size(); i++) {
-                   if (eventElements.at(4).at(i) == '1') {
+               for (int i = 0; i < eventElements.at(5).size(); i++) {
+                   if (eventElements.at(5).at(i) == '1') {
                        time[index] = 1;
                        index++;
-                   } else if (eventElements.at(4).at(i) == '0') {
+                   } else if (eventElements.at(5).at(i) == '0') {
                        time[index] = 0;
                        index++;
                    }
                }
                event->setTime(time);
 
-               for (int i = 0; i < eventElements.at(5).size(); i++) {
+               for (int i = 0; i < eventElements.at(6).size(); i++) {
                    QString attendee = "";
-                   if  (eventElements.at(5).at(i) == '\"') {
-                       for (int j = i + 1; j < eventElements.at(5).size(); j++) {
-                           if (eventElements.at(5).at(j) != '\"') {
-                               attendee.push_back(eventElements.at(5).at(j));
+                   if  (eventElements.at(6).at(i) == '\"') {
+                       for (int j = i + 1; j < eventElements.at(6).size(); j++) {
+                           if (eventElements.at(6).at(j) != '\"') {
+                               attendee.push_back(eventElements.at(6).at(j));
                            } else {
                                i = j + 1;
                                event->addAttendee(attendee);
@@ -68,11 +72,7 @@ bool Session::readEventsFromFile() {
                events.push_back(event);
                counter = 1;
                eventElements.clear();
-           } else {
-               QString line = in.readLine();
-               eventElements.push_back(line);
-               counter++;
-           }
+
        }
        inputFile.close();
        return true;
@@ -94,6 +94,7 @@ bool Session::saveEventsToFile() {
             out << (*it)->getEventName() << "\n";
             out << (*it)->getMonth() << "\n";
             out << (*it)->getDay() << "\n";
+            out << (*it)->getYear() << "\n";
             out << "[";
             for(int i = 0; i < 48; i++) {
                 if (i != 47) {
@@ -115,6 +116,7 @@ bool Session::saveEventsToFile() {
             }
             out << "\n";
         }
+        file.close();
         return true;
     }
 }
@@ -124,16 +126,14 @@ QString Session::getUser() const {
 }
 
 void Session::setUser(QString user) {
+    Session::user = user;
 
 }
 
-std::list<Event*> Session::getEvents() {
+std::list<Event*>& Session::getEvents() {
     return events;
 }
 
-void Session::printSession() {
-    for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
-        qDebug() << "here";
-        qDebug() << (*it)->getEventName();
-    }
+int Session::numberOfEvents() const{
+    return (int) events.size();
 }

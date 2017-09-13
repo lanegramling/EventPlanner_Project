@@ -1,53 +1,54 @@
 #include "eventadminmode.h"
 #include "ui_eventadminmode.h"
 #include <eventplanner.h>
-#include <QHBoxLayout>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QToolButton>
+#include <QPixmap>
+#include <QIcon>
+#include <ctime>
 
-EventAdminMode::EventAdminMode(QWidget *parent) :
+EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::EventAdminMode)
+    ui(new Ui::EventAdminMode),
+    session(session)
 {
     ui->setupUi(this);
 
     //initialzation for all value
     setWindowTitle("EventAdmin Mode");
-    time = new int[48];
+    times = new int[48];
     for(int i = 0; i < 48; i++)
-    {time[i] = 0;}
+    {times[i] = 0;}
     days = 1;
     months = 1;
     EventName = "N";
     person_name = "/A";
-    events = new Session();
-    events->readEventsFromFile();
+    time_t now = time(0);
+    struct tm *date = localtime(&now);
+    ui->calendarWidget->setMinimumDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
+    setStyle_calendarWidget();
 }
 
 EventAdminMode::~EventAdminMode()
 {
-    events->saveEventsToFile();
-    delete events;
+    session->saveEventsToFile();
     delete ui;
-    delete[] time;
+    delete[] times;
 }
 
-QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int *time)
+QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, int *times)
 {
-    QString Now ="Do you want to add this Event to Event_List?\n";
+    QString Now ="Do you want to create this event?\n";
     Now = Now + "Event Name:  ";
     Now = Now + person_name;
     Now = Now +"'s ";
     Now = Now + EventName;
-    Now = Now + "\nDate: ";
-    Now = Now +"Month ";
-    Now = Now + QString::number(month);
-    Now = Now + " Day ";
-    Now = Now +QString::number(day);
-    Now = Now + "\nTime: ";
+    Now = Now + "\nDate: " + QString::number(month) + "\\" + QString::number(day) + "\\" + QString::number(year);
+    Now = Now + "\ntimes: ";
     for(int i = 0; i < 48; i++)
     {
-        if(time[i] == 1)
+        if(times[i] == 1)
         {
             Now = Now + QString::number(i/2);
             Now = Now + ":";
@@ -57,8 +58,19 @@ QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, in
             Now = Now + "30 ";
         }}
     }
-    Now = Now + "\n\n[!]Each time is a Start Point ,and each point has 30 min";
+    Now = Now + "\n\n[!]Each times is a Start Point ,and each point has 30 min";
     return(Now);
+}
+
+void EventAdminMode::setStyle_calendarWidget()
+{
+    QPixmap go_arr(":/calendarWidget_Icon/Go_Arr.jpg");
+    QPixmap back_arr(":/calendarWidget_Icon/Back_Arr.jpg");
+    QIcon ButtonIcon(back_arr), ButtonIcon_2(go_arr);
+    QToolButton *back = ui->calendarWidget->findChild<QToolButton*>(QLatin1String("qt_calendar_prevmonth"));
+    QToolButton *front = ui->calendarWidget->findChild<QToolButton*>(QLatin1String("qt_calendar_nextmonth"));
+    back->setIcon(ButtonIcon);
+    front->setIcon(ButtonIcon_2);
 }
 
 void EventAdminMode::receiveshow()
@@ -69,14 +81,14 @@ void EventAdminMode::receiveshow()
 void EventAdminMode::on_pushButton_2_clicked()
 {
     on_pushButton_5_clicked();
-    events->saveEventsToFile();
+    session->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
 
 
 
-void EventAdminMode::on_pushButton_3_clicked() // use to change time mode to 12-Hour
+void EventAdminMode::on_pushButton_3_clicked() // use to change times mode to 12-Hour
 {
     ui->checkBox->setText("00:00 AM");
     ui->checkBox_2->setText("00:30 AM");
@@ -128,7 +140,7 @@ void EventAdminMode::on_pushButton_3_clicked() // use to change time mode to 12-
     ui->checkBox_48->setText("11:30 AM");
 }
 
-void EventAdminMode::on_pushButton_4_clicked() // use to change time mode to 24-Hour
+void EventAdminMode::on_pushButton_4_clicked() // use to change times mode to 24-Hour
 {
     ui->checkBox->setText("00:00");
     ui->checkBox_2->setText("00:30");
@@ -185,135 +197,122 @@ void EventAdminMode::on_lineEdit_textEdited(const QString &arg1)
     EventName = arg1;
 }
 
-void EventAdminMode::on_spinBox_valueChanged(int arg1)
-{//get Month from user
-    if((arg1 == 4)||(arg1 == 6)||(arg1 == 9)||(arg1 == 11))
-    {ui->spinBox_2->setMaximum(30);}
-    else if(arg1 == 2)
-    {ui->spinBox_2->setMaximum(28);}
-    else
-    {ui->spinBox_2->setMaximum(31);}
-    months = arg1;
-}
-
-void EventAdminMode::on_spinBox_2_valueChanged(int arg1)
-{   //get Day from user
- days = arg1;
-}
 void EventAdminMode::on_checkBox_clicked(bool checked)
-{time[0] = checked;}
+{times[0] = checked;}
 void EventAdminMode::on_checkBox_2_clicked(bool checked)
-{time[1] = checked;}
+{times[1] = checked;}
 void EventAdminMode::on_checkBox_3_clicked(bool checked)
-{time[2] = checked;}
+{times[2] = checked;}
 void EventAdminMode::on_checkBox_4_clicked(bool checked)
-{time[3] = checked;
+{times[3] = checked;
 }void EventAdminMode::on_checkBox_5_clicked(bool checked)
-{time[4] = checked;
+{times[4] = checked;
 }void EventAdminMode::on_checkBox_6_clicked(bool checked)
-{time[5] = checked;
+{times[5] = checked;
 }void EventAdminMode::on_checkBox_7_clicked(bool checked)
-{time[6] = checked;
+{times[6] = checked;
 }void EventAdminMode::on_checkBox_8_clicked(bool checked)
-{time[7] = checked;
+{times[7] = checked;
 }void EventAdminMode::on_checkBox_9_clicked(bool checked)
-{time[8] = checked;
+{times[8] = checked;
 }void EventAdminMode::on_checkBox_10_clicked(bool checked)
-{time[9] = checked;
+{times[9] = checked;
 }void EventAdminMode::on_checkBox_11_clicked(bool checked)
-{time[10] = checked;
+{times[10] = checked;
 }void EventAdminMode::on_checkBox_12_clicked(bool checked)
-{time[11] = checked;
+{times[11] = checked;
 }void EventAdminMode::on_checkBox_13_clicked(bool checked)
-{time[12] = checked;
+{times[12] = checked;
 }void EventAdminMode::on_checkBox_14_clicked(bool checked)
-{time[13] = checked;
+{times[13] = checked;
 }void EventAdminMode::on_checkBox_15_clicked(bool checked)
-{time[14] = checked;
+{times[14] = checked;
 }void EventAdminMode::on_checkBox_16_clicked(bool checked)
-{time[15] = checked;
+{times[15] = checked;
 }void EventAdminMode::on_checkBox_17_clicked(bool checked)
-{time[16] = checked;
+{times[16] = checked;
 }void EventAdminMode::on_checkBox_18_clicked(bool checked)
-{time[17] = checked;
+{times[17] = checked;
 }void EventAdminMode::on_checkBox_19_clicked(bool checked)
-{time[18] = checked;
+{times[18] = checked;
 }void EventAdminMode::on_checkBox_20_clicked(bool checked)
-{time[19] = checked;
+{times[19] = checked;
 }void EventAdminMode::on_checkBox_21_clicked(bool checked)
-{time[20] = checked;
+{times[20] = checked;
 }void EventAdminMode::on_checkBox_22_clicked(bool checked)
-{time[21] = checked;
+{times[21] = checked;
 }void EventAdminMode::on_checkBox_23_clicked(bool checked)
-{time[22] = checked;
+{times[22] = checked;
 }void EventAdminMode::on_checkBox_24_clicked(bool checked)
-{time[23] = checked;
+{times[23] = checked;
 }void EventAdminMode::on_checkBox_25_clicked(bool checked)
-{time[24] = checked;
+{times[24] = checked;
 }void EventAdminMode::on_checkBox_26_clicked(bool checked)
-{time[25] = checked;
+{times[25] = checked;
 }void EventAdminMode::on_checkBox_27_clicked(bool checked)
-{time[26] = checked;
+{times[26] = checked;
 }void EventAdminMode::on_checkBox_28_clicked(bool checked)
-{time[27] = checked;
+{times[27] = checked;
 }void EventAdminMode::on_checkBox_29_clicked(bool checked)
-{time[28] = checked;
+{times[28] = checked;
 }void EventAdminMode::on_checkBox_30_clicked(bool checked)
-{time[29] = checked;
+{times[29] = checked;
 }void EventAdminMode::on_checkBox_31_clicked(bool checked)
-{time[30] = checked;
+{times[30] = checked;
 }void EventAdminMode::on_checkBox_32_clicked(bool checked)
-{time[31] = checked;
+{times[31] = checked;
 }void EventAdminMode::on_checkBox_33_clicked(bool checked)
-{time[32] = checked;}
+{times[32] = checked;}
 void EventAdminMode::on_checkBox_34_clicked(bool checked)
-{time[33] = checked;}
+{times[33] = checked;}
 void EventAdminMode::on_checkBox_35_clicked(bool checked)
-{time[34] = checked;}
+{times[34] = checked;}
 void EventAdminMode::on_checkBox_36_clicked(bool checked)
-{time[35] = checked;}
+{times[35] = checked;}
 void EventAdminMode::on_checkBox_37_clicked(bool checked)
-{time[36] = checked;}
+{times[36] = checked;}
 void EventAdminMode::on_checkBox_38_clicked(bool checked)
-{time[37] = checked;}
+{times[37] = checked;}
 void EventAdminMode::on_checkBox_39_clicked(bool checked)
-{time[38] = checked;}
+{times[38] = checked;}
 void EventAdminMode::on_checkBox_40_clicked(bool checked)
-{time[39] = checked;}
+{times[39] = checked;}
 void EventAdminMode::on_checkBox_41_clicked(bool checked)
-{time[40] = checked;}
+{times[40] = checked;}
 void EventAdminMode::on_checkBox_42_clicked(bool checked)
-{time[41] = checked;}
+{times[41] = checked;}
 void EventAdminMode::on_checkBox_43_clicked(bool checked)
-{time[42] = checked;}
+{times[42] = checked;}
 void EventAdminMode::on_checkBox_44_clicked(bool checked)
-{time[43] = checked;}
+{times[43] = checked;}
 void EventAdminMode::on_checkBox_45_clicked(bool checked)
-{time[44] = checked;}
+{times[44] = checked;}
 void EventAdminMode::on_checkBox_46_clicked(bool checked)
-{time[45] = checked;}
+{times[45] = checked;}
 void EventAdminMode::on_checkBox_47_clicked(bool checked)
-{time[46] = checked;}
+{times[46] = checked;}
 void EventAdminMode::on_checkBox_48_clicked(bool checked)
-{time[47] = checked;}
+{times[47] = checked;}
 
 void EventAdminMode::on_pushButton_clicked()
 {
     int count = 0;
     for(int i = 0; i < 48; i++)
-    { if(time[i] == 1)
+    { if(times[i] == 1)
         {count++;}
     }
     if((count == 0)||(EventName == "N")||(person_name == "/A"))
-    {QMessageBox::warning(this,"Warning!!","Please Check Name and Your Time!!!");}
+    {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
     else{
-    switch(QMessageBox::question(this,"Sure??",Info_Collect(EventName,person_name,months,days,time),
+    switch(QMessageBox::question(this,"Sure??",Info_Collect(EventName,person_name,ui->calendarWidget->selectedDate().month(),
+                                                            ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), times),
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
-        events->addEvent(person_name,EventName,months,days,time);
+        session->addEvent(person_name,EventName,ui->calendarWidget->selectedDate().month(),
+                          ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), times);
         on_pushButton_5_clicked();
-        events->saveEventsToFile();
+        session->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;
@@ -334,10 +333,8 @@ void EventAdminMode::on_pushButton_5_clicked()
     ui->lineEdit_2->setText("");
     EventName = "N";
     person_name = "/A";
-    ui->spinBox->setValue(1);
-    ui->spinBox_2->setValue(1);
     for(int i = 0; i < 48; i++)
-    {time[i] = 0;}
+    {times[i] = 0;}
     ui->checkBox->setChecked(false);
     ui->checkBox_2->setChecked(false);
     ui->checkBox_3->setChecked(false);
@@ -387,3 +384,4 @@ void EventAdminMode::on_pushButton_5_clicked()
     ui->checkBox_47->setChecked(false);
     ui->checkBox_48->setChecked(false);
 }
+

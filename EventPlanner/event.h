@@ -8,12 +8,14 @@ class Event
 {
 public :
     Event();
-    Event(QString owner, QString eventName, int month, int day, int* time);
+    Event(QString owner, QString eventName, int month, int day, int year, int* time);
     ~Event();
     int getMonth() const;
     void setMonth(int month);
     int getDay() const;
     void setDay(int day);
+    int getYear() const;
+    void setYear(int year);
     QString getOwner() const;
     void setOwner(QString owne);
     QString getEventName();
@@ -28,6 +30,7 @@ private:
     QString eventName;
     int month;
     int day;
+    int year;
     int* time;
     QStringList attendees;
 };
