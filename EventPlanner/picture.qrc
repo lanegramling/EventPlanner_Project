@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/calendarWidget_Icon">
+        <file>Go_Arr.jpg</file>
+        <file>Back_Arr.jpg</file>
+    </qresource>
+    <qresource prefix="/eventMainWindow">
+        <file>food.png</file>
+        <file>job.png</file>
+        <file>Poke.png</file>
+        <file>Note.png</file>
+        <file>Up.png</file>
+    </qresource>
+</RCC>

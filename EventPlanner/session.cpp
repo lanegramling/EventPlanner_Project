@@ -3,14 +3,12 @@
 #include <QTextStream>
 #include <QDebug>
 
-
-
-Session::Session() {}
+Session::Session(){
+}
 
 Session::Session (QString user) : user(user){}
 
 Session::~Session() {
-
     for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
         delete *it;
     }
@@ -76,6 +74,7 @@ bool Session::readEventsFromFile() {
                events.push_back(event);
                counter = 0;
                eventElements.clear();
+
        }
        inputFile.close();
        return true;

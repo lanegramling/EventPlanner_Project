@@ -1,10 +1,13 @@
 #include "eventadminmode.h"
 #include "ui_eventadminmode.h"
 #include <eventplanner.h>
-#include <QHBoxLayout>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QToolButton>
+#include <QPixmap>
+#include <QIcon>
 #include <ctime>
+
 
 EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
@@ -30,6 +33,7 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     time_t now = time(0);
     struct tm *date = localtime(&now);
     ui->calendarWidget->setMinimumDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
+    setStyle_calendarWidget();
 }
 
 EventAdminMode::~EventAdminMode()
@@ -47,6 +51,17 @@ QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, in
     Now = Now + EventName;
     Now = Now + "\nDate: " + QString::number(month) + "/" + QString::number(day) + "/" + QString::number(year);
     return(Now);
+}
+
+void EventAdminMode::setStyle_calendarWidget()
+{
+    QPixmap go_arr(":/calendarWidget_Icon/Go_Arr.jpg");
+    QPixmap back_arr(":/calendarWidget_Icon/Back_Arr.jpg");
+    QIcon ButtonIcon(back_arr), ButtonIcon_2(go_arr);
+    QToolButton *back = ui->calendarWidget->findChild<QToolButton*>(QLatin1String("qt_calendar_prevmonth"));
+    QToolButton *front = ui->calendarWidget->findChild<QToolButton*>(QLatin1String("qt_calendar_nextmonth"));
+    back->setIcon(ButtonIcon);
+    front->setIcon(ButtonIcon_2);
 }
 
 void EventAdminMode::receiveshow()
@@ -205,3 +220,4 @@ void EventAdminMode::resetTimeSlotsWidget() {
         }
     }
 }
+

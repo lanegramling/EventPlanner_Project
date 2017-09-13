@@ -53,6 +53,17 @@ void AddingMode::on_lineEdit_textChanged(const QString &arg1)
 void AddingMode::on_pushButton_clicked()
 {
     //search name
+    int i=0;
+
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+    {
+       if(EventName == (*it)->getEventName())
+        {
+            ui->listWidget->item(i)->setBackgroundColor(Qt::red);
+            session->setUser(person_name);
+        }
+        i++;
+        }
 
 }
 
