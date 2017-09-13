@@ -20,7 +20,7 @@ public:
     int numberOfEvents() const;
 
 private:
-    int* time;
+    QList<TimeSlot> timeSlots;
     std::list<Event*> events;
     QString user;
 };

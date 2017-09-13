@@ -3,10 +3,12 @@
 #include <QTextStream>
 #include <QDebug>
 
+Session::Session(){
+}
+
 Session::Session (QString user) : user(user){}
 
 Session::~Session() {
-     delete[] time;
     for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
         delete *it;
     }

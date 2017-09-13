@@ -2,7 +2,6 @@
 #include <list>
 
 Event::Event() {
-    Event::time = new int[48];
 }
 
 Event::Event(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots) :
