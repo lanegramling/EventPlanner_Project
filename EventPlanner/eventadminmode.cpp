@@ -12,7 +12,17 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     session(session)
 {
     ui->setupUi(this);
-
+    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+        TimeSlot tempTimeSlot;
+        if (i != TIME_SLOTS_LENGTH -1) {
+            tempTimeSlot.setTime12Hour(TIME_ARRAY_12H.at(i) + "-" + TIME_ARRAY_12H.at(i+1));
+            tempTimeSlot.setTime24Hour(TIME_ARRAY_24H.at(i) + "-" + TIME_ARRAY_24H.at(i+1));
+        } else {
+            tempTimeSlot.setTime12Hour(TIME_ARRAY_12H.at(i) + "-12:00 AM");
+            tempTimeSlot.setTime24Hour(TIME_ARRAY_24H.at(i) + "-00:00");
+        }
+        timeSlots.push_back(tempTimeSlot);
+    }
     //initialzation for all value
     setWindowTitle("EventAdmin Mode");
     EventName = "N";
@@ -28,7 +38,7 @@ EventAdminMode::~EventAdminMode()
     delete ui;
 }
 
-QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, QString startTime, QString endTime)
+QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, QList<TimeSlot> timeSlots)
 {
     QString Now ="Do you want to create this event?\n";
     Now = Now + "Event Name:  ";
@@ -36,7 +46,7 @@ QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, in
     Now = Now +"'s ";
     Now = Now + EventName;
     Now = Now + "\nDate: " + QString::number(month) + "/" + QString::number(day) + "/" + QString::number(year);
-    Now = Now + "\ntimes: " + startTime + " - " + endTime;
+    Now = Now + "\ntimes: ";
     return(Now);
 }
 
@@ -44,13 +54,12 @@ void EventAdminMode::receiveshow()
 {
     ui->startTime->clear();
     ui->endTime->clear();
-    for (int i = 0; i < TIME_ARRAY_12H.size()-1; i++){
+    for (int i = 0; i < TIME_ARRAY_12H.size(); i++){
         ui->startTime->addItem(TIME_ARRAY_12H.at(i));
     }
-    for(int i = 1; i < TIME_ARRAY_12H.size(); i++) {
+    for(int i = 0; i < TIME_ARRAY_12H.size(); i++) {
         ui->endTime->addItem(TIME_ARRAY_12H.at(i));
     }
-    ui->endTime->setCurrentIndex(0);
     this->show();
 
 
@@ -81,6 +90,7 @@ void EventAdminMode::on_set12Hour_clicked() // use to change times mode to 12-Ho
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
+    resetTimeSlotsWidget();
 }
 
 void EventAdminMode::on_set24Hour_clicked() // use to change times mode to 24-Hour
@@ -93,11 +103,23 @@ void EventAdminMode::on_set24Hour_clicked() // use to change times mode to 24-Ho
     for (int i = 0; i < TIME_ARRAY_24H.size()-1; i++){
         ui->startTime->addItem(TIME_ARRAY_24H.at(i));
     }
-    for(int i = 1; i < TIME_ARRAY_24H.size(); i++) {
+    for(int i = 0; i < TIME_ARRAY_24H.size(); i++) {
         ui->endTime->addItem(TIME_ARRAY_24H.at(i));
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
+    resetTimeSlotsWidget();
+}
+
+void EventAdminMode::on_addTimeSlots_clicked() {
+    if (ui->startTime->currentIndex() >= ui->endTime->currentIndex()) {
+        QMessageBox::critical(this, "Error with time entry", "Start time must be prior to end time.", QMessageBox::Ok,QMessageBox::Ok);
+    } else {
+        for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < TIME_SLOTS_LENGTH; i++) {
+            timeSlots[i].setTrue();
+        }
+        resetTimeSlotsWidget();
+    }
 }
 
 void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
@@ -105,40 +127,31 @@ void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
     EventName = arg1;
 }
 
-void EventAdminMode::on_startTime_currentIndexChanged(int index) {
-    int endIndex = ui->endTime->currentIndex();
-    int endSize = ui->endTime->count();
-    ui->endTime->clear();
-    if (set12HourFormat){
-        for(int i = index+1; i < TIME_ARRAY_12H.size(); i++) {
-            ui->endTime->addItem(TIME_ARRAY_12H.at(i));
-        }
-    } else {
-        for(int i = index+1; i < TIME_ARRAY_24H.size(); i++) {
-            ui->endTime->addItem(TIME_ARRAY_24H.at(i));
-        }
-    }
-    if (ui->endTime->count() >= endSize) {
-        ui->endTime->setCurrentIndex(ui->endTime->count() - endSize + endIndex);
-    } else if (endIndex - (endSize - ui->endTime->count()) > 0) {
-        ui->endTime->setCurrentIndex(endIndex - (endSize - ui->endTime->count()));
-    }
-}
-
 void EventAdminMode::on_saveButton_clicked()
 {
-    if((EventName == "N")||(person_name == "/A"))
+    bool isTimeSlotSelected = false;
+    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+        if (timeSlots.at(i).isSelected()) {
+            isTimeSlotSelected = true;
+            break;
+        }
+    }
+    if((!isTimeSlotSelected)||(EventName == "N")||(person_name == "/A"))
     {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
     else{
     switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, person_name, ui->calendarWidget->selectedDate().month(),
-                                                            ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(),
-                                                            ui->startTime->currentText(), ui->endTime->currentText()),
+                                                                  ui->calendarWidget->selectedDate().day(),
+                                                                  ui->calendarWidget->selectedDate().year(), timeSlots),
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
-        session->addEvent(person_name,EventName, ui->calendarWidget->selectedDate().month(),
-                          ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(),
-                          ui->startTime->currentText(), ui->endTime->currentText());
+        for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+            if (timeSlots.at(i).isSelected()) {
+                timeSlots[i].addAttendee(person_name);
+            }
+        }
+        session->addEvent(person_name, EventName, ui->calendarWidget->selectedDate().month(),
+                          ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), timeSlots);
         on_pushButton_5_clicked();
         session->saveEventsToFile();
         break;
@@ -159,6 +172,28 @@ void EventAdminMode::on_pushButton_5_clicked()
 {
     ui->eventNameTextBox->setText("");
     ui->lineEdit_2->setText("");
+    ui->startTime->setCurrentIndex(0);
+    ui->endTime->setCurrentIndex(0);
+    time_t now = time(0);
+    struct tm *date = localtime(&now);
+    ui->calendarWidget->setSelectedDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
+    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+        timeSlots[i].clearTimeSlot();
+    }
+    resetTimeSlotsWidget();
     EventName = "N";
     person_name = "/A";  
+}
+
+void EventAdminMode::resetTimeSlotsWidget() {
+    ui->timeSlotsWidget->clear();
+    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+        if (timeSlots.at(i).isSelected()) {
+            if (set12HourFormat) {
+                ui->timeSlotsWidget->addItem(timeSlots.at(i).getTime12Hour());
+            } else {
+                ui->timeSlotsWidget->addItem(timeSlots.at(i).getTime24Hour());
+            }
+        }
+    }
 }

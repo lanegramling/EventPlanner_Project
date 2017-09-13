@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
+    <width>789</width>
     <height>364</height>
    </rect>
   </property>
@@ -41,8 +41,8 @@
    <widget class="QSplitter" name="splitter">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>280</y>
+      <x>350</x>
+      <y>270</y>
       <width>251</width>
       <height>30</height>
      </rect>
@@ -129,7 +129,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>180</y>
+      <y>230</y>
       <width>101</width>
       <height>22</height>
      </rect>
@@ -139,7 +139,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>180</y>
+      <y>230</y>
       <width>101</width>
       <height>22</height>
      </rect>
@@ -149,7 +149,7 @@
     <property name="geometry">
      <rect>
       <x>36</x>
-      <y>160</y>
+      <y>210</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -162,7 +162,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>160</y>
+      <y>210</y>
       <width>51</width>
       <height>16</height>
      </rect>
@@ -175,7 +175,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>230</y>
+      <y>180</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -188,7 +188,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>230</y>
+      <y>180</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -201,7 +201,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>210</y>
+      <y>160</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -210,26 +210,62 @@
      <string>Time Format:</string>
     </property>
    </widget>
-   <zorder>label_7</zorder>
-   <zorder>splitter</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>calendarWidget</zorder>
-   <zorder>startTime</zorder>
-   <zorder>endTime</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>set24Hour</zorder>
-   <zorder>set12Hour</zorder>
-   <zorder>label_4</zorder>
+   <widget class="QListWidget" name="timeSlotsWidget">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>50</y>
+      <width>151</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>30</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Time Slots Added:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addTimeSlots">
+    <property name="geometry">
+     <rect>
+      <x>94</x>
+      <y>270</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Time Slots</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Date</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>631</width>
+     <width>789</width>
      <height>21</height>
     </rect>
    </property>
@@ -246,7 +282,4 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
- <buttongroups>
-  <buttongroup name="timeFormatButtons"/>
- </buttongroups>
 </ui>
