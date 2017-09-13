@@ -74,6 +74,7 @@ void EventPlanner::on_pushButton_3_clicked()
 
 void EventPlanner::on_pushButton_4_clicked()
 {
+
     QMessageBox::about(this,"Help",tr("How to use EventPlanner:\n"
                                       "You can choose two different Modes by click their Button                                \n\n"
                                       "  A.In EventAdmin Mode:\n"
