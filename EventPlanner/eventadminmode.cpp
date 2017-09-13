@@ -38,7 +38,7 @@ EventAdminMode::~EventAdminMode()
     delete ui;
 }
 
-QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, QList<TimeSlot> timeSlots)
+QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year)
 {
     QString Now ="Do you want to create this event?\n";
     Now = Now + "Event Name:  ";
@@ -46,7 +46,6 @@ QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, in
     Now = Now +"'s ";
     Now = Now + EventName;
     Now = Now + "\nDate: " + QString::number(month) + "/" + QString::number(day) + "/" + QString::number(year);
-    Now = Now + "\ntimes: ";
     return(Now);
 }
 
@@ -122,6 +121,13 @@ void EventAdminMode::on_addTimeSlots_clicked() {
     }
 }
 
+void EventAdminMode::on_clearTimeSlotsButton_clicked() {
+    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
+        timeSlots[i].clearTimeSlot();
+    }
+    resetTimeSlotsWidget();
+}
+
 void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
 {   //get edited string(name) from user
     EventName = arg1;
@@ -137,11 +143,13 @@ void EventAdminMode::on_saveButton_clicked()
         }
     }
     if((!isTimeSlotSelected)||(EventName == "N")||(person_name == "/A"))
-    {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
-    else{
+        {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
+    else if (person_name.contains("\"")){
+        {QMessageBox::warning(this,"Invalid User Name!","User name may not contain quotation marks.");}
+    } else {
     switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, person_name, ui->calendarWidget->selectedDate().month(),
                                                                   ui->calendarWidget->selectedDate().day(),
-                                                                  ui->calendarWidget->selectedDate().year(), timeSlots),
+                                                                  ui->calendarWidget->selectedDate().year()),
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
     {
     case QMessageBox::Ok:
