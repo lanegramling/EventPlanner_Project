@@ -15,7 +15,7 @@ public:
     ~EventAdminMode();
 
 
-    QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int year, QList<TimeSlot> timeSlots);
+    QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int year);
     // use to make all Information to a string, used for "Make Sure"
 private:
     Ui::EventAdminMode *ui;
@@ -51,6 +51,7 @@ private slots:
     void on_set12Hour_clicked();
     void on_set24Hour_clicked();
     void on_addTimeSlots_clicked();
+    void on_clearTimeSlotsButton_clicked();
 
     void on_eventNameTextBox_textEdited(const QString &arg1);
     void on_lineEdit_2_textChanged(const QString &arg1);
