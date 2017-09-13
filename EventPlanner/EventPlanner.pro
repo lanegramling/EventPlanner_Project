@@ -29,18 +29,19 @@ SOURCES += \
     eventadminmode.cpp \
     addingmode.cpp \
     event.cpp \
-    session.cpp \
-    timeslot.cpp
+    session.cpp
 
 HEADERS += \
         eventplanner.h \
     eventadminmode.h \
     addingmode.h \
     event.h \
-    session.h \
-    timeslot.h
+    session.h
 
 FORMS += \
     eventadminmode.ui \
     eventplanner.ui \
     addingmode.ui
+
+RESOURCES += \
+    picture.qrc \

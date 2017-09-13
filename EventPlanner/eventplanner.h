@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QPixmap>
 
 namespace Ui {
 class EventPlanner;
@@ -15,6 +16,8 @@ class EventPlanner : public QMainWindow
 public:
     explicit EventPlanner(QWidget *parent = 0);
     ~EventPlanner();
+
+    void setPicture();
 
 private:
     Ui::EventPlanner *ui;

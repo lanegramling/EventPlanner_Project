@@ -20,6 +20,11 @@
    <string>EventPlanner</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="font">
+    <font>
+     <underline>false</underline>
+    </font>
+   </property>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
@@ -71,7 +76,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="layoutWidget_10">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -271,6 +276,30 @@
     <property name="text">
      <string>Clear Time Slots</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#qt_calendar_monthbutton,#qt_calendar_yearbutton{
+color:
+rgb(0, 0, 0);
+}
+QCalendarWidget QWidget#qt_calendar_navigationbar{
+background-color:
+rgb(255,255,255);
+}
+</string>
+    </property>
+    <property name="minimumDate">
+     <date>
+      <year>2017</year>
+      <month>1</month>
+      <day>1</day>
+     </date>
+    </property>
+    <property name="gridVisible">
+     <bool>true</bool>
+    </property>
+    <property name="navigationBarVisible">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -282,14 +311,6 @@
      <height>21</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
