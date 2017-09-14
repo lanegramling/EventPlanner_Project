@@ -36,6 +36,5 @@ int main(int argc, char *argv[])
 
     QObject::connect(&mode2,SIGNAL(showEventPlanner()),&w,SLOT(getMode2()));//connect signal
     QObject::connect(&w,SIGNAL(AddingModeshow()),&mode2,SLOT(receiveshow()));//   with differen windows
-
     return (prog.exec());
 }

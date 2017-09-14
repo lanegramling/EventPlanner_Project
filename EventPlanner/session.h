@@ -3,6 +3,7 @@
 #include <list>
 #include <QString>
 #include "event.h"
+#include "timeslot.h"
 
 /*!
  * \brief The Session class

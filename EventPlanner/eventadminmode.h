@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "session.h"
+#include "timeslot.h"
 namespace Ui {
 class EventAdminMode;
 }
@@ -68,6 +69,7 @@ private:
     bool set12HourFormat = true;
     QList<TimeSlot> timeSlots;
     void resetTimeSlotsWidget();
+    void on_pushButton_5_clicked();// member function
 
 private slots:
     void receiveshow();
@@ -81,8 +83,6 @@ private slots:
 
     void on_eventNameTextBox_textEdited(const QString &arg1);
     void on_lineEdit_2_textChanged(const QString &arg1);
-
-    void on_pushButton_5_clicked();
 
 signals:
     /*!
