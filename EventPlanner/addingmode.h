@@ -20,8 +20,11 @@ private:
     QString person_name;   // adding data
 
     //searching data
+
+    int EventIndex;
     QString EventName;
     int month;
+    int year;
     int day;
     Session *session;
 private slots:
@@ -42,6 +45,10 @@ private slots:
     void on_listWidget_doubleClicked(const QModelIndex &index);
 
     void on_lineEdit_2_textChanged(const QString &arg1);
+
+    void on_spinBox_3_valueChanged(int arg1);
+
+    void on_listWidget_2_doubleClicked(const QModelIndex &index);
 
     void on_pushButton_4_clicked();
 signals:

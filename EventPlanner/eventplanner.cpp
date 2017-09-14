@@ -69,7 +69,9 @@ void EventPlanner::on_pushButton_3_clicked()
                                           "\n"
                                        "Email: whatever@ku.edu\n"
                                           "\n"
-                                       "Team members: Martin, Kevin, Jean, Simon\n"));
+                                       "Team members: Martin, Kevin, Jean, Simon\n"
+                                          "\n"
+                                       "This program was made with the Qt Creator IDE and Framework version 5.9.1 licensed under LGPL."));
 }
 
 void EventPlanner::on_pushButton_4_clicked()
@@ -87,4 +89,5 @@ void EventPlanner::on_pushButton_4_clicked()
                                       "  ...Clicking An Event, it will ask you 'Do you want it?'.\n"
                                       "  ...You can canncel an Event, click the canncel button."));
 }
+
 

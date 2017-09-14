@@ -29,12 +29,11 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-               while(counter < 197){
+               while(counter < 198){
                    QString line = in.readLine();
                    eventElements.push_back(line);
                    counter++;
                }
-
                Event* event = new Event();
                int index = 0;
                event->setOwner(eventElements.at(index)); index++;
@@ -65,6 +64,7 @@ bool Session::readEventsFromFile() {
                                }
                            }
                            tempTimeSlot.addAttendee(attendee);
+                          qDebug() << tempTimeSlot.getAttendees().at(0);
                        }
                    }
                    timeSlots.push_back(tempTimeSlot);
