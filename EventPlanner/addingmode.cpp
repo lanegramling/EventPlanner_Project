@@ -26,7 +26,7 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
 }
 AddingMode::~AddingMode()
 {
-    session->saveEventsToFile();
+    //delete session;
     delete ui;
 }
 

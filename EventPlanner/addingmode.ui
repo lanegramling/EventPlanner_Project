@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>641</width>
-    <height>607</height>
+    <width>637</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -123,7 +123,7 @@
      <string>Date Search:</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -212,7 +212,7 @@
        <item>
         <widget class="QPushButton" name="pushButton_5">
          <property name="text">
-          <string>cancel</string>
+          <string>Clear</string>
          </property>
         </widget>
        </item>
@@ -220,7 +220,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -256,7 +256,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget_3">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -290,7 +290,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_4">
            <property name="text">
-            <string>Cancle</string>
+            <string>Clear</string>
            </property>
           </widget>
          </item>
@@ -306,7 +306,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>641</width>
+     <width>637</width>
      <height>22</height>
     </rect>
    </property>
