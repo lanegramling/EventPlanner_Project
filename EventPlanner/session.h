@@ -2,9 +2,8 @@
 #define SESSION_H
 #include <list>
 #include <QString>
-
 #include "event.h"
-
+#include "timeslot.h"
 class Session {
 
 public:
@@ -12,15 +11,16 @@ public:
     Session();
     Session(QString user);
     ~Session();
-    void addEvent(QString owner, QString eventName, int month, int day, int* time);
+    void addEvent(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots);
     bool readEventsFromFile();
     bool saveEventsToFile();
     QString getUser() const;
     void setUser(QString user);
-    std::list<Event*> getEvents();
+    std::list<Event*>& getEvents();
+    int numberOfEvents() const;
 
 private:
-
+    QList<TimeSlot> timeSlots;
     std::list<Event*> events;
     QString user;
 };

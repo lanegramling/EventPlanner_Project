@@ -2,19 +2,43 @@
 #include "ui_eventplanner.h"
 
 
-
 EventPlanner::EventPlanner(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::EventPlanner)
 {
     ui->setupUi(this);
     setWindowTitle("EventPlanner"); 
+    setPicture();
 }
 
 
 EventPlanner::~EventPlanner()
 {
     delete ui;
+}
+
+void EventPlanner::setPicture()
+{
+    QPixmap food(":/eventMainWindow/food.png"),
+            job(":/eventMainWindow/job.png"),
+            note(":/eventMainWindow/Note.png"),
+            pokemon(":/eventMainWindow/Poke.png"),
+            up(":/eventMainWindow/Up.png");
+    ui->label_2->setPixmap(food);
+    ui->label_3->setPixmap(job);
+    ui->label_4->setPixmap(note);
+    ui->label_5->setPixmap(pokemon);
+    ui->label_7->setPixmap(up);
+    ui->label_2->setScaledContents(true);
+    ui->label_3->setScaledContents(true);
+    ui->label_4->setScaledContents(true);
+    ui->label_5->setScaledContents(true);
+    ui->label_7->setScaledContents(true);
+    ui->label_2->show();
+    ui->label_3->show();
+    ui->label_4->show();
+    ui->label_5->show();
+    ui->label_7->show();
 }
 
 void EventPlanner::on_pushButton_clicked()
@@ -50,6 +74,7 @@ void EventPlanner::on_pushButton_3_clicked()
 
 void EventPlanner::on_pushButton_4_clicked()
 {
+
     QMessageBox::about(this,"Help",tr("How to use EventPlanner:\n"
                                       "You can choose two different Modes by click their Button                                \n\n"
                                       "  A.In EventAdmin Mode:\n"

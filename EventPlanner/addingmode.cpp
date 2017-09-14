@@ -1,37 +1,24 @@
 #include "addingmode.h"
 #include "ui_addingmode.h"
 #include "eventplanner.h"
-//#include <QHBoxLayout>
-#include <QDebug>
+#include <QString>
+#include <QList>
 
-AddingMode::AddingMode(QWidget *parent) :
+AddingMode::AddingMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::AddingMode)
+    ui(new Ui::AddingMode),
+    session(session)
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
+    ui->listWidget->clear();
+    EventIndex = 0;
     person_name = "";
-
-    events = new Session();
-    events->readEventsFromFile();
-    //eventslist = new std::list<Event*>();
-    eventslist = events->getEvents();
-    //qDebug() << eventslist->size();
-    //eventslist = new std::list<Event*>(*(events->getEvents()));
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    /*
-    Load Event class here, and use the event's name to make a List
-    Using: ui->listWidget->addItem(QString Event_Name); to Make List_Item
-    Example:
-    */
-    qDebug() << eventslist.size() ;
-
-    ui->listWidget->addItem(QString::number(23) + ". Event_TT");
-    ui->listWidget->addItem(QString::number(2) + ". Other example");
-    ui->listWidget->item(0)->setBackgroundColor(Qt::red);
-    ui->listWidget->item(1)->setTextColor(Qt::blue);
-   // ui->listWidget->item(0)->setSizeHint(23);
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    int number = 1;
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+        ui->listWidget->addItem(QString::number(number)+". "+(*it)->getEventName());
+        number++;
+    }
 }
 AddingMode::~AddingMode()
 {
@@ -40,6 +27,9 @@ AddingMode::~AddingMode()
 
 void AddingMode::on_pushButton_2_clicked()
 {
+    ui->listWidget_2->clear();
+    ui->lineEdit_2->setText("");
+    ui->lineEdit->setText("");
     this->hide();
     person_name = "";
     EventName = "";
@@ -47,7 +37,20 @@ void AddingMode::on_pushButton_2_clicked()
 }
 
 void AddingMode::receiveshow()
-{this->show();}
+{
+    if (ui->listWidget->count() != session->numberOfEvents()) {
+        ui->listWidget->clear();
+        int number = 1;
+        for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+           ui->listWidget->addItem(QString::number(number)+". " + (*it)->getEventName());
+        number++;
+        }}
+        else{
+            for(int i = 0; i < ui->listWidget->count(); i++)
+            {ui->listWidget->item(i)->setHidden(false);}
+        }
+    this->show();
+}
 
 void AddingMode::on_lineEdit_textChanged(const QString &arg1)
 {
@@ -57,6 +60,17 @@ void AddingMode::on_lineEdit_textChanged(const QString &arg1)
 void AddingMode::on_pushButton_clicked()
 {
     //search name
+    int i=0;
+
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+    {
+       if(EventName != (*it)->getEventName())
+        {
+            ui->listWidget->item(i)->setHidden(true);
+            session->setUser(person_name);
+        }
+        i++;
+     }
 
 }
 
@@ -77,27 +91,27 @@ void AddingMode::on_spinBox_valueChanged(int arg1)
 }
 
 void AddingMode::on_spinBox_2_valueChanged(int arg1)
-{
-    day = arg1;
-}
+{day = arg1;}
 
+void AddingMode::on_spinBox_3_valueChanged(int arg1)
+{year = arg1;}
 
 void AddingMode::on_listWidget_doubleClicked(const QModelIndex &index)
 {
-    int index_of_list = 0;
-    index_of_list = index.row();
-    qDebug() << index <<index_of_list;
-    switch(QMessageBox::question(this,"Adding","Do you want to join it?",
-                                 QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
-    case QMessageBox::Ok:
-        //After you click Ok,this case will work, it means customer will be adding to an event
-        // and the event_list will return an index and you can get the position(index_of_list)
-        // it should be the same as the position in the Data_List
-        break;
-    case QMessageBox::Cancel:
-        break;
-    default:
-        break;}
+    ui->listWidget_2->clear();
+    int count =0;
+    EventIndex = index.row();
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+       if(count == EventIndex)
+       {
+           for (int i = 0; i <  (*it)->getTimeSlots().length(); i++) {
+                  if(((*it)->getTimeSlots()).at(i).isSelected())
+                    { ui->listWidget_2->addItem(((*it)->getTimeSlots()).at(i).getTime12Hour());}
+           }
+           break;}
+       count++;
+    }
+
 }
 
 void AddingMode::on_lineEdit_2_textChanged(const QString &arg1)
@@ -105,7 +119,48 @@ void AddingMode::on_lineEdit_2_textChanged(const QString &arg1)
     person_name = arg1;
 }
 
-void AddingMode::on_pushButton_4_clicked() // this button will be optional
+void AddingMode::on_listWidget_2_doubleClicked(const QModelIndex &index)
 {
-    // reload list, and reload data
+    int index_of_list = 0;
+    index_of_list = index.row();
+    if(person_name == "")
+    {QMessageBox::warning(this,"Warning!!","Please Enter your name on the top-left line");}
+    else{
+        int count = 0;
+switch(QMessageBox::question(this,"Adding","Do you want to join it?",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
+    case QMessageBox::Ok:
+        for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+        {
+         if(count == EventIndex)
+         {
+             QList<TimeSlot> tempTimeSlots = (*it)->getTimeSlots();
+             for(int i = 0; i < 48; i++)
+             {
+                if(((*it)->getTimeSlots()).at(i).isSelected())
+                {tempTimeSlots[index_of_list+i].addAttendee(person_name);
+                break;
+                }
+              }
+    // ((*it)->getTimeSlots())[index_of_list].addAttendee(person_name); we cannot do this way, i don't know why
+             (*it)->setTimeSlots(tempTimeSlots);
+         break;}
+           count++;
+        }
+        session->saveEventsToFile();
+        for(int i = 0; i < ui->listWidget->count(); i++)
+        {ui->listWidget->item(i)->setHidden(false);}
+        ui->lineEdit_2->setText("");
+        break;
+    case QMessageBox::Cancel:
+        break;
+    default:
+        break;}
+    }
+}
+
+void AddingMode::on_pushButton_4_clicked()
+{
+    ui->lineEdit_2->setText("");
+    for(int i = 0; i < ui->listWidget->count(); i++)
+    {ui->listWidget->item(i)->setHidden(false);}
 }
