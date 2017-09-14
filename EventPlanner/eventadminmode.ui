@@ -226,6 +226,29 @@ rgb(255,255,255);
      <string>Time Format:</string>
     </property>
    </widget>
+   <widget class="QListWidget" name="timeSlotsWidget">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>50</y>
+      <width>151</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>30</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Time Slots Added:</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="addTimeSlots">
     <property name="geometry">
      <rect>
@@ -252,50 +275,34 @@ rgb(255,255,255);
      <string>Select Date</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QPushButton" name="clearTimeSlotsButton">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>30</y>
-      <width>258</width>
-      <height>248</height>
+      <x>570</x>
+      <y>250</y>
+      <width>91</width>
+      <height>23</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Time Slots Added:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QListWidget" name="timeSlotsWidget"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="clearTimeSlotsButton">
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>Clear Time Slots</string>
-       </property>
-       <property name="minimumDate" stdset="0">
-        <date>
-         <year>2017</year>
-         <month>1</month>
-         <day>1</day>
-        </date>
-       </property>
-       <property name="gridVisible" stdset="0">
-        <bool>true</bool>
-       </property>
-       <property name="navigationBarVisible" stdset="0">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Clear Time Slots</string>
+    </property>
+    <property name="minimumDate" stdset="0">
+     <date>
+      <year>2017</year>
+      <month>1</month>
+      <day>1</day>
+     </date>
+    </property>
+    <property name="gridVisible" stdset="0">
+     <bool>true</bool>
+    </property>
+    <property name="navigationBarVisible" stdset="0">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -303,8 +310,8 @@ rgb(255,255,255);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>816</width>
-     <height>22</height>
+     <width>740</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -12,6 +12,9 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
+    month = 1;
+    day = 1;
+    year = 2017;
     ui->listWidget->clear();
     EventIndex = 0;
     person_name = "";
@@ -77,9 +80,37 @@ void AddingMode::on_pushButton_clicked()
 
 void AddingMode::on_pushButton_3_clicked()
 {
-    //search free days
-}
+    int i = 0;
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+    {
+       if(month != (*it)->getMonth())
+        {
+            ui->listWidget->item(i)->setHidden(true);
 
+        }
+       else if(day != (*it)->getDay())
+       {
+           ui->listWidget->item(i)->setHidden(true);
+
+       }
+       else if(year != (*it)->getYear())
+       {
+            ui->listWidget->item(i)->setHidden(true);
+       }
+        i++;
+     }
+}
+void AddingMode::on_pushButton_5_clicked()
+{
+    int i=0;
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+    {
+            ui->listWidget->item(i)->setHidden(true);
+            session->setUser(person_name);
+        }
+        i++;
+     }
+}
 void AddingMode::on_spinBox_valueChanged(int arg1)
 { // (if)-(else if)-(else) use to check "fake date .e.g: Feb 30, Nov 66"
     if((arg1 == 4)||(arg1 == 6)||(arg1 == 9)||(arg1 == 11))
@@ -112,8 +143,8 @@ void AddingMode::on_listWidget_doubleClicked(const QModelIndex &index)
            break;}
        count++;
     }
-
 }
+
 
 void AddingMode::on_lineEdit_2_textChanged(const QString &arg1)
 {

@@ -143,12 +143,12 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>80</x>
       <y>450</y>
-      <width>168</width>
+      <width>244</width>
       <height>27</height>
      </rect>
     </property>
@@ -279,7 +279,7 @@
      <x>0</x>
      <y>0</y>
      <width>415</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

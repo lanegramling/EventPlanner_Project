@@ -7,6 +7,14 @@
 
 int main(int argc, char *argv[])
 {
+    /*!
+     * \mainpage
+     * \author Team Jayhawk
+     * \details The %Event Planner is a project created for EECS 448 course at the Univerty of Kansas.
+     * \details This project was created using <a href="https://www.qt.io/qt-features-libraries-apis-tools-and-ide/" target="_blank">Qt Creator IDE</a> version 5.9.1.
+     * \details Qt framework is used under <a href="https://www.gnu.org/licenses/lgpl.txt" target="_blank">LGPL</a>.
+     * \details Details about the Qt classes used can be found on the <a href="http://doc.qt.io/qt-5/classes.html" target="_blank">Qt Documentation Website</a>.
+     */
     Session session;
     session.readEventsFromFile();
     QApplication prog(argc, argv);
