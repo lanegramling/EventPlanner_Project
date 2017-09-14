@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>350</height>
+    <width>816</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -129,6 +129,17 @@
       <height>191</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#qt_calendar_monthbutton,#qt_calendar_yearbutton{
+color:
+rgb(0, 0, 0);
+}
+QCalendarWidget QWidget#qt_calendar_navigationbar{
+background-color:
+rgb(255,255,255);
+}
+</string>
+    </property>
    </widget>
    <widget class="QComboBox" name="startTime">
     <property name="geometry">
@@ -228,7 +239,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>550</x>
       <y>30</y>
       <width>91</width>
       <height>16</height>
@@ -273,31 +284,23 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Clear Time Slots</string>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QToolButton#qt_calendar_monthbutton,#qt_calendar_yearbutton{
-color:
-rgb(0, 0, 0);
-}
-QCalendarWidget QWidget#qt_calendar_navigationbar{
-background-color:
-rgb(255,255,255);
-}
-</string>
-    </property>
-    <property name="minimumDate">
+    <property name="minimumDate" stdset="0">
      <date>
       <year>2017</year>
       <month>1</month>
       <day>1</day>
      </date>
     </property>
-    <property name="gridVisible">
+    <property name="gridVisible" stdset="0">
      <bool>true</bool>
     </property>
-    <property name="navigationBarVisible">
+    <property name="navigationBarVisible" stdset="0">
      <bool>true</bool>
     </property>
    </widget>

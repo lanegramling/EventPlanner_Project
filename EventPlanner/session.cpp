@@ -34,7 +34,6 @@ bool Session::readEventsFromFile() {
                    eventElements.push_back(line);
                    counter++;
                }
-
                Event* event = new Event();
                int index = 0;
                event->setOwner(eventElements.at(index)); index++;
@@ -46,18 +45,17 @@ bool Session::readEventsFromFile() {
                for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
                    TimeSlot tempTimeSlot;
                    if (eventElements.at(index).toInt() == 1) {
-                       tempTimeSlot.setTrue();
+                       tempTimeSlot.setTrue(); index++;
                    } else {
-                       tempTimeSlot.setFalse();
+                       tempTimeSlot.setFalse(); index++;
                    }
-                   index++;
                    tempTimeSlot.setTime12Hour(eventElements.at(index)); index++;
                    tempTimeSlot.setTime24Hour(eventElements.at(index)); index++;
                    for (int j = 0; j < eventElements.at(index).size(); j ++) {
-                       if (eventElements.at(index).at(j) == '"') {
+                       if (eventElements.at(index).at(j) == '\"') {
                            QString attendee = "";
                            for (int l = j+1 ; l < eventElements.at(index).size(); l ++) {
-                               if (eventElements.at(index).at(l) != '"') {
+                               if (eventElements.at(index).at(l) != '\"') {
                                    attendee.push_back(eventElements.at(index).at(l));
                                } else {
                                    j = l;
@@ -66,7 +64,8 @@ bool Session::readEventsFromFile() {
                            }
                            tempTimeSlot.addAttendee(attendee);
                        }
-                   }
+                   } index++;
+
                    timeSlots.push_back(tempTimeSlot);
                }
                event->setTimeSlots(timeSlots);
@@ -105,10 +104,11 @@ bool Session::saveEventsToFile() {
                 }
                 out << (*it)->getTimeSlots().at(i).getTime12Hour() << "\n";
                 out << (*it)->getTimeSlots().at(i).getTime24Hour() << "\n";
+                out << "(";
                 for (int j = 0; j < (*it)->getTimeSlots().at(i).getAttendees().size(); j++) {
                     out << "\"" << (*it)->getTimeSlots().at(i).getAttendees().at(j) << "\" ";
                 }
-                out << "\n";
+                out << ")\n";
             }
         }
         file.close();

@@ -82,7 +82,6 @@ void EventAdminMode::receiveshow()
 void EventAdminMode::on_backButton_clicked()
 {
     on_pushButton_5_clicked();
-    session->saveEventsToFile();
     this->hide();
     emit showEventPlanner();
 }
@@ -175,6 +174,7 @@ void EventAdminMode::on_saveButton_clicked()
         }
         session->addEvent(person_name, EventName, ui->calendarWidget->selectedDate().month(),
                           ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), timeSlots);
+        session->saveEventsToFile();
         on_pushButton_5_clicked();
         session->saveEventsToFile();
         break;
@@ -187,9 +187,7 @@ void EventAdminMode::on_saveButton_clicked()
 }
 
 void EventAdminMode::on_lineEdit_2_textChanged(const QString &arg1)
-{
- person_name = arg1;
-}
+{person_name = arg1;}
 
 void EventAdminMode::on_pushButton_5_clicked()
 {
