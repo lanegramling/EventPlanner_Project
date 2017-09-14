@@ -11,7 +11,6 @@ class EventPlanner;
 
 /*!
  * \brief The EventPlanner class
- * \inherits  QMainWindow
  * \details Main menu window with options to either go to EventAdminMode or AddingMode
  */
 class EventPlanner : public QMainWindow
@@ -29,7 +28,7 @@ public:
 
     /*!
      * \brief setPicture
-     * \Adds picture to menu screen.
+     * \details Adds picture to menu screen.
      */
     void setPicture();
 
