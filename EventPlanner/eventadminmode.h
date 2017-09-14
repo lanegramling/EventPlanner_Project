@@ -9,7 +9,6 @@ class EventAdminMode;
 }
 /*!
  * \brief The EventAdminMode class
- * \inherits QMainWindow
  * \details Window used for creating new events.
  */
 class EventAdminMode : public QMainWindow
