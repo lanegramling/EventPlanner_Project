@@ -29,7 +29,7 @@ bool Session::readEventsFromFile() {
        eventElements.clear();
        while (!in.atEnd())
        {
-               while(counter < 198){
+               while(counter < 197){
                    QString line = in.readLine();
                    eventElements.push_back(line);
                    counter++;
