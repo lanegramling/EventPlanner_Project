@@ -34,7 +34,6 @@ bool Session::readEventsFromFile() {
                    eventElements.push_back(line);
                    counter++;
                }
-
                Event* event = new Event();
                int index = 0;
                event->setOwner(eventElements.at(index)); index++;

@@ -4,6 +4,7 @@
 #include <QString>
 #include <QList>
 
+
 AddingMode::AddingMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AddingMode),
@@ -22,6 +23,7 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
 }
 AddingMode::~AddingMode()
 {
+    session->saveEventsToFile();
     delete ui;
 }
 
@@ -71,7 +73,6 @@ void AddingMode::on_pushButton_clicked()
         }
         i++;
      }
-
 }
 
 void AddingMode::on_pushButton_3_clicked()

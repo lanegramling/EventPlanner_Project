@@ -47,7 +47,6 @@ private:
     void resetTimeSlotsWidget();
     void on_pushButton_5_clicked();// member function
 
-
 private slots:
     void receiveshow();
 

@@ -38,6 +38,7 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
 
 EventAdminMode::~EventAdminMode()
 {
+    session->saveEventsToFile();
     delete ui;
 }
 
@@ -175,6 +176,7 @@ void EventAdminMode::on_saveButton_clicked()
                           ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), timeSlots);
         session->saveEventsToFile();
         on_pushButton_5_clicked();
+        session->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;

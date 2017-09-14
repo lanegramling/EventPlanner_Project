@@ -246,9 +246,6 @@ rgb(255,255,255);
       <y>20</y>
       <width>61</width>
       <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
      <string>Select Date</string>
     </property>
    </widget>

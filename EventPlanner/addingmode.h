@@ -51,7 +51,6 @@ private slots:
     void on_listWidget_2_doubleClicked(const QModelIndex &index);
 
     void on_pushButton_4_clicked();
-
 signals:
     void showEventPlanner();
 };
