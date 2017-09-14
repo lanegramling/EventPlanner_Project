@@ -6,18 +6,42 @@
 namespace Ui {
 class EventAdminMode;
 }
+/*!
+ * \brief The EventAdminMode class
+ * \inherits QMainWindow
+ * \details Window used for creating new events.
+ */
 class EventAdminMode : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    /*!
+     * \brief EventAdminMode
+     * \details Constructor for EventAdminMode
+     * \param session
+     * \param parent
+     */
     explicit EventAdminMode(Session *session, QWidget *parent = 0);
     ~EventAdminMode();
 
-
+    /*!
+     * \brief Info_Collect
+     * \details Formats a QString for displaying Event contents.
+     * \param EventName
+     * \param person_name
+     * \param month
+     * \param day
+     * \param year
+     * \return QString
+     */
     QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int year);
     // use to make all Information to a string, used for "Make Sure"
 
+    /*!
+     * \brief setStyle_calendarWidget
+     * \details Set a style sheet for calender widget.
+     */
     void setStyle_calendarWidget();
 private:
     Ui::EventAdminMode *ui;
@@ -61,7 +85,16 @@ private slots:
     void on_pushButton_5_clicked();
 
 signals:
+    /*!
+     * \brief showEventPlanner
+     * \details Signal to go back to the EventPlanner.
+     */
     void showEventPlanner();
+
+    /*!
+     * \brief quit
+     * \details Signal to quit EventAdminMode.
+     */
     void quit();
 };
 

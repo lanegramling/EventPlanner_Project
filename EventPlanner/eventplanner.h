@@ -9,14 +9,28 @@ namespace Ui {
 class EventPlanner;
 }
 
+/*!
+ * \brief The EventPlanner class
+ * \inherits  QMainWindow
+ * \details Main menu window with options to either go to EventAdminMode or AddingMode
+ */
 class EventPlanner : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    /*!
+     * \brief EventPlanner
+     * \details Construtor for menu window of main page.
+     * \param parent
+     */
     explicit EventPlanner(QWidget *parent = 0);
     ~EventPlanner();
 
+    /*!
+     * \brief setPicture
+     * \Adds picture to menu screen.
+     */
     void setPicture();
 
 private:
@@ -35,9 +49,28 @@ private slots:
     void on_pushButton_3_clicked();// use for AboutUs
 
 signals:
+    /*!
+     * \brief AddingModeshow
+     * \details Signal to switch to Adding Mode for adding availablity
+     */
     void AddingModeshow(); // show mode adding window
+
+    /*!
+     * \brief AddingnModequit
+     * \details Signal that Addinf Mode was left
+     */
     void AddingnModequit(); // quit signal for mode adding
+
+    /*!
+     * \brief AdminModeshow
+     * \details Signal to show Admin mode for creating events
+     */
     void AdminModeshow(); // show mode Event admin mode
+
+    /*!
+     * \brief AdminModequit
+     * \details Signal to say that Admin mode was exitted
+     */
     void AdminModequit(); // quit signal for mode admin
 };
 
