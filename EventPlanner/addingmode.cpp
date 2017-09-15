@@ -33,7 +33,6 @@ AddingMode::~AddingMode()
 void AddingMode::on_pushButton_2_clicked()
 {
     ui->listWidget_2->clear();
-    ui->lineEdit_2->setText("");
     this->hide();
     person_name = "";
     EventName = "";
