@@ -93,9 +93,21 @@ public:
     void setAttendees(QStringList attendees);
 
 private:
+    /*!
+     * \brief attendees
+     */
     QStringList attendees;
+    /*!
+     * \brief displayTime12Hour
+     */
     QString displayTime12Hour;
+    /*!
+     * \brief displayTime24Hour
+     */
     QString displayTime24Hour;
+    /*!
+     * \brief selected
+     */
     bool selected;
 };
 
