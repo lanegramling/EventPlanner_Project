@@ -7,16 +7,29 @@
 namespace Ui{
 class AddingMode;
 }
+
+/*!
+ * \brief The AddingMode class
+ * \details Class for adding availablity to an event.
+ */
 class AddingMode : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /*!
+     * \brief AddingMode
+     * \details Constructor for the Adding Mode
+     * \param session
+     * \param parent
+     */
     explicit AddingMode(Session *session, QWidget *parent = 0);
+
     ~AddingMode();
 private:
-    Ui::AddingMode *ui;
 
+    Ui::AddingMode *ui;
     QString person_name;   // adding data
 
     //searching data
@@ -37,6 +50,11 @@ private slots:
 
     void on_addToTimeSlotButton_clicked();
 signals:
+
+    /*!
+     * \brief showEventPlanner
+     * \details Signal for switch back to the Event Planner
+     */
     void showEventPlanner();
 };
 #endif // ADDINGMODE_H

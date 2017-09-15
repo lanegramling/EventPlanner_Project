@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timeslot',['TimeSlot',['../class_time_slot.html',1,'']]]
+  ['session',['Session',['../class_session.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timeslot',['TimeSlot',['../class_time_slot.html#a8bdfc0039c8da76edc16c4a1070bdc80',1,'TimeSlot']]]
+  ['readeventsfromfile',['readEventsFromFile',['../class_session.html#aff9fd19eb09a0ac22d3e2c2615f9f9e9',1,'Session']]]
 ];

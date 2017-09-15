@@ -8,11 +8,22 @@ namespace Ui {
 class LoginPage;
 }
 
+/*!
+ * \brief The LoginPage class
+ * \details Class for buidling the Login Page
+ */
 class LoginPage : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /*!
+     * \brief LoginPage
+     * \details Constructor for LoginPage class
+     * \param session
+     * \param parent
+     */
     explicit LoginPage(Session * session, QWidget *parent = 0);
     ~LoginPage();
 
@@ -28,6 +39,10 @@ private slots:
 
 
 signals:
+    /*!
+     * \brief goToEventPlanner
+     * \details Signal for transitiong to the Event Planner page.
+     */
     void goToEventPlanner();
 };
 

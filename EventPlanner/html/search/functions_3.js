@@ -10,5 +10,6 @@ var searchData=
   ['gettime24hour',['getTime24Hour',['../class_time_slot.html#aec0c82baaf408509d976307fa682e6ce',1,'TimeSlot']]],
   ['gettimeslots',['getTimeSlots',['../class_event.html#a1d54b94176660fa89f06e47de4f38f91',1,'Event']]],
   ['getuser',['getUser',['../class_session.html#a09e51bffb8d4657efcb8ccf47be3192d',1,'Session']]],
-  ['getyear',['getYear',['../class_event.html#a7ddd7775953aeeb58d311d52139c2844',1,'Event']]]
+  ['getyear',['getYear',['../class_event.html#a7ddd7775953aeeb58d311d52139c2844',1,'Event']]],
+  ['gotoeventplanner',['goToEventPlanner',['../class_login_page.html#a7b74b87a3affb709ea585fb556a57271',1,'LoginPage']]]
 ];

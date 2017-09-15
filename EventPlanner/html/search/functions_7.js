@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readeventsfromfile',['readEventsFromFile',['../class_session.html#aff9fd19eb09a0ac22d3e2c2615f9f9e9',1,'Session']]]
+  ['printevent',['printEvent',['../class_event.html#ab2c59affdf5f762ecedd77a689ba08de',1,'Event']]]
 ];
