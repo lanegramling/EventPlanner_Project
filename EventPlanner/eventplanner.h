@@ -75,6 +75,10 @@ signals:
      */
     void AdminModequit(); // quit signal for mode admin
 
+    /*!
+     * \brief Logout
+     * \details Signal to return to Login Page
+     */
     void Logout();
 };
 

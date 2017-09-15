@@ -114,6 +114,11 @@ public :
      */
     void setTimeSlots(QList<TimeSlot> timeSlots);
 
+    /*!
+     * \brief printEvent
+     * \details A formatted QString with the Owner, Event Name, and Date
+     * \return QString
+     */
     QString printEvent();
 
 private:

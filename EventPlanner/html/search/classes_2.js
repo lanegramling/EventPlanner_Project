@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['session',['Session',['../class_session.html',1,'']]]
+  ['loginpage',['LoginPage',['../class_login_page.html',1,'']]]
 ];

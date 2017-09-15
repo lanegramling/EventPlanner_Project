@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quit',['quit',['../class_event_admin_mode.html#a5fcf257db5008a3f634c3fcd13f06994',1,'EventAdminMode']]]
+  ['numberofevents',['numberOfEvents',['../class_session.html#aa6766de9b237384f6eff9ccbdfd8bde9',1,'Session']]]
 ];
