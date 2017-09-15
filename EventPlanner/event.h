@@ -122,11 +122,29 @@ public :
     QString printEvent();
 
 private:
+    /*!
+     * \brief owner
+     */
     QString owner;
+    /*!
+     * \brief eventName
+     */
     QString eventName;
+    /*!
+     * \brief month
+     */
     int month;
+    /*!
+     * \brief day
+     */
     int day;
+    /*!
+     * \brief year
+     */
     int year;
+    /*!
+     * \brief timeSlots
+     */
     QList<TimeSlot> timeSlots;
 
 };

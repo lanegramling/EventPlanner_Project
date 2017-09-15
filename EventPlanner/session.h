@@ -83,8 +83,17 @@ public:
     int numberOfEvents() const;
 
 private:
+    /*!
+     * \brief timeSlots
+     */
     QList<TimeSlot> timeSlots;
+    /*!
+     * \brief events
+     */
     std::list<Event*> events;
+    /*!
+     * \brief user
+     */
     QString user;
 };
 

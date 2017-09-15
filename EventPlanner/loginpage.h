@@ -28,13 +28,38 @@ public:
     ~LoginPage();
 
 private:
+    /*!
+     * \brief ui
+     */
     Ui::LoginPage *ui;
+    /*!
+     * \brief session
+     * \details Session passed between all classes to hold events.
+     */
     Session *session;
+    /*!
+     * \brief userName
+     */
     QString userName;
 
 private slots:
+    /*!
+     * \brief on_loginButton_clicked
+     * \details Checks validity of user name. If valid, calls Session.setUser() and emits goToEventPlanner().
+     */
     void on_loginButton_clicked();
+
+    /*!
+     * \brief on_userNameText_textEdited
+     * \details Updates userName with arg1 whenever userNameText is editted.
+     * \param arg1
+     */
     void on_userNameText_textEdited(const QString &arg1);
+
+    /*!
+     * \brief receiveShow
+     * \details Called whenever signal is received to display LoginPage.
+     */
     void receiveShow();
 
 

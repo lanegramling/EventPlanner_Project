@@ -4,6 +4,8 @@ var searchData=
   ['getday',['getDay',['../class_event.html#a710a15a86ca734cbd84e77e8d2ed216c',1,'Event']]],
   ['geteventname',['getEventName',['../class_event.html#a2846f2dfad84c083d829fdf3d915c05a',1,'Event']]],
   ['getevents',['getEvents',['../class_session.html#a9712e356f0d5c3efdaed996ddc063738',1,'Session']]],
+  ['getmode1',['getMode1',['../class_event_planner.html#a4a4a89bd6535277ddca0e976374422c5',1,'EventPlanner']]],
+  ['getmode2',['getMode2',['../class_event_planner.html#ab26d2eff59b0a504db3b2e6de46d8382',1,'EventPlanner']]],
   ['getmonth',['getMonth',['../class_event.html#a29caad464e4a7cf6aa29973ed9345f6d',1,'Event']]],
   ['getowner',['getOwner',['../class_event.html#ab7e1dc08bd691aaf95ad994afdea6d2b',1,'Event']]],
   ['gettime12hour',['getTime12Hour',['../class_time_slot.html#a23c04da070ed921bf66396da1d958547',1,'TimeSlot']]],

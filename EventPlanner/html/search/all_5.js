@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['loginpage',['LoginPage',['../class_login_page.html',1,'LoginPage'],['../class_login_page.html#aabf302d725edb6a1a0e8cca53f9b3fbf',1,'LoginPage::LoginPage()']]],
-  ['logout',['Logout',['../class_event_planner.html#a3c7b9e879f05ecb64f1d893084b1101c',1,'EventPlanner']]]
+  ['info_5fcollect',['Info_Collect',['../class_event_admin_mode.html#ac659c776c70f4b7f8d6c05ba29b1ae7d',1,'EventAdminMode']]],
+  ['isselected',['isSelected',['../class_time_slot.html#a7448b6ba71a8b1107dffa98365d593aa',1,'TimeSlot']]]
 ];

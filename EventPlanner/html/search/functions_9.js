@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readeventsfromfile',['readEventsFromFile',['../class_session.html#aff9fd19eb09a0ac22d3e2c2615f9f9e9',1,'Session']]]
+  ['quit',['quit',['../class_event_admin_mode.html#a5fcf257db5008a3f634c3fcd13f06994',1,'EventAdminMode']]]
 ];
