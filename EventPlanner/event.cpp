@@ -66,3 +66,7 @@ QList<TimeSlot> Event::getTimeSlots() {
 void Event::setTimeSlots(QList<TimeSlot> timeSlots) {
     Event::timeSlots = timeSlots;
 }
+
+QString Event::printEvent() {
+    return owner + "'s " + eventName + ": " + QString::number(month) + "/" + QString::number(day) + "/" + QString::number(year);
+}

@@ -17,6 +17,10 @@ EventPlanner::~EventPlanner()
     delete ui;
 }
 
+void EventPlanner::receiveShow() {
+    this->show();
+}
+
 void EventPlanner::setPicture()
 {
     QPixmap food(":/eventMainWindow/food.png"),
@@ -88,6 +92,11 @@ void EventPlanner::on_pushButton_4_clicked()
                                       "  ...You can search by EventName or date or directly.\n"
                                       "  ...Clicking An Event, it will ask you 'Do you want it?'.\n"
                                       "  ...You can canncel an Event, click the canncel button."));
+}
+
+void EventPlanner::on_logoutButton_clicked() {
+    this->hide();
+    emit Logout();
 }
 
 

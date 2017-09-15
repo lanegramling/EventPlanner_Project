@@ -50,7 +50,6 @@ private:
     int months; // month
     int days;   // day
     QString EventName; // Event Name
-    QString person_name; //Event creater name
     const QStringList TIME_ARRAY_12H = {"12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM", "3:00 AM", "3:30 AM",
                                   "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM",
                                   "8:00 AM", "8:30 AM","9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
@@ -81,7 +80,6 @@ private slots:
     void on_clearTimeSlotsButton_clicked();
 
     void on_eventNameTextBox_textEdited(const QString &arg1);
-    void on_lineEdit_2_textChanged(const QString &arg1);
 
 signals:
     /*!

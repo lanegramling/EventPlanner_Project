@@ -114,6 +114,8 @@ public :
      */
     void setTimeSlots(QList<TimeSlot> timeSlots);
 
+    QString printEvent();
+
 private:
     QString owner;
     QString eventName;

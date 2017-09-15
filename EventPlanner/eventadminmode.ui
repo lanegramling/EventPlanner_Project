@@ -89,20 +89,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Your Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
-         </item>
-        </layout>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="label">
@@ -310,7 +296,7 @@ rgb(255,255,255);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>740</width>
+     <width>816</width>
      <height>21</height>
     </rect>
    </property>

@@ -36,6 +36,7 @@ private:
     Ui::EventPlanner *ui;
 
 private slots:
+    void receiveShow();
     void getMode1();
     void getMode2();
 
@@ -46,6 +47,8 @@ private slots:
     void on_pushButton_4_clicked();// use for Help
 
     void on_pushButton_3_clicked();// use for AboutUs
+
+    void on_logoutButton_clicked();
 
 signals:
     /*!
@@ -71,6 +74,8 @@ signals:
      * \details Signal to say that Admin mode was exitted
      */
     void AdminModequit(); // quit signal for mode admin
+
+    void Logout();
 };
 
 #endif // EVENTPLANNER_H

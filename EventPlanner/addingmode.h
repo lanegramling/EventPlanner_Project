@@ -31,28 +31,11 @@ private slots:
     void receiveshow();
     void on_pushButton_2_clicked();
 
-    void on_lineEdit_textChanged(const QString &arg1);
+    void on_listWidget_clicked(const QModelIndex &index);
 
-    void on_pushButton_clicked();
+    void on_listWidget_2_clicked(const QModelIndex &index);
 
-    void on_spinBox_valueChanged(int arg1);
-
-    void on_spinBox_2_valueChanged(int arg1);
-
-    void on_pushButton_3_clicked();
-
-
-    void on_listWidget_doubleClicked(const QModelIndex &index);
-
-    void on_lineEdit_2_textChanged(const QString &arg1);
-
-    void on_spinBox_3_valueChanged(int arg1);
-
-    void on_listWidget_2_doubleClicked(const QModelIndex &index);
-
-    void on_pushButton_4_clicked();
-    void on_pushButton_5_clicked();
-
+    void on_addToTimeSlotButton_clicked();
 signals:
     void showEventPlanner();
 };

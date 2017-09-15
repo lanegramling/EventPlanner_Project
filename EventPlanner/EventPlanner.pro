@@ -30,7 +30,9 @@ SOURCES += \
     addingmode.cpp \
     event.cpp \
     session.cpp \
-    timeslot.cpp
+    timeslot.cpp \
+    loginpage.cpp \
+    loginpage.cpp
 
 HEADERS += \
         eventplanner.h \
@@ -38,12 +40,17 @@ HEADERS += \
     addingmode.h \
     event.h \
     session.h \
-    timeslot.h
+    timeslot.h \
+    loginpage.h \
+    loginpage.h \
+    loginpage.h \
+    loginpage.h
 
 FORMS += \
     eventadminmode.ui \
     eventplanner.ui \
-    addingmode.ui
+    addingmode.ui \
+    loginpage.ui
 
 RESOURCES += \
     picture.qrc \
