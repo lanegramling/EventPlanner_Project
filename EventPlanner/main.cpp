@@ -1,8 +1,8 @@
-#include "loginpage.h"
 #include "eventplanner.h"
 #include "eventadminmode.h"
 #include "addingmode.h"
 #include "session.h"
+#include "loginpage.h"
 #include <QApplication>
 #include <QDesktopWidget>
 

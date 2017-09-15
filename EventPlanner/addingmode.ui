@@ -74,42 +74,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>170</y>
-      <width>91</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="font">
-        <font>
-         <pointsize>26</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>&gt;&gt;&gt;</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="font">
-        <font>
-         <pointsize>26</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>&gt;&gt;&gt;</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QListWidget" name="listWidget_3">
     <property name="geometry">
      <rect>
@@ -168,6 +132,42 @@
     <property name="text">
      <string>Add Me To This Time SLot</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>180</y>
+      <width>91</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="font">
+        <font>
+         <pointsize>26</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&gt;&gt;&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_14">
+       <property name="font">
+        <font>
+         <pointsize>26</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&gt;&gt;&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

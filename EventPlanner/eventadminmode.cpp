@@ -37,7 +37,6 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
 
 EventAdminMode::~EventAdminMode()
 {
-    session->saveEventsToFile();
     delete ui;
 }
 

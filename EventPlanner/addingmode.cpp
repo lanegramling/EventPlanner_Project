@@ -12,11 +12,15 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
+    month = 1;
+    day = 1;
+    year = 2017;
     ui->listWidget->clear();
     EventIndex = 0;
+    person_name = "";
     int number = 1;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-        ui->listWidget->addItem(QString::number(number)+". "+(*it)->printEvent());
+        ui->listWidget->addItem(QString::number(number)+". "+(*it)->getEventName());
         number++;
     }
 }
@@ -29,7 +33,9 @@ AddingMode::~AddingMode()
 void AddingMode::on_pushButton_2_clicked()
 {
     ui->listWidget_2->clear();
+    ui->lineEdit_2->setText("");
     this->hide();
+    person_name = "";
     EventName = "";
     emit showEventPlanner();
 }
@@ -65,7 +71,6 @@ void AddingMode::on_listWidget_clicked(const QModelIndex &index)
            break;}
        count++;
     }
-
 }
 
 void AddingMode::on_listWidget_2_clicked(const QModelIndex &index) {
@@ -110,6 +115,7 @@ switch(QMessageBox::question(this,"Adding","Do you want to join it?",QMessageBox
                 break;
                 }
               }
+    // ((*it)->getTimeSlots())[index_of_list].addAttendee(person_name); we cannot do this way, i don't know why
              (*it)->setTimeSlots(tempTimeSlots);
          break;
          }

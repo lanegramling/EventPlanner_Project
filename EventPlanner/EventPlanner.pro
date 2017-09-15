@@ -42,6 +42,8 @@ HEADERS += \
     session.h \
     timeslot.h \
     loginpage.h \
+    loginpage.h \
+    loginpage.h \
     loginpage.h
 
 FORMS += \

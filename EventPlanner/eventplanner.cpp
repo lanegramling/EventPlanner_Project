@@ -73,7 +73,7 @@ void EventPlanner::on_pushButton_3_clicked()
                                           "\n"
                                        "Email: whatever@ku.edu\n"
                                           "\n"
-                                       "Team members: Martin, Kevin, Jean, Simon\n"
+                                       "Team members: Martin, Kevin, Jian, Simon\n"
                                           "\n"
                                        "This program was made with the Qt Creator IDE and Framework version 5.9.1 licensed under LGPL."));
 }

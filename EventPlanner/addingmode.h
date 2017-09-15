@@ -17,6 +17,8 @@ public:
 private:
     Ui::AddingMode *ui;
 
+    QString person_name;   // adding data
+
     //searching data
 
     int EventIndex;
