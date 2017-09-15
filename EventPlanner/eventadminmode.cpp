@@ -29,7 +29,6 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     //initialzation for all value
     setWindowTitle("EventAdmin Mode");
     EventName = "N";
-    person_name = "/A";
     time_t now = time(0);
     struct tm *date = localtime(&now);
     ui->calendarWidget->setMinimumDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
@@ -156,12 +155,10 @@ void EventAdminMode::on_saveButton_clicked()
             break;
         }
     }
-    if((!isTimeSlotSelected)||(EventName == "N")||(person_name == "/A"))
+    if((!isTimeSlotSelected)||(EventName == "N"))
         {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
-    else if (person_name.contains("\"")){
-        {QMessageBox::warning(this,"Invalid User Name!","User name may not contain quotation marks.");}
-    } else {
-    switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, person_name, ui->calendarWidget->selectedDate().month(),
+    else {
+    switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, session->getUser(), ui->calendarWidget->selectedDate().month(),
                                                                   ui->calendarWidget->selectedDate().day(),
                                                                   ui->calendarWidget->selectedDate().year()),
                          QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
@@ -169,14 +166,13 @@ void EventAdminMode::on_saveButton_clicked()
     case QMessageBox::Ok:
         for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
             if (timeSlots.at(i).isSelected()) {
-                timeSlots[i].addAttendee(person_name);
+                timeSlots[i].addAttendee(session->getUser());
             }
         }
-        session->addEvent(person_name, EventName, ui->calendarWidget->selectedDate().month(),
+        session->addEvent(session->getUser(), EventName, ui->calendarWidget->selectedDate().month(),
                           ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), timeSlots);
         session->saveEventsToFile();
         on_pushButton_5_clicked();
-        session->saveEventsToFile();
         break;
     case QMessageBox::Cancel:
         break;
@@ -186,13 +182,9 @@ void EventAdminMode::on_saveButton_clicked()
     return;
 }
 
-void EventAdminMode::on_lineEdit_2_textChanged(const QString &arg1)
-{person_name = arg1;}
-
 void EventAdminMode::on_pushButton_5_clicked()
 {
     ui->eventNameTextBox->setText("");
-    ui->lineEdit_2->setText("");
     ui->startTime->setCurrentIndex(0);
     ui->endTime->setCurrentIndex(0);
     time_t now = time(0);
@@ -203,7 +195,6 @@ void EventAdminMode::on_pushButton_5_clicked()
     }
     resetTimeSlotsWidget();
     EventName = "N";
-    person_name = "/A";  
 }
 
 void EventAdminMode::resetTimeSlotsWidget() {
