@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>540</height>
+    <width>755</width>
+    <height>512</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>14</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,8 +22,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>460</y>
+      <x>330</x>
+      <y>440</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -29,15 +34,15 @@
      </font>
     </property>
     <property name="text">
-     <string>Back &lt;&lt;</string>
+     <string>Back</string>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
-      <width>191</width>
+      <y>50</y>
+      <width>221</width>
       <height>341</height>
      </rect>
     </property>
@@ -55,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>220</y>
+      <y>180</y>
       <width>55</width>
       <height>16</height>
      </rect>
@@ -68,8 +73,8 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>90</y>
-      <width>151</width>
+      <y>50</y>
+      <width>131</width>
       <height>341</height>
      </rect>
     </property>
@@ -77,8 +82,8 @@
    <widget class="QListWidget" name="listWidget_3">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>90</y>
+      <x>560</x>
+      <y>50</y>
       <width>171</width>
       <height>341</height>
      </rect>
@@ -87,8 +92,8 @@
    <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>180</y>
+      <x>460</x>
+      <y>140</y>
       <width>91</width>
       <height>141</height>
      </rect>
@@ -123,21 +128,27 @@
    <widget class="QPushButton" name="addToTimeSlotButton">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>60</y>
-      <width>161</width>
-      <height>23</height>
+      <x>460</x>
+      <y>70</y>
+      <width>91</width>
+      <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>Add Me To This Time SLot</string>
+     <string>Add Me To This 
+Time Slot</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>180</y>
+      <x>240</x>
+      <y>140</y>
       <width>91</width>
       <height>141</height>
      </rect>
@@ -169,13 +180,120 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>390</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Click on an event to see its 
+scheduled time slots.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Events</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>20</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Time Slots</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>20</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Attendees</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>390</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Click on a time slot to see 
+who is attending.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>400</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Click on the &quot;Add Me To 
+Time Slot&quot; to add yourself 
+to event.</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>771</width>
+     <width>755</width>
      <height>21</height>
     </rect>
    </property>

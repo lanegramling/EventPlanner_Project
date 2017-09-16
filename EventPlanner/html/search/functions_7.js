@@ -14,6 +14,7 @@ var searchData=
   ['on_5fpushbutton_5f4_5fclicked',['on_pushButton_4_clicked',['../class_event_planner.html#a4afdbead81eaf77b1476c54e3879cf51',1,'EventPlanner']]],
   ['on_5fpushbutton_5f5_5fclicked',['on_pushButton_5_clicked',['../class_event_admin_mode.html#a70f48ea114578c35e321e6f47f73be22',1,'EventAdminMode']]],
   ['on_5fpushbutton_5fclicked',['on_pushButton_clicked',['../class_event_planner.html#a8c2f193a09829ddabb9921a0a784f547',1,'EventPlanner']]],
+  ['on_5fquitbutton_5fclicked',['on_quitButton_clicked',['../class_login_page.html#a27813db6b8f65ec7422933db45734246',1,'LoginPage']]],
   ['on_5fsavebutton_5fclicked',['on_saveButton_clicked',['../class_event_admin_mode.html#a36aa3200e7130775b8b92c7073e3aee0',1,'EventAdminMode']]],
   ['on_5fset12hour_5fclicked',['on_set12Hour_clicked',['../class_event_admin_mode.html#af9c16a502d472036fbc1485170046778',1,'EventAdminMode']]],
   ['on_5fset24hour_5fclicked',['on_set24Hour_clicked',['../class_event_admin_mode.html#a09e5a3de312fc9642d794ab3d486a0e4',1,'EventAdminMode']]],

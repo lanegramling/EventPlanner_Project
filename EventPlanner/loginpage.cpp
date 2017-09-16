@@ -38,3 +38,15 @@ void LoginPage::receiveShow() {
     ui->userNameText->clear();
     this->show();
 }
+
+void LoginPage::on_quitButton_clicked() {
+    switch(QMessageBox::question(this, "Quit?", "Are you sure you want to exit the Event Planner?", QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok)) {
+    case QMessageBox::Ok:
+        session->saveEventsToFile();
+        QApplication::quit();
+        break;
+    case QMessageBox::Cancel:
+        break;
+    }
+
+}

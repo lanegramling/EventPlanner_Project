@@ -1,7 +1,6 @@
 #ifndef LOGINPAGE_H
 #define LOGINPAGE_H
 #include "session.h"
-
 #include <QMainWindow>
 
 namespace Ui {
@@ -61,6 +60,12 @@ private slots:
      * \details Called whenever signal is received to display LoginPage.
      */
     void receiveShow();
+
+    /*!
+     * \brief on_quitButton_clicked
+     * \details Quits appliction.
+     */
+    void on_quitButton_clicked();
 
 
 signals:

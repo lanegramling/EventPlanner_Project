@@ -31,7 +31,6 @@ SOURCES += \
     event.cpp \
     session.cpp \
     timeslot.cpp \
-    loginpage.cpp \
     loginpage.cpp
 
 HEADERS += \
@@ -41,9 +40,6 @@ HEADERS += \
     event.h \
     session.h \
     timeslot.h \
-    loginpage.h \
-    loginpage.h \
-    loginpage.h \
     loginpage.h
 
 FORMS += \
