@@ -8,6 +8,10 @@ LoginPage::LoginPage(Session *session, QWidget *parent) :
     session(session)
 {
     ui->setupUi(this);
+    ui->legalText->setOpenExternalLinks(true);
+    QString legalTest = "This program was made with the <a href=\"https://www.qt.io/qt-features-libraries-apis-tools-and-ide/\">Qt Creator IDE</a> \n"
+                        "and Framework version 4.X licensed under <a href=\"https://www.gnu.org/licenses/lgpl.txt\">LGPL</a>.";
+    ui->legalText->setText(legalTest);
 }
 
 LoginPage::~LoginPage() {

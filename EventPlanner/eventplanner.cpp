@@ -75,7 +75,7 @@ void EventPlanner::on_pushButton_3_clicked()
                                           "\n"
                                        "Team members: Martin, Kevin, Jian, Simon\n"
                                           "\n"
-                                       "This program was made with the Qt Creator IDE and Framework version 5.9.1 licensed under LGPL."));
+                                       "This program was made with the Qt Creator IDE and Framework version 4.X licensed under LGPL."));
 }
 
 void EventPlanner::on_pushButton_4_clicked()
