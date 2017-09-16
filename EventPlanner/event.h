@@ -114,12 +114,37 @@ public :
      */
     void setTimeSlots(QList<TimeSlot> timeSlots);
 
+    /*!
+     * \brief printEvent
+     * \details A formatted QString with the Owner, Event Name, and Date
+     * \return QString
+     */
+    QString printEvent();
+
 private:
+    /*!
+     * \brief owner
+     */
     QString owner;
+    /*!
+     * \brief eventName
+     */
     QString eventName;
+    /*!
+     * \brief month
+     */
     int month;
+    /*!
+     * \brief day
+     */
     int day;
+    /*!
+     * \brief year
+     */
     int year;
+    /*!
+     * \brief timeSlots
+     */
     QList<TimeSlot> timeSlots;
 
 };

@@ -7,53 +7,103 @@
 namespace Ui{
 class AddingMode;
 }
+
+/*!
+ * \brief The AddingMode class
+ * \details Class for adding availablity to an event.
+ */
 class AddingMode : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /*!
+     * \brief AddingMode
+     * \details Constructor for the Adding Mode
+     * \param session
+     * \param parent
+     */
     explicit AddingMode(Session *session, QWidget *parent = 0);
+
     ~AddingMode();
 private:
+
+    /*!
+     * \brief ui
+     */
     Ui::AddingMode *ui;
 
-    QString person_name;   // adding data
-
-    //searching data
-
+    /*!
+     * \brief EventIndex
+     * \details Holds index of the selected Event.
+     */
     int EventIndex;
+
+    /*!
+     * \brief EventName
+     */
     QString EventName;
+
+    /*!
+     * \brief month
+     */
     int month;
+
+    /*!
+     * \brief year
+     */
     int year;
+
+    /*!
+     * \brief day
+     */
     int day;
+
+    /*!
+     * \brief session
+     * \details Session passed between all classes to hold events.
+     */
     Session *session;
 private slots:
+
+    /*!
+     * \brief receiveshow
+     * \details Function called when class receives signal to become visibale. Sets visiblity to true.
+     */
     void receiveshow();
+
+    /*!
+     * \brief on_pushButton_2_clicked
+     * \details Function called when Back button is clicked. Emits showEventPlanner()
+     */
     void on_pushButton_2_clicked();
 
-    void on_lineEdit_textChanged(const QString &arg1);
+    /*!
+     * \brief on_listWidget_clicked
+     * \details Called when an Event in the Event list is clicked on. Fills TimeSlot list with time slots for the event where TimeSlot.isSelected() true.
+     * \param index
+     */
+    void on_listWidget_clicked(const QModelIndex &index);
 
-    void on_pushButton_clicked();
+    /*!
+     * \brief on_listWidget_2_clicked
+     * \details Called when a TimeSlot is clicked on in the Time Slot list. Fills the Attendees list for the selected time slot.
+     * \param index
+     */
+    void on_listWidget_2_clicked(const QModelIndex &index);
 
-    void on_spinBox_valueChanged(int arg1);
-
-    void on_spinBox_2_valueChanged(int arg1);
-
-    void on_pushButton_3_clicked();
-
-
-    void on_listWidget_doubleClicked(const QModelIndex &index);
-
-    void on_lineEdit_2_textChanged(const QString &arg1);
-
-    void on_spinBox_3_valueChanged(int arg1);
-
-    void on_listWidget_2_doubleClicked(const QModelIndex &index);
-
-    void on_pushButton_4_clicked();
-    void on_pushButton_5_clicked();
-
+    /*!
+     * \brief on_addToTimeSlotButton_clicked
+     * \details Called when Add Me to Time Slot button is clicked. Adds the current user (Session.getUser()) to the selected time slot.
+     */
+    void on_addToTimeSlotButton_clicked();
 signals:
+
+    /*!
+     * \brief showEventPlanner
+     * \details Signal for switch back to the Event Planner
+     */
     void showEventPlanner();
 };
 #endif // ADDINGMODE_H
