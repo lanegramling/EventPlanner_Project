@@ -19,7 +19,7 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
     EventIndex = 0;
     int number = 1;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-        ui->listWidget->addItem(QString::number(number)+". "+(*it)->getEventName());
+        ui->listWidget->addItem(QString::number(number)+". "+(*it)->printEvent());
         number++;
     }
 }
@@ -43,7 +43,7 @@ void AddingMode::receiveshow()
         ui->listWidget->clear();
         int number = 1;
         for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-           ui->listWidget->addItem(QString::number(number)+". " + (*it)->getEventName());
+           ui->listWidget->addItem(QString::number(number)+". " + (*it)->printEvent());
         number++;
         }}
         else{

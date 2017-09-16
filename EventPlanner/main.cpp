@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     EventPlanner w;
     EventAdminMode mode1(&session);
     AddingMode mode2(&session);
-    login.setStyleSheet("QMainWindow {background: rgb(253,253,253);}");
+    login.setStyleSheet("QMainWindow {background: rgb(245,245,245);}");
     w.setStyleSheet("QMainWindow {background: rgb(253,253,253);}");
     mode1.setStyleSheet("QMainWindow {background: rgb(245,245,245);}");
     mode2.setStyleSheet("QMainWindow {background: rgb(245,245,245);}");
