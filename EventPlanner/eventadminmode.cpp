@@ -28,7 +28,7 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     }
     //initialzation for all value
     setWindowTitle("EventAdmin Mode");
-    EventName = "N";
+    EventName = "";
     time_t now = time(0);
     struct tm *date = localtime(&now);
     ui->calendarWidget->setMinimumDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
@@ -154,8 +154,13 @@ void EventAdminMode::on_saveButton_clicked()
             break;
         }
     }
-    if((!isTimeSlotSelected)||(EventName == "N"))
-        {QMessageBox::warning(this,"Warning!!","Please Check Name and Your times!!!");}
+    if(!isTimeSlotSelected)
+        {QMessageBox::warning(this,"Warning!!","No time slots were added to the event.");}
+    else if(EventName == "") {
+        QMessageBox::warning(this,"Warning!!","No event name was entered.");
+    } else if (EventName.length() > 50) {
+        QMessageBox::warning(this,"Warning!!","Event name must be less than 50 characters long.");
+    }
     else {
     switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, session->getUser(), ui->calendarWidget->selectedDate().month(),
                                                                   ui->calendarWidget->selectedDate().day(),
@@ -193,7 +198,7 @@ void EventAdminMode::on_pushButton_5_clicked()
         timeSlots[i].clearTimeSlot();
     }
     resetTimeSlotsWidget();
-    EventName = "N";
+    EventName = "";
 }
 
 void EventAdminMode::resetTimeSlotsWidget() {
