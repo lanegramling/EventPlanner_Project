@@ -31,7 +31,7 @@ Depending on compiler.
 * [Qt](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea) --The IDE used
 
 ## License
-This program was made with the [Qt Creator IDE](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea) and [Framework version 4.X licensed](https://www.gnu.org/licenses/licenses.html#GPL).
+This program was made with the [Qt Creator IDE](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea) and Framework version 4.X licensed under [LGPL](https://www.gnu.org/licenses/lgpl.txt).
 
 ## Acknowledgement
 For ducumentatin of code, please see index.html under Ducumentation/html folder.
