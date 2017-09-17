@@ -51,6 +51,8 @@ void LoginPage::on_quitButton_clicked() {
         break;
     case QMessageBox::Cancel:
         break;
+    default:
+        break;
     }
 
 }
