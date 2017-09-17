@@ -39,5 +39,5 @@ For ducumentatin of code, please see index.html under Ducumentation/html folder.
 ### Works Cited
 We used codes from [Qt library](http://doc.qt.io/qt-5/reference-overview.html) including < QMainWindows >, < Qstring >, < Qstringlist >, < Qdebug >, < QMessageBox > and < QPixmap >.
 
-###Documentation
+### Documentation
 Documentation of all classes can be found at Documentation/html/index.html.
