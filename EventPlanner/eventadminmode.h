@@ -35,7 +35,7 @@ public:
      * \param year
      * \return QString
      */
-    QString Info_Collect(QString &EventName,QString &person_name, int month, int day, int year);
+    QString Info_Collect(QString &EventName,QString person_name, int month, int day, int year);
     // use to make all Information to a string, used for "Make Sure"
 
     /*!

@@ -7,6 +7,7 @@
 #include <QPixmap>
 #include <QIcon>
 #include <ctime>
+#include <QString>
 
 
 EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
@@ -40,7 +41,7 @@ EventAdminMode::~EventAdminMode()
     delete ui;
 }
 
-QString EventAdminMode::Info_Collect(QString &EventName,QString &person_name, int month, int day, int year)
+QString EventAdminMode::Info_Collect(QString &EventName,QString person_name, int month, int day, int year)
 {
     QString Now ="Do you want to create this event?\n";
     Now = Now + "Event Name:  ";
