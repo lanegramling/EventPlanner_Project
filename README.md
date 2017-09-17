@@ -40,4 +40,4 @@ For ducumentatin of code, please see index.html under Ducumentation/html folder.
 We used codes from [Qt library](http://doc.qt.io/qt-5/reference-overview.html) including < QMainWindows >, < Qstring >, < Qstringlist >, < Qdebug >, < QMessageBox > and < QPixmap >.
 
 ### Documentation
-Documentation of all classes can be found at documentation/html/index.html.
+Documentation of all classes can be found by opening documentation/html/index.html using a web browser.
