@@ -5,7 +5,7 @@ This project aims to help people schedule events. In this program, we can create
 This instruction helps users intall program on their local machines regardless of operating systems.
 ### Installing
 The open source IDE Qt Creator 4.x was used to run qmake for compilation.
-The easiest way to get started is to download and install [Qt Creator]  (https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea).
+The easiest way to get started is to download and install [Qt Creator](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea).
 Then the program can be built from within Qt Creator (recommended method) or built from the command line using
 ```
 $ qmake
@@ -28,10 +28,10 @@ Depending on compiler.
 * Yang, Yiju
 
 ## Built With
-* [Qt]((https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea)) --The IDE used
+* [Qt](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea) --The IDE used
 
 ## License
-This program was made with the [Qt Creator IDE]((https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea)) and [Framework version 4.X licensed](https://www.gnu.org/licenses/licenses.html#GPL).
+This program was made with the [Qt Creator IDE](https://www1.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea) and [Framework version 4.X licensed](https://www.gnu.org/licenses/licenses.html#GPL).
 
 ## Acknowledgement
 For ducumentatin of code, please see index.html under Ducumentation/html folder.
