@@ -1,0 +1,57 @@
+Team Wubba Lubba Dub Dub
+Our plan to tackle this awful text file format
+
+OLD FORMAT - Always 197 Lines Per event......
+-----------------------------
+
+CREATOR NAME
+EVENT NAME
+MONTH
+DAY
+YEAR
+Selected?
+Timeslot 12h
+Timeslot 24h (00:00-00:30)
+Attendees
+.
+.
+.
+Selected?
+Timeslot 12h
+Timeslot 24h (23:30-00:00)
+Attendees
+
+------------------------------
+
+
+NEW FORMAT (TWO FILES) !!! USERNAMES ARE CASE SENSITIVE !!!
+------------------------------
+
+First File: EVENTS (just like our event table...........)
+
+Number of events (iterator)
+CREATOR NAME
+EVENT NAME
+EVENT ID
+INT Number of days (n)
+Lists of Days - QString Split on Commas e.g. "MM-DD-YYYY,MM-DD-YYYY, ... , MM-DD-YYYY"
+0th Timeslot string e.g. "0,1,2,5,7,21"
+.
+.
+.
+nth Timeslot string e.g. "0,1,2,6,7,8"
+
+
+
+Second File: ATTENDEES (just like our signups table.........)
+
+EVENT ID
+INT Number of attendees (n)
+List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
+0th Attendee's timeslot availability e.g. "0,1,2,3,5,6,7"
+.
+.
+.
+nth Attendee's timeslot availability e.g. "0,1,2,3,5,6,7"
+
+------------------------------
