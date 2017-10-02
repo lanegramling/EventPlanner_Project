@@ -32,6 +32,7 @@ AddingMode::~AddingMode()
 void AddingMode::on_pushButton_2_clicked()
 {
     ui->listWidget_2->clear();
+    ui->listWidget_3->clear();
     this->hide();
     EventName = "";
     emit showEventPlanner();
@@ -45,27 +46,40 @@ void AddingMode::receiveshow()
         for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
            ui->listWidget->addItem(QString::number(number)+". " + (*it)->printEvent());
         number++;
-        }}
-        else{
-            for(int i = 0; i < ui->listWidget->count(); i++)
-            {ui->listWidget->item(i)->setHidden(false);}
         }
+    } else {
+        for(int i = 0; i < ui->listWidget->count(); i++) {
+           ui->listWidget->item(i)->setHidden(false);
+        }
+    }
+
     this->show();
 }
 
 void AddingMode::on_listWidget_clicked(const QModelIndex &index)
 {
     ui->listWidget_2->clear();
+    ui->listWidget_3->clear();
     int count =0;
+    bool first = true;
     EventIndex = index.row();
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
        if(count == EventIndex)
        {
-           for (int i = 0; i <  (*it)->getTimeSlots().length(); i++) {
-                  if(((*it)->getTimeSlots()).at(i).isSelected())
-                    { ui->listWidget_2->addItem(((*it)->getTimeSlots()).at(i).getTime12Hour());}
+           foreach (int slot, (*it)->getTimeSlots()) {
+               ui->listWidget_2->addItem(helpermethods::toTimeSlot(slot, format));
+               if (first) {
+                   first = false;
+                   ui->listWidget_2->setCurrentRow(1);
+                   QStringList names = (*it)->getAttendeesAtTimeslot(slot);
+                   QString name;
+                   foreach(name, names) {
+                       ui->listWidget_3->addItem(name);
+                   }
+               }
            }
-           break;}
+           break;
+       }
        count++;
     }
 }
@@ -76,25 +90,30 @@ void AddingMode::on_listWidget_2_clicked(const QModelIndex &index) {
     int count = 0;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
     {
-     if(count == EventIndex)
-     {
-         for(int i = 0; i < TIME_SLOTS_LENGTH; i++)
+         if(count == EventIndex)
          {
-
-            if((*it)->getTimeSlots().at(i).isSelected() && (*it)->getTimeSlots().at(i).getTime12Hour() == ui->listWidget_2->item(index.row())->text()) {
-                for (int j = 0; j < (*it)->getTimeSlots().at(i).getAttendees().length(); j++) {
-                    ui->listWidget_3->addItem((*it)->getTimeSlots().at(i).getAttendees().at(j));
-                }
-                break;
-            }
-          }
-     break;
+             int slot;
+             foreach (slot, (*it)->getTimeSlots()) {
+                 if (helpermethods::toTimeSlot(slot, format) == ui->listWidget_2->item(index.row())->text()) {
+                    QStringList names = (*it)->getAttendeesAtTimeslot(slot);
+                    QString name;
+                    foreach(name, names) {
+                        ui->listWidget_3->addItem(name);
+                    }
+                 }
+             }
+             break;
+         }
+         count++;
      }
-       count++;
-    }
 }
 
+
+// Need to change this up....
 void AddingMode::on_addToTimeSlotButton_clicked(){
+    if (ui->listWidget->count() == 0) {
+        return;
+    }
 
     QString selectedTime = ui->listWidget_2->currentItem()->text();
         int count = 0;
@@ -104,15 +123,15 @@ switch(QMessageBox::question(this,"Adding","Do you want to join it?",QMessageBox
         {
          if(count == EventIndex)
          {
-             QList<TimeSlot> tempTimeSlots = (*it)->getTimeSlots();
-             for(int i = 0; i < TIME_SLOTS_LENGTH; i++)
-             {
-                if(tempTimeSlots.at(i).isSelected() && tempTimeSlots.at(i).getTime12Hour() == selectedTime)
-                {tempTimeSlots[i].addAttendee(session->getUser());
-                break;
-                }
-              }
-             (*it)->setTimeSlots(tempTimeSlots);
+             QList<attendee*> attn = (*it)->getAttendees();
+             QList<int> times = (*it)->getTimeSlots();
+             int slot;
+             foreach(slot, times) {
+                 if (helpermethods::toTimeSlot(slot, format) == selectedTime) {
+                    (*it)->addAttendee(session->getUser(), slot);
+                 }
+             }
+
          break;
          }
            count++;

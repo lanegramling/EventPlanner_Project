@@ -68,7 +68,7 @@ QString helpermethods::stringifyTimeslotInts(QList<int> timeslots) {
     QString stringList = "";
     int slot;
     foreach(slot, timeslots) {
-        stringList += (timeslots.indexOf(slot) != (timeslots.size() - 1)) ? (slot + ",") : slot;
+        stringList += (timeslots.indexOf(slot) != (timeslots.size() - 1)) ? (QString::number(slot) + ",") : QString::number(slot);
     }
     return stringList;
 }

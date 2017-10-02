@@ -28,18 +28,43 @@ NEW FORMAT (TWO FILES) !!! USERNAMES ARE CASE SENSITIVE !!!
 ------------------------------
 
 First File: EVENTS (just like our event table...........)
+5 lines per event...
 
 Number of events (iterator)
 CREATOR NAME
 EVENT NAME
 EVENT ID
+Day String "MM-DD-YYYY"
+Timeslot string e.g. "0,1,2,5,7,21"
+INT Number of attendees (n)
+List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
+0th Attendee's timeslot availability e.g. "0,1,2,3,5,6,7"
+.
+.
+.
+Nth Attendee's timeslot availability e.g. "0,1,2,3,4,11,12,13"
+
+
+------------------------------
+
+
+NEW FORMAT WITH UPDATED REQUIREMENTS
+------------------------------
+
+First File: EVENTS (just like our event table...........)
+
+Number of events (iterator)
+CREATOR NAME
+EVENT NAME
+EVENT ID
+List of Tasks e.g. "bring chips,bring pop,bring booze"
 INT Number of days (n)
 Lists of Days - QString Split on Commas e.g. "MM-DD-YYYY,MM-DD-YYYY, ... , MM-DD-YYYY"
 0th Timeslot string e.g. "0,1,2,5,7,21"
 .
 .
 .
-nth Timeslot string e.g. "0,1,2,6,7,8"
+nth Timeslot string e.g. "0,1,2,6,7,8"ls
 
 
 
@@ -48,10 +73,10 @@ Second File: ATTENDEES (just like our signups table.........)
 EVENT ID
 INT Number of attendees (n)
 List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
-0th Attendee's timeslot availability e.g. "0,1,2,3,5,6,7"
+0th Attendee's timeslot;tasks availability e.g. "0,1,2,3,5,6,7;bring chips"
 .
 .
 .
-nth Attendee's timeslot availability e.g. "0,1,2,3,5,6,7"
+nth Attendee's timeslot availability e.g. "0,1,2,3,5,6,7;bring booze,bring pop"
 
 ------------------------------

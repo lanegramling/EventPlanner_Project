@@ -16,17 +16,7 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     session(session)
 {
     ui->setupUi(this);
-    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-        TimeSlot tempTimeSlot;
-        if (i != TIME_SLOTS_LENGTH -1) {
-            tempTimeSlot.setTime12Hour(TIME_ARRAY_12H.at(i) + "-" + TIME_ARRAY_12H.at(i+1));
-            tempTimeSlot.setTime24Hour(TIME_ARRAY_24H.at(i) + "-" + TIME_ARRAY_24H.at(i+1));
-        } else {
-            tempTimeSlot.setTime12Hour(TIME_ARRAY_12H.at(i) + "-12:00 AM");
-            tempTimeSlot.setTime24Hour(TIME_ARRAY_24H.at(i) + "-00:00");
-        }
-        timeSlots.push_back(tempTimeSlot);
-    }
+
     //initialzation for all value
     setWindowTitle("EventAdmin Mode");
     EventName = "";
@@ -67,11 +57,9 @@ void EventAdminMode::receiveshow()
 {
     ui->startTime->clear();
     ui->endTime->clear();
-    for (int i = 0; i < TIME_ARRAY_12H.size(); i++){
-        ui->startTime->addItem(TIME_ARRAY_12H.at(i));
-    }
-    for(int i = 0; i < TIME_ARRAY_12H.size(); i++) {
-        ui->endTime->addItem(TIME_ARRAY_12H.at(i));
+    for (int i = 0; i < 48; i++) {
+        if (i != 47) ui->startTime->addItem(helpermethods::toTime(i, !set12HourFormat));
+        ui->endTime->addItem(helpermethods::toTime(i, !set12HourFormat));
     }
     this->show();
 
@@ -94,11 +82,9 @@ void EventAdminMode::on_set12Hour_clicked() // use to change times mode to 12-Ho
     int endIndex = ui->endTime->currentIndex();
     ui->startTime->clear();
     ui->endTime->clear();
-    for (int i = 0; i < TIME_ARRAY_12H.size()-1; i++){
-        ui->startTime->addItem(TIME_ARRAY_12H.at(i));
-    }
-    for(int i = 1; i < TIME_ARRAY_12H.size(); i++) {
-        ui->endTime->addItem(TIME_ARRAY_12H.at(i));
+    for (int i = 0; i < 48; i++){
+        if (i != 47) ui->startTime->addItem(helpermethods::toTime(i, !set12HourFormat));
+        ui->endTime->addItem(helpermethods::toTime(i, !set12HourFormat));
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
@@ -112,11 +98,9 @@ void EventAdminMode::on_set24Hour_clicked() // use to change times mode to 24-Ho
     int endIndex = ui->endTime->currentIndex();
     ui->startTime->clear();
     ui->endTime->clear();
-    for (int i = 0; i < TIME_ARRAY_24H.size()-1; i++){
-        ui->startTime->addItem(TIME_ARRAY_24H.at(i));
-    }
-    for(int i = 0; i < TIME_ARRAY_24H.size(); i++) {
-        ui->endTime->addItem(TIME_ARRAY_24H.at(i));
+    for (int i = 0; i < 48; i++){
+        if (i != 47) ui->startTime->addItem(helpermethods::toTime(i, !set12HourFormat));
+        ui->endTime->addItem(helpermethods::toTime(i, !set12HourFormat));
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
@@ -127,17 +111,15 @@ void EventAdminMode::on_addTimeSlots_clicked() {
     if (ui->startTime->currentIndex() >= ui->endTime->currentIndex()) {
         QMessageBox::critical(this, "Error with time entry", "Start time must be prior to end time.", QMessageBox::Ok,QMessageBox::Ok);
     } else {
-        for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < TIME_SLOTS_LENGTH; i++) {
-            timeSlots[i].setTrue();
+        for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < 48; i++) {
+            if (timeslots.indexOf(i) == -1) timeslots.append(i);
         }
         resetTimeSlotsWidget();
     }
 }
 
 void EventAdminMode::on_clearTimeSlotsButton_clicked() {
-    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-        timeSlots[i].clearTimeSlot();
-    }
+    timeslots.clear();
     resetTimeSlotsWidget();
 }
 
@@ -149,41 +131,43 @@ void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
 void EventAdminMode::on_saveButton_clicked()
 {
     bool isTimeSlotSelected = false;
-    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-        if (timeSlots.at(i).isSelected()) {
-            isTimeSlotSelected = true;
-            break;
-        }
-    }
-    if(!isTimeSlotSelected)
-        {QMessageBox::warning(this,"Warning!!","No time slots were added to the event.");}
-    else if(EventName == "") {
+
+    if (timeslots.length() > 0) isTimeSlotSelected = true;
+
+    if(!isTimeSlotSelected) {
+        QMessageBox::warning(this,"Warning!!","No time slots were added to the event.");
+    } else if(EventName == "") {
         QMessageBox::warning(this,"Warning!!","No event name was entered.");
     } else if (EventName.length() > 50) {
         QMessageBox::warning(this,"Warning!!","Event name must be less than 50 characters long.");
-    }
-    else {
-    switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, session->getUser(), ui->calendarWidget->selectedDate().month(),
-                                                                  ui->calendarWidget->selectedDate().day(),
-                                                                  ui->calendarWidget->selectedDate().year()),
-                         QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
-    {
-    case QMessageBox::Ok:
-        for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-            if (timeSlots.at(i).isSelected()) {
-                timeSlots[i].addAttendee(session->getUser());
-            }
+    } else {
+
+        switch(QMessageBox::question(this,"Create Event",Info_Collect(EventName, session->getUser(), ui->calendarWidget->selectedDate().month(),
+                                                                      ui->calendarWidget->selectedDate().day(),
+                                                                      ui->calendarWidget->selectedDate().year()),
+                             QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
+        {
+        case QMessageBox::Ok:
+        {
+            attendee* attn = new attendee();
+            attn->setAttendeeName(session->getUser());
+            attn->setAvailability(timeslots);
+            attn->setEventID(session->numberOfEvents() + 1); // THIS COULD CAUSE PROBLEMS ON EMPTY LIST?
+            QList<attendee*> aList;
+            aList.append(attn);
+            QString month = QString::number(ui->calendarWidget->selectedDate().month());
+            QString day = QString::number(ui->calendarWidget->selectedDate().day());
+            QString year = QString::number(ui->calendarWidget->selectedDate().year());
+            QString dateString = month + "-" + day + "-" + year;
+            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, dateString , timeslots, aList);
+            session->saveEventsToFile();
+            on_pushButton_5_clicked();
+            break;
         }
-        session->addEvent(session->getUser(), EventName, ui->calendarWidget->selectedDate().month(),
-                          ui->calendarWidget->selectedDate().day(), ui->calendarWidget->selectedDate().year(), timeSlots);
-        session->saveEventsToFile();
-        on_pushButton_5_clicked();
-        break;
-    case QMessageBox::Cancel:
-        break;
-    default:
-        break;
-    }}
+        default:
+            break;
+        }
+    }
     return;
 }
 
@@ -195,23 +179,16 @@ void EventAdminMode::on_pushButton_5_clicked()
     time_t now = time(0);
     struct tm *date = localtime(&now);
     ui->calendarWidget->setSelectedDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
-    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-        timeSlots[i].clearTimeSlot();
-    }
+    timeslots.clear();
     resetTimeSlotsWidget();
     EventName = "";
 }
 
 void EventAdminMode::resetTimeSlotsWidget() {
     ui->timeSlotsWidget->clear();
-    for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-        if (timeSlots.at(i).isSelected()) {
-            if (set12HourFormat) {
-                ui->timeSlotsWidget->addItem(timeSlots.at(i).getTime12Hour());
-            } else {
-                ui->timeSlotsWidget->addItem(timeSlots.at(i).getTime24Hour());
-            }
-        }
+    int slot;
+    foreach(slot, timeslots) {
+        ui->timeSlotsWidget->addItem(helpermethods::toTimeSlot(slot, !set12HourFormat));
     }
 }
 

@@ -14,65 +14,49 @@ Session::~Session() {
     }
 }
 
-void Session::addEvent(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots) {
-    Event* event = new Event(owner, eventName, month, day, year, timeSlots);
+void Session::addEvent(QString owner, QString eventName, int eventID, QString eventDate, QList<int> timeSlots, QList<attendee*> att) {
+    Event* event = new Event(owner, eventName, eventID, eventDate, timeSlots);
+    event->setAttendees(att);
     events.push_back(event);
 }
 
 bool Session::readEventsFromFile() {
     QFile inputFile("EventData.txt");
+
     if (inputFile.open(QIODevice::ReadOnly))
     {
        QTextStream in(&inputFile);
-       int counter = 0;
-       QStringList eventElements;
-       eventElements.clear();
-       while (!in.atEnd())
-       {
-               while(counter < 197){
-                   QString line = in.readLine();
-                   eventElements.push_back(line);
-                   counter++;
-               }
-               Event* event = new Event();
-               int index = 0;
-               event->setOwner(eventElements.at(index)); index++;
-               event->setEventName(eventElements.at(index)); index++;
-               event->setMonth(eventElements.at(index).toInt());index++;
-               event->setDay(eventElements.at(index).toInt()); index++;
-               event->setYear(eventElements.at(index).toInt()); index++;
-               QList<TimeSlot> timeSlots;
-               for (int i = 0; i < TIME_SLOTS_LENGTH; i++) {
-                   TimeSlot tempTimeSlot;
-                   if (eventElements.at(index).toInt() == 1) {
-                       tempTimeSlot.setTrue(); index++;
-                   } else {
-                       tempTimeSlot.setFalse(); index++;
-                   }
-                   tempTimeSlot.setTime12Hour(eventElements.at(index)); index++;
-                   tempTimeSlot.setTime24Hour(eventElements.at(index)); index++;
-                   for (int j = 0; j < eventElements.at(index).size(); j ++) {
-                       if (eventElements.at(index).at(j) == '\"') {
-                           QString attendee = "";
-                           for (int l = j+1 ; l < eventElements.at(index).size(); l ++) {
-                               if (eventElements.at(index).at(l) != '\"') {
-                                   attendee.push_back(eventElements.at(index).at(l));
-                               } else {
-                                   j = l;
-                                   break;
-                               }
-                           }
-                           tempTimeSlot.addAttendee(attendee);
-                       }
-                   } index++;
 
-                   timeSlots.push_back(tempTimeSlot);
+       int counter = 0;
+       int numEvents = in.readLine().toInt();
+
+       while (counter < numEvents)
+       {
+               Event* event = new Event();
+               event->setOwner(in.readLine());
+               event->setEventName(in.readLine());
+               int eid = in.readLine().toInt();
+               event->setID(eid);
+               event->setDate(in.readLine());
+               event->setTimeSlots(helpermethods::listifyTimeslotInts(in.readLine()));
+
+               // Attendees
+               int numAttendees = in.readLine().toInt();
+               QStringList listNames = in.readLine().split(',');
+
+               QList<attendee*> temp = QList<attendee*>();
+               for (int i = 0; i < numAttendees; i++) {
+                    attendee* newAtt = new attendee();
+                    newAtt->setEventID(eid);
+                    newAtt->setAttendeeName(listNames[i]);
+                    newAtt->setAvailability(helpermethods::listifyTimeslotInts(in.readLine()));
+                    temp.append(newAtt);
                }
-               event->setTimeSlots(timeSlots);
+
+               event->setAttendees(temp);
 
                events.push_back(event);
-               counter = 0;
-               eventElements.clear();
+               counter++;
 
        }
        inputFile.close();
@@ -90,26 +74,31 @@ bool Session::saveEventsToFile() {
         return false;
     } else {
         QTextStream out(&file);
+        out << numberOfEvents() << "\n";
         for(std::list<Event*>::iterator it = events.begin(); it != events.end(); ++it) {
             out << (*it)->getOwner() << "\n";
             out << (*it)->getEventName() << "\n";
-            out << (*it)->getMonth() << "\n";
-            out << (*it)->getDay() << "\n";
-            out << (*it)->getYear() << "\n";
-            for (int i = 0; i < (*it)->getTimeSlots().size(); i++) {
-                if ((*it)->getTimeSlots().at(i).isSelected()) {
-                    out << "1\n";
-                } else {
-                    out << "0\n";
-                }
-                out << (*it)->getTimeSlots().at(i).getTime12Hour() << "\n";
-                out << (*it)->getTimeSlots().at(i).getTime24Hour() << "\n";
-                out << "(";
-                for (int j = 0; j < (*it)->getTimeSlots().at(i).getAttendees().size(); j++) {
-                    out << "\"" << (*it)->getTimeSlots().at(i).getAttendees().at(j) << "\" ";
-                }
-                out << ")\n";
+            out << (*it)->getID() << "\n";
+            out << (*it)->getDate() << "\n";
+            QString times = helpermethods::stringifyTimeslotInts((*it)->getTimeSlots());
+            out << times << "\n";
+
+            QList<attendee*> attn = (*it)->getAttendees();
+            int numAttendees = attn.size();
+            out << numAttendees << "\n";
+
+            // Probably redo this later. Needs to work for now tho
+
+            for (int i = 0; i < numAttendees; i++) {
+                QString output = (i != numAttendees - 1) ? attn[i]->getAttendeeName() + "," : attn[i]->getAttendeeName() + "\n";
+                out << output;
             }
+
+            for (int i = 0; i < numAttendees; i++) {
+                out << helpermethods::stringifyTimeslotInts(attn[i]->getAvailability()) << "\n";
+            }
+
+
         }
         file.close();
         return true;

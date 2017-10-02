@@ -3,6 +3,8 @@
 #include <QMainWindow>
 #include "session.h"
 #include "event.h"
+#include "helpermethods.h"
+#include "attendee.h"
 #include <list>
 namespace Ui{
 class AddingMode;
@@ -59,6 +61,8 @@ private:
      * \brief day
      */
     int day;
+
+    bool format = false;
 
     /*!
      * \brief session

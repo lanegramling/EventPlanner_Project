@@ -3,7 +3,8 @@
 #include <list>
 #include <QString>
 #include "event.h"
-#include "timeslot.h"
+#include "attendee.h"
+#include "helpermethods.h"
 
 /*!
  * \brief The Session class
@@ -38,7 +39,7 @@ public:
      * \param year
      * \param timeSlots
      */
-    void addEvent(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots);
+    void addEvent(QString owner, QString eventName, int eventID, QString eventDate, QList<int> timeSlots, QList<attendee*> att);
 
     /*!
      * \brief readEventsFromFile
@@ -83,18 +84,18 @@ public:
     int numberOfEvents() const;
 
 private:
-    /*!
-     * \brief timeSlots
-     */
-    QList<TimeSlot> timeSlots;
+
     /*!
      * \brief events
      */
     std::list<Event*> events;
+
     /*!
      * \brief user
      */
     QString user;
+
+
 };
 
 #endif // SESSION_H

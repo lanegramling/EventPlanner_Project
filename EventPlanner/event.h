@@ -1,6 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
-#include "timeslot.h"
+#include "attendee.h"
 #include <list>
 #include <QString>
 #include <QStringList>
@@ -28,49 +28,23 @@ public :
      * \param year
      * \param timeSlots
      */
-    Event(QString owner, QString eventName, int month, int day, int year, QList<TimeSlot> timeSlots);
+    Event(QString owner, QString eventName, int eventID, QString date, QList<int> timeslots);
     ~Event();
-    /*!
-     * \brief getMonth
-     * \details Returns the month that the event will occur.
-     * \return Integer
-     */
-    int getMonth() const;
 
     /*!
-     * \brief setMonth
+     * \brief setDate
      * \param month
      * \details Sets private variable month to the passed integer.
      */
-    void setMonth(int month);
+    void setDate(QString date);
 
     /*!
      * \brief getDay
-     * \details Returns the day of the month that the event will occur.
-     * \return  Integer
+     * \details Returns the date of the event
+     * \return  QString format "MM-DD-YYYY"
      */
-    int getDay() const;
+    QString getDate() const;
 
-    /*!
-     * \brief setDay
-     * \param day
-     * \details Sets private variable day to the passed integer.
-     */
-    void setDay(int day);
-
-    /*!
-     * \brief getYear
-     * \details Returns the year that the event will occur.
-     * \return  Integer
-     */
-    int getYear() const;
-
-    /*!
-     * \brief setYear
-     * \param year
-     * \details Sets private variable year to the passed integer.
-     */
-    void setYear(int year);
 
     /*!
      * \brief getOwner
@@ -105,14 +79,14 @@ public :
      * \details Returns the private member QList<TimeSlot> timeSlots.
      * \return QList<TimeSlot>
      */
-    QList<TimeSlot> getTimeSlots();
+    QList<int> getTimeSlots();
 
     /*!
      * \brief setTimeSlots
      * \details Sets private variable timeSlots to the passed QList<TimeSlot>.
      * \param timeSlots
      */
-    void setTimeSlots(QList<TimeSlot> timeSlots);
+    void setTimeSlots(QList<int> timeSlots);
 
     /*!
      * \brief printEvent
@@ -121,31 +95,65 @@ public :
      */
     QString printEvent();
 
+    /*!
+     * \brief getID
+     * \return int EventID
+     */
+    int getID() const;
+
+    /*!
+     * \brief setID
+     * \param ID Event ID
+     */
+    void setID(int ID);
+
+    void addTimeslot(int slot);
+
+    QList<attendee*> getAttendees();
+
+    QStringList getAttendeesAtTimeslot(int timeslot);
+
+    void setAttendees(QList<attendee*>);
+
+    void addAttendee(QString name, int slot);
+
+
+    /*!
+     * \brief hasAttendee
+     * \param name
+     * \return -1 if no attendee has matching name, otherwise returns the index of the attendee
+     */
+    int hasAttendee(QString name);
 private:
     /*!
      * \brief owner
      */
     QString owner;
+
     /*!
      * \brief eventName
      */
     QString eventName;
+
     /*!
-     * \brief month
+     * \brief eventDate
      */
-    int month;
+    QString eventDate;
+
     /*!
-     * \brief day
+     * \brief eventID
      */
-    int day;
-    /*!
-     * \brief year
-     */
-    int year;
+    int eventID;
+
     /*!
      * \brief timeSlots
      */
-    QList<TimeSlot> timeSlots;
+    QList<int> timeslots;
+
+    /*!
+     * \brief attendees
+     */
+    QList<attendee*> attendees;
 
 };
 
