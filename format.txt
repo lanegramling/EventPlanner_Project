@@ -24,7 +24,7 @@ Attendees
 ------------------------------
 
 
-NEW FORMAT (TWO FILES) !!! USERNAMES ARE CASE SENSITIVE !!!
+NEW FORMAT !!! USERNAMES ARE CASE SENSITIVE !!!
 ------------------------------
 
 First File: EVENTS (just like our event table...........)
@@ -47,7 +47,6 @@ Nth Attendee's timeslot availability e.g. "0,1,2,3,4,11,12,13"
 
 ------------------------------
 
-
 NEW FORMAT WITH UPDATED REQUIREMENTS
 ------------------------------
 
@@ -57,14 +56,15 @@ Number of events (iterator)
 CREATOR NAME
 EVENT NAME
 EVENT ID
-List of Tasks e.g. "bring chips,bring pop,bring booze"
-INT Number of days (n)
-Lists of Days - QString Split on Commas e.g. "MM-DD-YYYY,MM-DD-YYYY, ... , MM-DD-YYYY"
-0th Timeslot string e.g. "0,1,2,5,7,21"
+Day String "MM-DD-YYYY,MM-DD-YYYY, ... , MM-DD-YYYY" 
+Timeslot string e.g. "0,1,2,5,7,21"
+INT Number of attendees (n)
+List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
+0th Attendee's timeslot/task availability e.g. "0,1,2,3,5,6,7;bring chips,bring water" removeOne() function for tasks
 .
 .
 .
-nth Timeslot string e.g. "0,1,2,6,7,8"ls
+Nth Attendee's timeslot/task availability e.g. "0,1,2,3,4,11,12,13;bring booze"
 
 
 
@@ -80,3 +80,65 @@ List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
 nth Attendee's timeslot availability e.g. "0,1,2,3,5,6,7;bring booze,bring pop"
 
 ------------------------------
+
+
+Scenario
+
+October 7th 2017 - 12:00am-5:00am 0-9
+
+Push date 10-7-2017 an QStringList (0)
+Push timeslots 0,1,2,3...9 into QList by doing (48 * index) + timeslot FOR EACH TIMESLOT
+
+If we push any others after the first
+
+
+
+October 8th 2017 - 3:00am-6:00am 6-11
+
+Get index of 10-8-2017 in QList if index = -1, then push 10-8-2017 into list. Index of this day will be 1
+Push these timeslots (48*index) + timeslot into QList of ints 54,55,56,
+
+
+
+
+dummy method
+
+QStringList getTimeStrings(QStringList days, QList<int> timeslots, bool format) { // TIMESLOTS SHOULD BE SORTED
+	
+	Each string in the list returned
+
+	QStringList outputList;
+
+	int count = 0;
+
+	foreach (QString day, days) {
+		QString output = day + ": ";
+
+		QList<int> currentDaySlots;
+
+		bool workingDay = false;
+
+		foreach (int slot, timeslots) {
+
+			if (slot / 48 == count) { 
+				currentDaySlots.append(slot - (48*count));
+				workingDay = true;
+			} else if (workingDay) {
+				break;
+			}
+		}
+
+		output = output + helpermethods::getTimeString(currentDaySlots, format);
+
+		outputList.append(output)
+
+		count++;
+	}
+
+	return outputList;
+
+}
+
+
+list of ints = 0,1,2,3,4,55,56,57,101,102,103,...  !!! MUST BE SORTED !!!
+count = 1
