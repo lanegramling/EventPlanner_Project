@@ -4,3 +4,4 @@ EventPlanner/EventData.txt
 build-EventPlanner-Desktop-Debug/*
 EventPlanner/Makefile
 build-EventPlanner-Desktop-Debug
+build-EventPlanner*

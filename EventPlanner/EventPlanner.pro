@@ -6,6 +6,13 @@
 
 QT       += core gui
 
+# With C++11 support
+greaterThan(QT_MAJOR_VERSION, 4){
+CONFIG += c++11
+} else {
+QMAKE_CXXFLAGS += -std=c++0x
+}
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = EventPlanner
@@ -30,8 +37,9 @@ SOURCES += \
     addingmode.cpp \
     event.cpp \
     session.cpp \
-    timeslot.cpp \
-    loginpage.cpp
+    loginpage.cpp \
+    helpermethods.cpp \
+    attendee.cpp
 
 HEADERS += \
         eventplanner.h \
@@ -39,8 +47,9 @@ HEADERS += \
     addingmode.h \
     event.h \
     session.h \
-    timeslot.h \
-    loginpage.h
+    loginpage.h \
+    helpermethods.h \
+    attendee.h
 
 FORMS += \
     eventadminmode.ui \
