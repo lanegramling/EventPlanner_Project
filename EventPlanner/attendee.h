@@ -53,12 +53,17 @@ public:
 
     void addAvailability(int slot);
 
+    QStringList getTasks();
 
+    void setTasks(QString taskString);
+
+    void addTask(QString task);
 
 private:
     int eventID;
     QString name;
     QList<int> availability;
+    QStringList tasks;
 };
 
 #endif // ATTENDEE_H

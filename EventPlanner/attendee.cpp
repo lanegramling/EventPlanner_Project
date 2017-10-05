@@ -34,3 +34,15 @@ void attendee::setAvailability(QList<int> avail) {
 void attendee::addAvailability(int slot) {
     if (availability.indexOf(slot) == -1) availability.append(slot);
 }
+
+QStringList attendee::getTasks() {
+    return tasks;
+}
+
+void attendee::setTasks(QString taskString) {
+    tasks = taskString.split(',');
+}
+
+void attendee::addTask(QString task) {
+    tasks.append(task);
+}

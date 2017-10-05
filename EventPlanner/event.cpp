@@ -3,12 +3,12 @@
 
 Event::Event() {}
 
-Event::Event(QString owner, QString eventName, int eventID, QString date, QList<int> timeslots) :
+Event::Event(QString owner, QString eventName, int eventID, QStringList days, QList<int> timeslots) :
 
     owner(owner),
     eventName(eventName),
     eventID(eventID),
-    eventDate(date),
+    eventDays(days),
     timeslots(timeslots)
     {}
 
@@ -20,12 +20,24 @@ Event::~Event() {
     }
 }
 
-QString Event::getDate() const {
-    return eventDate;
+QStringList Event::getDays() {
+    return eventDays;
 }
 
-void Event::setDate(QString date) {
-    eventDate = date;
+void Event::setDays(QString dayString) {
+    eventDays = dayString.split('-');
+}
+
+QStringList Event::getTasks() {
+    return eventTasks;
+}
+
+void Event::setTasks(QString tasks) {
+    eventTasks = tasks.split(',');
+}
+
+bool Event::removeTask(QString task) {
+    return (eventTasks.removeOne(task));
 }
 
 QString Event::getOwner() const {
@@ -53,7 +65,7 @@ void Event::setTimeSlots(QList<int> timeSlots) {
 }
 
 QString Event::printEvent() {
-    return owner + "'s " + eventName + ": " + eventDate;
+    return owner + "'s " + eventName;
 }
 
 int Event::getID() const {
@@ -62,10 +74,6 @@ int Event::getID() const {
 
 void Event::setID(int ID) {
     eventID = ID;
-}
-
-void Event::addTimeslot(int slot) {
-
 }
 
 QList<attendee*> Event::getAttendees() {

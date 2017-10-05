@@ -28,7 +28,7 @@ public :
      * \param year
      * \param timeSlots
      */
-    Event(QString owner, QString eventName, int eventID, QString date, QList<int> timeslots);
+    Event(QString owner, QString eventName, int eventID, QStringList days, QList<int> timeslots);
     ~Event();
 
     /*!
@@ -36,14 +36,20 @@ public :
      * \param month
      * \details Sets private variable month to the passed integer.
      */
-    void setDate(QString date);
+    void setDays(QString dayString);
 
     /*!
      * \brief getDay
      * \details Returns the date of the event
-     * \return  QString format "MM-DD-YYYY"
+     * \return  QStringList of QString with format "MM-DD-YYYY"
      */
-    QString getDate() const;
+    QStringList getDays();
+
+    QStringList getTasks();
+
+    void setTasks(QString tasks);
+
+    bool removeTask(QString task);
 
 
     /*!
@@ -107,8 +113,6 @@ public :
      */
     void setID(int ID);
 
-    void addTimeslot(int slot);
-
     QList<attendee*> getAttendees();
 
     QStringList getAttendeesAtTimeslot(int timeslot);
@@ -136,11 +140,6 @@ private:
     QString eventName;
 
     /*!
-     * \brief eventDate
-     */
-    QString eventDate;
-
-    /*!
      * \brief eventID
      */
     int eventID;
@@ -154,6 +153,10 @@ private:
      * \brief attendees
      */
     QList<attendee*> attendees;
+
+    QStringList eventDays;
+
+    QStringList eventTasks;
 
 };
 

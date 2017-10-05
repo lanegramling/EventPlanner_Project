@@ -58,6 +58,7 @@ EVENT NAME
 EVENT ID
 Day String "MM-DD-YYYY,MM-DD-YYYY, ... , MM-DD-YYYY" 
 Timeslot string e.g. "0,1,2,5,7,21"
+Task List String "chips,drinks,booze"
 INT Number of attendees (n)
 List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
 0th Attendee's timeslot/task availability e.g. "0,1,2,3,5,6,7;bring chips,bring water" removeOne() function for tasks
@@ -68,18 +69,14 @@ Nth Attendee's timeslot/task availability e.g. "0,1,2,3,4,11,12,13;bring booze"
 
 
 
-Second File: ATTENDEES (just like our signups table.........)
-
-EVENT ID
-INT Number of attendees (n)
-List of Attendees - QString Split on Commas e.g. "Lane,Dustin,Damian..."
-0th Attendee's timeslot;tasks availability e.g. "0,1,2,3,5,6,7;bring chips"
-.
-.
-.
-nth Attendee's timeslot availability e.g. "0,1,2,3,5,6,7;bring booze,bring pop"
-
 ------------------------------
+
+
+
+
+
+
+
 
 
 Scenario
@@ -142,3 +139,99 @@ QStringList getTimeStrings(QStringList days, QList<int> timeslots, bool format) 
 
 list of ints = 0,1,2,3,4,55,56,57,101,102,103,...  !!! MUST BE SORTED !!!
 count = 1
+
+
+
+
+
+TASKS TO DO WHEN UPGRADING TO MULTI-DAY
+
+Event Class:
+Private Date variable will now be private List of Date strings
+
+
+
+
+
+We forgot to think about sorting the days... Can we do it after instead of reformatting the code?
+
+define a function to say if a date string is < another? (they will never be equal. if they are then we fucked up somewhere)
+
+FORMAT of dates to be compared
+date1 = "10-7-2015: 3:00am-4:00am, 5:30pm-10:00pm"
+date2 = "10-20-2015: 4:00am-12:00am"
+
+so we need to split the list first on the ':''
+
+bool compareDate(QString date1, QString date2) { // Return true if date1 is PRIOR to date2
+
+	QString date1sub = date1.split(':')[0];
+	QString date2sub = date2.split(':')[0];	
+
+	QStringList date1split = date1sub.split('-');
+	QStringList date2split = date2sub.split('-');
+
+	int date1month = date1split[0].toInt();
+	int date1day = date1split[1].toInt();
+	int date1year = date1split[2].toInt();
+
+	int date2month = date2split[0].toInt();
+	int date2day = date2split[1].toInt();
+	int date2year = date2split[2].toInt();
+
+	if (date1year == date2year) {
+		if (date1month == date2month) {
+			return (date1day < date2day);
+		} else {
+			return (date1month < date2month);
+		}
+	} else {
+		return (date1year < date2year);
+	}
+}
+
+
+
+EVENT:
+Timeslots: 0,1,2,3
+Tasks: QStringList = "chips","drinks","dog"
+Attendee:
+NONE
+
+Event:
+Timeslots: 0,1,2,3
+Tasks: QStringList = "drinks"
+
+Attendee:
+Dustin: (avail;tasks) = "0,2;chips,dog"
+
+
+
+
+
+
+How do we sort a list of dates if we still "don't care" how we record them initially
+
+Option (a) ALWAYS keep it sorted... (that means refactoring... but we haven't even factored yet in the first place lol)
+	Pros:
+		Never have to worry about it after tediously doing it the first time
+
+	Cons:
+		Potentially more memory usage (not that concerning i guess)
+		Refactor original thoughts
+		CANT DO "ADD PREVIOUS DAY'S TIMESLOTS" (except actually we can with the normal method? OR we can do a little more work and still make it happen...)
+
+Option (b) Sort it after event has been created.
+	Pros:
+		Don't have to change our original thoughts
+		With our original thoughts/constraints it will work the best memory wise
+	Cons:
+		Probably not the best way to do it
+
+
+Compromise:
+
+We HAVE To keep it sorted always. This will make it easier to keep track of, and also easier than sorting the whole list. We just need to find the right spot to place the date. If we can insert at an index then this is easy and we just have to refactor the list of ints...
+
+We can insert at an index, so as long as we compare the dates okay then we're good.
+The other thing is we should do a QList< QList<int> > in order to keep track of the timeslots initially.

@@ -74,7 +74,7 @@ private:
     /*!
      * \brief timeSlots
      */
-    QList<int> timeslots;
+    QList< QList<int> > timeslots;
     /*!
      * \brief resetTimeSlotsWidget
      * \details Clears and then refills the time slot list with time slots that have TimeSlot.isSelected().
@@ -86,6 +86,8 @@ private:
      * \details Resets the EventAdminMode window.
      */
     void on_pushButton_5_clicked();// member function
+
+    QStringList eventDays;
 
 private slots:
     /*!

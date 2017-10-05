@@ -111,8 +111,15 @@ void EventAdminMode::on_addTimeSlots_clicked() {
     if (ui->startTime->currentIndex() >= ui->endTime->currentIndex()) {
         QMessageBox::critical(this, "Error with time entry", "Start time must be prior to end time.", QMessageBox::Ok,QMessageBox::Ok);
     } else {
+        QString month = QString::number(ui->calendarWidget->selectedDate().month());
+        QString day = QString::number(ui->calendarWidget->selectedDate().day());
+        QString year = QString::number(ui->calendarWidget->selectedDate().year());
+        QString dateString = month + "-" + day + "-" + year;
+
+        QList<int> slotList;
+
         for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < 48; i++) {
-            if (timeslots.indexOf(i) == -1) timeslots.append(i);
+            //if (slotList.indexOf(i) == -1) slotList.append(i);
         }
         resetTimeSlotsWidget();
     }
@@ -155,11 +162,16 @@ void EventAdminMode::on_saveButton_clicked()
             attn->setEventID(session->numberOfEvents() + 1); // THIS COULD CAUSE PROBLEMS ON EMPTY LIST?
             QList<attendee*> aList;
             aList.append(attn);
-            QString month = QString::number(ui->calendarWidget->selectedDate().month());
-            QString day = QString::number(ui->calendarWidget->selectedDate().day());
-            QString year = QString::number(ui->calendarWidget->selectedDate().year());
-            QString dateString = month + "-" + day + "-" + year;
-            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, dateString , timeslots, aList);
+
+            QList<int> slotList;
+            for(int i = 0; i < timeslots.size(); i++) {
+                foreach (int j, timeslots[i]) {
+                    slotList.append(j + (48 * i));
+                }
+            }   // JUST FINISHED ADDING THIS. WALKING TO TOMMY NOW
+                // TODO: FINISH THIS
+
+            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, eventDays , timeslots, aList);
             session->saveEventsToFile();
             on_pushButton_5_clicked();
             break;
