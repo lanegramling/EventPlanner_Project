@@ -16,7 +16,7 @@ public:
      * \param format TRUE: 24h format | FALSE: 12h format
      * \return QString Time in 12h/24h format
      */
-    static QString toTime(int timeslot, bool format);
+    static QString toTime(int slot, bool format);
 
     /*!
      * \brief toTimeSlot Will utilize toTime to create 30min timeslot string
@@ -48,6 +48,14 @@ public:
      * \return QList of timeslots
      */
     static QList<int> listifyTimeslotInts(QString timeslotString);
+
+    /*!
+     * \brief compareDates Essentially a < function for dates of format "MM-DD-YYYY"
+     * \param date1
+     * \param date2
+     * \return True if date1 is prior to date2. False otherwise
+     */
+    static bool compareDates(QString date1, QString date2);
 
 private:
     /*!

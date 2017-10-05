@@ -25,7 +25,7 @@ QStringList Event::getDays() {
 }
 
 void Event::setDays(QString dayString) {
-    eventDays = dayString.split('-');
+    eventDays = dayString.split(',');
 }
 
 QStringList Event::getTasks() {
@@ -104,6 +104,10 @@ void Event::addAttendee(QString name, int slot) {
     } else {
         attendees[index]->addAvailability(slot);
     }
+}
+
+void Event::addAttendee(attendee *attn) {
+    attendees.append(attn);
 }
 
 int Event::hasAttendee(QString name) {

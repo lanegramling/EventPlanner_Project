@@ -121,6 +121,8 @@ public :
 
     void addAttendee(QString name, int slot);
 
+    void addAttendee(attendee* attn);
+
 
     /*!
      * \brief hasAttendee

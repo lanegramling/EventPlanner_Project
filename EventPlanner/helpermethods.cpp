@@ -5,9 +5,10 @@ helpermethods::helpermethods()
 
 }
 
-QString helpermethods::toTime(int timeslot, bool format) {
+QString helpermethods::toTime(int slot, bool format) {
     int hour;
     QString min;
+    int timeslot = (slot % 48);
 
     if (format) {
         hour = timeslot / 2;
@@ -85,4 +86,27 @@ QList<int> helpermethods::listifyTimeslotInts(QString timeslotString) {
     }
 
     return final;
+}
+
+bool helpermethods::compareDates(QString date1, QString date2) {
+    QStringList date1split = date1.split('-');
+    QStringList date2split = date2.split('-');
+
+    int date1month = date1split[0].toInt();
+    int date1day = date1split[1].toInt();
+    int date1year = date1split[2].toInt();
+
+    int date2month = date2split[0].toInt();
+    int date2day = date2split[1].toInt();
+    int date2year = date2split[2].toInt();
+
+    if (date1year == date2year) {
+        if (date1month == date2month) {
+            return (date1day < date2day);
+        } else {
+            return (date1month < date2month);
+        }
+    } else {
+        return (date1year < date2year);
+    }
 }

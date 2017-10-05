@@ -1,13 +1,6 @@
 #include "eventadminmode.h"
 #include "ui_eventadminmode.h"
-#include <eventplanner.h>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QToolButton>
-#include <QPixmap>
-#include <QIcon>
-#include <ctime>
-#include <QString>
+
 
 
 EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
@@ -23,6 +16,9 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     time_t now = time(0);
     struct tm *date = localtime(&now);
     ui->calendarWidget->setMinimumDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
+
+    connect(ui->calendarWidget, SIGNAL(clicked(QDate)), this, SLOT(daySelected()));
+
     setStyle_calendarWidget();
 }
 
@@ -88,7 +84,7 @@ void EventAdminMode::on_set12Hour_clicked() // use to change times mode to 12-Ho
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
-    resetTimeSlotsWidget();
+    daySelected();
 }
 
 void EventAdminMode::on_set24Hour_clicked() // use to change times mode to 24-Hour
@@ -104,10 +100,10 @@ void EventAdminMode::on_set24Hour_clicked() // use to change times mode to 24-Ho
     }
     ui->startTime->setCurrentIndex(startIndex);
     ui->endTime->setCurrentIndex(endIndex);
-    resetTimeSlotsWidget();
+    daySelected();
 }
 
-void EventAdminMode::on_addTimeSlots_clicked() {
+void EventAdminMode::on_addTimeSlots_clicked() { // WORKS but isn't sorted yet
     if (ui->startTime->currentIndex() >= ui->endTime->currentIndex()) {
         QMessageBox::critical(this, "Error with time entry", "Start time must be prior to end time.", QMessageBox::Ok,QMessageBox::Ok);
     } else {
@@ -116,18 +112,55 @@ void EventAdminMode::on_addTimeSlots_clicked() {
         QString year = QString::number(ui->calendarWidget->selectedDate().year());
         QString dateString = month + "-" + day + "-" + year;
 
+        int index = eventDays.indexOf(dateString);
+
         QList<int> slotList;
 
-        for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < 48; i++) {
-            //if (slotList.indexOf(i) == -1) slotList.append(i);
+        if (index == -1) {
+
+            // Let's find where this date should go.
+
+            // If size = 0
+            if (eventDays.size() == 0) {
+                eventDays.append(dateString);
+            } else {
+                bool hasBeenAdded = false;
+                for (int i = 0; i < eventDays.size(); i++) {
+                    if (helpermethods::compareDates(dateString, eventDays[i])) {
+                        eventDays.insert(i, dateString);
+                        hasBeenAdded = true;
+                        break;
+                    }
+                }
+                if (!hasBeenAdded) {
+                    eventDays.append(dateString); // If it is later than every date so far.
+                }
+            }
+            index = eventDays.indexOf(dateString);
+
+            // Then let's add the slots in the same spot
+
+            for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < 48; i++) {
+                slotList.append(i);
+            }
+            timeslots.insert(index, slotList);
+        } else {
+            for (int i = ui->startTime->currentIndex(); i < ui->endTime->currentIndex() && i < 48; i++) {
+                if (!timeslots[index].contains(i)) timeslots[index].append(i);
+            }
+            qSort(timeslots[index]);
         }
-        resetTimeSlotsWidget();
+
+
+
+        daySelected();
     }
 }
 
 void EventAdminMode::on_clearTimeSlotsButton_clicked() {
     timeslots.clear();
-    resetTimeSlotsWidget();
+    eventDays.clear();
+    daySelected();
 }
 
 void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
@@ -158,20 +191,18 @@ void EventAdminMode::on_saveButton_clicked()
         {
             attendee* attn = new attendee();
             attn->setAttendeeName(session->getUser());
-            attn->setAvailability(timeslots);
             attn->setEventID(session->numberOfEvents() + 1); // THIS COULD CAUSE PROBLEMS ON EMPTY LIST?
-            QList<attendee*> aList;
-            aList.append(attn);
 
             QList<int> slotList;
             for(int i = 0; i < timeslots.size(); i++) {
                 foreach (int j, timeslots[i]) {
                     slotList.append(j + (48 * i));
                 }
-            }   // JUST FINISHED ADDING THIS. WALKING TO TOMMY NOW
-                // TODO: FINISH THIS
+            }
 
-            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, eventDays , timeslots, aList);
+            attn->setAvailability(slotList);
+
+            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, eventDays , slotList, attn);
             session->saveEventsToFile();
             on_pushButton_5_clicked();
             break;
@@ -192,15 +223,16 @@ void EventAdminMode::on_pushButton_5_clicked()
     struct tm *date = localtime(&now);
     ui->calendarWidget->setSelectedDate(QDate((date->tm_year)+1900, (date->tm_mon)+1, (date->tm_mday)));
     timeslots.clear();
-    resetTimeSlotsWidget();
     EventName = "";
 }
 
-void EventAdminMode::resetTimeSlotsWidget() {
+void EventAdminMode::daySelected() {
     ui->timeSlotsWidget->clear();
-    int slot;
-    foreach(slot, timeslots) {
-        ui->timeSlotsWidget->addItem(helpermethods::toTimeSlot(slot, !set12HourFormat));
+    QString selectedDate = QString::number(ui->calendarWidget->selectedDate().month()) + "-" + QString::number(ui->calendarWidget->selectedDate().day()) + "-" + QString::number(ui->calendarWidget->selectedDate().year());
+    int index = eventDays.indexOf(selectedDate);
+    if (index != -1) {
+        foreach(int slot, timeslots[index]) {
+            ui->timeSlotsWidget->addItem(helpermethods::toTimeSlot(slot, !set12HourFormat));
+        }
     }
 }
-

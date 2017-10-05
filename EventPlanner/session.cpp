@@ -14,9 +14,9 @@ Session::~Session() {
     }
 }
 
-void Session::addEvent(QString owner, QString eventName, int eventID, QStringList eventDays, QList<int> timeSlots, QList<attendee*> att) {
+void Session::addEvent(QString owner, QString eventName, int eventID, QStringList eventDays, QList<int> timeSlots, attendee* att) {
     Event* event = new Event(owner, eventName, eventID, eventDays, timeSlots);
-    event->setAttendees(att);
+    event->addAttendee(att);
     events.push_back(event);
 }
 
@@ -25,46 +25,55 @@ bool Session::readEventsFromFile() {
 
     if (inputFile.open(QIODevice::ReadOnly))
     {
-       QTextStream in(&inputFile);
+        QTextStream in(&inputFile);
 
-       int counter = 0;
-       int numEvents = in.readLine().toInt();
+        int counter = 0;
+        int numEvents = in.readLine().toInt();
 
-       while (counter < numEvents)
-       {
-               Event* event = new Event();
-               event->setOwner(in.readLine());
-               event->setEventName(in.readLine());
-               int eid = in.readLine().toInt();
-               event->setID(eid);
-               event->setDays(in.readLine());
-               event->setTimeSlots(helpermethods::listifyTimeslotInts(in.readLine()));
-               event->setTasks(in.readLine());
+        while (counter < numEvents)
+        {
+            // Read in stuff for event (easier to debug when split like this)
+            QString eOwner = in.readLine();
+            QString eName = in.readLine();
+            QString eId = in.readLine();
+            QString eDays = in.readLine();
+            QString eTimeslots = in.readLine();
+            QString eTasks = in.readLine();
 
-               // Attendees
-               int numAttendees = in.readLine().toInt();
-               QStringList listNames = in.readLine().split(',');
+            qDebug() << eOwner << eName<< eId << eDays << eTimeslots << eTasks;
 
-               QList<attendee*> temp = QList<attendee*>();
-               for (int i = 0; i < numAttendees; i++) {
-                    attendee* newAtt = new attendee();
-                    newAtt->setEventID(eid);
-                    newAtt->setAttendeeName(listNames[i]);
-                    QString availTasks = in.readLine();
-                    newAtt->setAvailability(helpermethods::listifyTimeslotInts(availTasks.split(';')[0]));
-                    newAtt->setTasks(availTasks.split(';')[1]);
+            Event* event = new Event();
+            event->setOwner(eOwner);
+            event->setEventName(eName);
+            event->setID(eId.toInt());
+            event->setDays(eDays);
+            event->setTimeSlots(helpermethods::listifyTimeslotInts(eTimeslots));
+            event->setTasks(eTasks);
 
-                    temp.append(newAtt);
-               }
+            // Attendees
+            int numAttendees = in.readLine().toInt();
+            QStringList listNames = in.readLine().split(',');
 
-               event->setAttendees(temp);
+            QList<attendee*> temp = QList<attendee*>();
+            for (int i = 0; i < numAttendees; i++) {
+                attendee* newAtt = new attendee();
+                newAtt->setEventID(eId.toInt());
+                newAtt->setAttendeeName(listNames[i]);
+                QString availTasks = in.readLine();
+                newAtt->setAvailability(helpermethods::listifyTimeslotInts(availTasks.split(';')[0]));
+                newAtt->setTasks(availTasks.split(';')[1]);
 
-               events.push_back(event);
-               counter++;
+                temp.append(newAtt);
+            }
 
-       }
-       inputFile.close();
-       return true;
+            event->setAttendees(temp);
+
+            events.push_back(event);
+            counter++;
+
+        }
+        inputFile.close();
+        return true;
     } else {
         return false;
     }
@@ -86,7 +95,7 @@ bool Session::saveEventsToFile() {
             out << (*it)->getDays().join(',') << "\n";
             QString times = helpermethods::stringifyTimeslotInts((*it)->getTimeSlots());
             out << times << "\n";
-            out << (*it)->getTasks().join(',');
+            out << (*it)->getTasks().join(',') << "\n";
 
             QList<attendee*> attn = (*it)->getAttendees();
             int numAttendees = attn.size();

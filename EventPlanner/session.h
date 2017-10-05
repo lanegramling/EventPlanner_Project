@@ -39,7 +39,7 @@ public:
      * \param year
      * \param timeSlots
      */
-    void addEvent(QString owner, QString eventName, int eventID, QString eventDate, QList<int> timeSlots, QList<attendee*> att);
+    void addEvent(QString owner, QString eventName, int eventID, QStringList eventDays, QList<int> timeSlots, attendee* att);
 
     /*!
      * \brief readEventsFromFile

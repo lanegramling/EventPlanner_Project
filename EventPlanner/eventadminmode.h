@@ -4,6 +4,14 @@
 #include <QDebug>
 #include "session.h"
 #include "helpermethods.h"
+#include <eventplanner.h>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QToolButton>
+#include <QPixmap>
+#include <QIcon>
+#include <ctime>
+#include <QString>
 namespace Ui {
 class EventAdminMode;
 }
@@ -75,11 +83,6 @@ private:
      * \brief timeSlots
      */
     QList< QList<int> > timeslots;
-    /*!
-     * \brief resetTimeSlotsWidget
-     * \details Clears and then refills the time slot list with time slots that have TimeSlot.isSelected().
-     */
-    void resetTimeSlotsWidget();
 
     /*!
      * \brief on_pushButton_5_clicked
@@ -96,6 +99,7 @@ private slots:
     */
     void receiveshow();
 
+    void daySelected();
 
     /*!
      * \brief on_saveButton_clicked
