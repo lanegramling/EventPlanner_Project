@@ -1,3 +1,23 @@
+# TODO List - Current
+
+Multi-day: Functionality is there.
+
+- Need to color cells that have timeslots on them.
+- Need to display the multi-day in a better format on the view page
+	- Need to change the view page from Event->Slot->Signup TO Event->Day->Slot->Signup
+
+
+Task List: The data text format includes the tasks. The event class and session class is setup already for tasks. Just need to implement
+
+- Need to implement in event creation mode
+- Need to implement signups
+
+Event Creator/Attendee View
+
+- Should remake the view page and just add visual effects to show which mode.
+
+##(README from original fork)
+
 # Event Planner
 This project aims to help people schedule events. In this program, we can create new events or join exsiting events that is available for you.
 
