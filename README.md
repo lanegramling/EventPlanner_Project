@@ -16,7 +16,7 @@ Event Creator/Attendee View
 
 - Should remake the view page and just add visual effects to show which mode.
 
-##(README from original fork)
+## (README from original fork)
 
 # Event Planner
 This project aims to help people schedule events. In this program, we can create new events or join exsiting events that is available for you.
