@@ -78,24 +78,24 @@ private slots:
     void receiveshow();
 
     /*!
-     * \brief on_pushButton_2_clicked
+     * \brief on_btnBack_clicked
      * \details Function called when Back button is clicked. Emits showEventPlanner()
      */
-    void on_pushButton_2_clicked();
+    void on_btnBack_clicked();
 
     /*!
-     * \brief on_listWidget_clicked
+     * \brief on_wListEvents_clicked
      * \details Called when an Event in the Event list is clicked on. Fills TimeSlot list with time slots for the event where TimeSlot.isSelected() true.
      * \param index
      */
-    void on_listWidget_clicked(const QModelIndex &index);
+    void on_wListEvents_clicked(const QModelIndex &index);
 
     /*!
-     * \brief on_listWidget_2_clicked
+     * \brief on_wListTimeslots_clicked
      * \details Called when a TimeSlot is clicked on in the Time Slot list. Fills the Attendees list for the selected time slot.
      * \param index
      */
-    void on_listWidget_2_clicked(const QModelIndex &index);
+    void on_wListTimeslots_clicked(const QModelIndex &index);
 
     /*!
      * \brief on_addToTimeSlotButton_clicked

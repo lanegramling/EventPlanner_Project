@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 
-
+//Adding Mode - Constructor
 AddingMode::AddingMode(Session *session, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AddingMode),
@@ -15,66 +15,86 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
     month = 1;
     day = 1;
     year = 2017;
-    ui->listWidget->clear();
+    ui->wListEvents->clear();
     EventIndex = 0;
     int number = 1;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-        ui->listWidget->addItem(QString::number(number)+". "+(*it)->printEvent());
+        ui->wListEvents->addItem(QString::number(number)+". "+(*it)->printEvent());
         number++;
     }
 }
+
+//Destructor
 AddingMode::~AddingMode()
 {
     session->saveEventsToFile();
     delete ui;
 }
 
-void AddingMode::on_pushButton_2_clicked()
-{
-    ui->listWidget_2->clear();
-    ui->listWidget_3->clear();
-    this->hide();
-    EventName = "";
-    emit showEventPlanner();
-}
-
+//Show Form
 void AddingMode::receiveshow()
 {
-    if (ui->listWidget->count() != session->numberOfEvents()) {
-        ui->listWidget->clear();
+    if (ui->wListEvents->count() != session->numberOfEvents()) {
+        ui->wListEvents->clear();
         int number = 1;
         for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-           ui->listWidget->addItem(QString::number(number)+". " + (*it)->printEvent());
+           ui->wListEvents->addItem(QString::number(number)+". " + (*it)->printEvent());
         number++;
         }
     } else {
-        for(int i = 0; i < ui->listWidget->count(); i++) {
-           ui->listWidget->item(i)->setHidden(false);
+        for(int i = 0; i < ui->wListEvents->count(); i++) {
+           ui->wListEvents->item(i)->setHidden(false);
         }
     }
 
     this->show();
 }
 
-void AddingMode::on_listWidget_clicked(const QModelIndex &index)
+//Back button
+void AddingMode::on_btnBack_clicked()
 {
-    ui->listWidget_2->clear();
-    ui->listWidget_3->clear();
-    int count =0;
+    ui->wListTimeslots->clear();
+    ui->wListAttendees->clear();
+    this->hide();
+    EventName = "";
+    emit showEventPlanner();
+}
+
+//(Listener) On Event Selected
+void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
+{
+    /* TODO
+     * - Update Date data in Calendar widget
+     * - Update Timeslots list and Attendees list according to DATE
+     *      - Change Flow from
+     *          |Event->Timeslots->Attendees)     |
+     *
+     *        to
+     *          |Event->Date->Timeslots->Attendees|
+     *          |     ->Tasks->[Show Task View]   |
+     */
+
+    //Clear lists (Timeslots, Attendees, Tasks)
+    ui->wListTimeslots->clear();
+    ui->wListAttendees->clear();
+    ui->wListTasks->clear();
+
+    //Find the clicked event from the data stored in the session, and populate the lists with accordingly.
+    int count = 0;
     bool first = true;
     EventIndex = index.row();
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
        if(count == EventIndex)
        {
            foreach (int slot, (*it)->getTimeSlots()) {
-               ui->listWidget_2->addItem(helpermethods::toTimeSlot(slot, format));
+               ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
                if (first) {
                    first = false;
-                   ui->listWidget_2->setCurrentRow(1);
+                   ui->wListTimeslots->setCurrentRow(1);
                    QStringList names = (*it)->getAttendeesAtTimeslot(slot);
                    QString name;
                    foreach(name, names) {
-                       ui->listWidget_3->addItem(name);
+                       ui->wListAttendees->addItem(name);
                    }
                }
            }
@@ -84,9 +104,10 @@ void AddingMode::on_listWidget_clicked(const QModelIndex &index)
     }
 }
 
-void AddingMode::on_listWidget_2_clicked(const QModelIndex &index) {
 
-    ui->listWidget_3->clear();
+void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
+
+    ui->wListAttendees->clear();
     int count = 0;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
     {
@@ -94,11 +115,11 @@ void AddingMode::on_listWidget_2_clicked(const QModelIndex &index) {
          {
              int slot;
              foreach (slot, (*it)->getTimeSlots()) {
-                 if (helpermethods::toTimeSlot(slot, format) == ui->listWidget_2->item(index.row())->text()) {
+                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text()) {
                     QStringList names = (*it)->getAttendeesAtTimeslot(slot);
                     QString name;
                     foreach(name, names) {
-                        ui->listWidget_3->addItem(name);
+                        ui->wListAttendees->addItem(name);
                     }
                  }
              }
@@ -111,11 +132,11 @@ void AddingMode::on_listWidget_2_clicked(const QModelIndex &index) {
 
 // Need to change this up....
 void AddingMode::on_addToTimeSlotButton_clicked(){
-    if (ui->listWidget->count() == 0) {
+    if (ui->wListEvents->count() == 0) {
         return;
     }
 
-    QString selectedTime = ui->listWidget_2->currentItem()->text();
+    QString selectedTime = ui->wListTimeslots->currentItem()->text();
         int count = 0;
 switch(QMessageBox::question(this,"Adding","Do you want to join it?",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
     case QMessageBox::Ok:
@@ -137,9 +158,9 @@ switch(QMessageBox::question(this,"Adding","Do you want to join it?",QMessageBox
            count++;
         }
         session->saveEventsToFile();
-        for(int i = 0; i < ui->listWidget->count(); i++)
-        {ui->listWidget->item(i)->setHidden(false);}
-        on_listWidget_2_clicked(ui->listWidget_2->currentIndex());
+        for(int i = 0; i < ui->wListEvents->count(); i++)
+        {ui->wListEvents->item(i)->setHidden(false);}
+        on_wListTimeslots_clicked(ui->wListTimeslots->currentIndex());
         break;
     case QMessageBox::Cancel:
         break;

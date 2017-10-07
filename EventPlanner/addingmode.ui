@@ -48,7 +48,7 @@
     <property name="title">
      <string>Events</string>
     </property>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QListWidget" name="wListEvents">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -99,7 +99,7 @@ information about it.</string>
     <property name="title">
      <string>Time Slots</string>
     </property>
-    <widget class="QListWidget" name="listWidget_2">
+    <widget class="QListWidget" name="wListTimeslots">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -146,7 +146,7 @@ information about it.</string>
     <property name="title">
      <string>Attendees</string>
     </property>
-    <widget class="QListWidget" name="listWidget_3">
+    <widget class="QListWidget" name="wListAttendees">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -169,7 +169,7 @@ information about it.</string>
     <property name="title">
      <string>Date</string>
     </property>
-    <widget class="QCalendarWidget" name="calendarWidget">
+    <widget class="QCalendarWidget" name="wCalendar">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -195,7 +195,7 @@ information about it.</string>
     <property name="title">
      <string>Task List</string>
     </property>
-    <widget class="QListWidget" name="listWidget_4">
+    <widget class="QListWidget" name="wListTasks">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -208,7 +208,7 @@ information about it.</string>
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a task, and you'll be able to:&lt;/p&gt;&lt;p&gt; - Volunteer for the task, OR&lt;/p&gt;&lt;p&gt; - View the task force.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnVolunteer">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -245,7 +245,7 @@ information about it.</string>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnBack">
     <property name="geometry">
      <rect>
       <x>490</x>
