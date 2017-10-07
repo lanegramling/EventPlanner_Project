@@ -75,7 +75,9 @@ void EventPlanner::on_pushButton_3_clicked()
                                           "\n"
                                        "Team members: Martin, Kevin, Jian, Simon\n"
                                           "\n"
-                                       "This program was made with the Qt Creator IDE and Framework version 4.X licensed under LGPL."));
+                                       "This program was made with the Qt Creator IDE and Framework version 4.X licensed under LGPL.\n"
+                                          "\n"
+                                          "\nModified October 2017 by Dustin Bingham, Lane Gramling, and Damian Vu."));
 }
 
 void EventPlanner::on_pushButton_4_clicked()
