@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>823</width>
-    <height>573</height>
+    <width>848</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,11 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>EventPlanner</string>
@@ -25,98 +30,38 @@
      <underline>false</underline>
     </font>
    </property>
-   <widget class="QLabel" name="label_7">
+   <widget class="QGroupBox" name="gbDate">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>251</width>
-      <height>51</height>
+      <x>10</x>
+      <y>120</y>
+      <width>351</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>Please Create Your Event:</string>
+    <property name="toolTip">
+     <string>Click on a date to show the timeslots for that day.</string>
     </property>
-   </widget>
-   <widget class="QSplitter" name="splitter">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>250</y>
-      <width>251</width>
-      <height>30</height>
-     </rect>
+    <property name="title">
+     <string>Add a Date</string>
     </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="QPushButton" name="saveButton">
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
+    <widget class="QCalendarWidget" name="calendarWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>331</width>
+       <height>201</height>
+      </rect>
      </property>
-     <property name="text">
-      <string>Save</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="backButton">
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Back</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="layoutWidget_10">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>221</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_10">
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_9">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Event Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="eventNameTextBox"/>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QCalendarWidget" name="calendarWidget">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>40</y>
-      <width>281</width>
-      <height>191</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QToolButton#qt_calendar_monthbutton,#qt_calendar_yearbutton{
+     <property name="styleSheet">
+      <string notr="true">QToolButton#qt_calendar_monthbutton,#qt_calendar_yearbutton{
 color:
 rgb(0, 0, 0);
 }
@@ -125,220 +70,330 @@ background-color:
 rgb(255,255,255);
 }
 </string>
-    </property>
+     </property>
+     <property name="gridVisible">
+      <bool>false</bool>
+     </property>
+    </widget>
    </widget>
-   <widget class="QComboBox" name="startTime">
+   <widget class="QGroupBox" name="gbCreateEevent">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>230</y>
-      <width>101</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="endTime">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>230</y>
-      <width>101</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>210</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start Time:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>210</y>
-      <width>51</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>End Time:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="set24Hour">
-    <property name="geometry">
-     <rect>
-      <x>136</x>
-      <y>180</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>24 Hour</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="set12Hour">
-    <property name="geometry">
-     <rect>
-      <x>36</x>
-      <y>180</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>12 Hour</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>96</x>
-      <y>160</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Time Format:</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="timeSlotsWidget">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>50</y>
-      <width>151</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>30</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Time Slots Added:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addTimeSlots">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>260</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Time Slots</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>20</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select Date</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="clearTimeSlotsButton">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>250</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>Clear Time Slots</string>
-    </property>
-    <property name="minimumDate" stdset="0">
-     <date>
-      <year>2017</year>
-      <month>1</month>
-      <day>1</day>
-     </date>
-    </property>
-    <property name="gridVisible" stdset="0">
-     <bool>true</bool>
-    </property>
-    <property name="navigationBarVisible" stdset="0">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="tasksWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>330</y>
-      <width>221</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="taskEdit">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>490</y>
-      <width>131</width>
-      <height>23</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="taskButton">
-    <property name="geometry">
-     <rect>
-      <x>159</x>
-      <y>490</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Task</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>300</y>
-      <width>111</width>
-      <height>21</height>
+      <x>10</x>
+      <y>0</y>
+      <width>351</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Name your Event</string>
+    </property>
+    <widget class="QLineEdit" name="eventNameTextBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>311</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Event Name:</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbTimeFormat">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>351</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select times to add to this date, then click 'Add Time Slots' to put them into the list of added times.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="title">
+     <string>Add Time Slots to this Date</string>
+    </property>
+    <widget class="QPushButton" name="addTimeSlots">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>140</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add Time Slots</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="set12Hour">
+     <property name="geometry">
+      <rect>
+       <x>84</x>
+       <y>50</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>12 Hour</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="set24Hour">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>50</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>24 Hour</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>204</x>
+       <y>80</y>
+       <width>61</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>End Time:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="endTime">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>100</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Time Format:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>94</x>
+       <y>80</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start Time:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="startTime">
+     <property name="geometry">
+      <rect>
+       <x>74</x>
+       <y>100</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbTasks">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>0</y>
+      <width>291</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Create a list of tasks for this event.</string>
+    </property>
+    <property name="title">
+     <string>Add Tasks</string>
+    </property>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>20</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Task List</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="taskButton">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>210</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add Task</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="tasksWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>271</width>
+       <height>151</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="taskEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>191</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbAddedSlots">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>0</y>
+      <width>171</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>These time slots are the ones that have been added to the selected date!</string>
+    </property>
+    <property name="title">
+     <string>Added Time Slots</string>
+    </property>
+    <widget class="QListWidget" name="timeSlotsWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>151</width>
+       <height>451</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="clearTimeSlotsButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>480</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Clear Time Slots</string>
+     </property>
+     <property name="minimumDate" stdset="0">
+      <date>
+       <year>2017</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+     <property name="gridVisible" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="navigationBarVisible" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>480</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Task List</string>
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>420</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Save</string>
     </property>
    </widget>
   </widget>
@@ -347,8 +402,8 @@ rgb(255,255,255);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>823</width>
-     <height>20</height>
+     <width>848</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

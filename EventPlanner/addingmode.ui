@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>755</width>
-    <height>512</height>
+    <height>495</height>
    </rect>
   </property>
   <property name="font">
@@ -109,7 +109,7 @@ information about it.</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a timeslot to view attendees who've signed up for it, OR\n&lt;/p&gt;&lt;p&gt;Sign up to attend it!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a timeslot to view attendees who've signed up for it, OR&lt;/p&gt;&lt;p&gt;Sign up to attend it!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="addToTimeSlotButton">
@@ -137,9 +137,9 @@ information about it.</string>
    <widget class="QGroupBox" name="gbAttendees">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>370</x>
       <y>230</y>
-      <width>231</width>
+      <width>221</width>
       <height>181</height>
      </rect>
     </property>
@@ -151,7 +151,7 @@ information about it.</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>221</width>
+       <width>201</width>
        <height>151</height>
       </rect>
      </property>
@@ -179,7 +179,7 @@ information about it.</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a date to view reserved\n timeslots  for this event.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a date to view reserved timeslots for this event.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -248,9 +248,9 @@ information about it.</string>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>410</y>
-      <width>71</width>
+      <x>490</x>
+      <y>420</y>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
