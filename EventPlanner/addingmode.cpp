@@ -65,8 +65,8 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
 {
     /* TODO
      * - Update Date data in Calendar widget
-     * - Update Timeslots list and Attendees list according to DATE
-     *      - Change Flow from
+     * - Update Timeslots list and Attendees list according to DATE within event instead of Event itself
+     *      - Change Flow of list updating from
      *          |Event->Timeslots->Attendees)     |
      *
      *        to
@@ -79,13 +79,14 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
     ui->wListAttendees->clear();
     ui->wListTasks->clear();
 
-    //Find the clicked event from the data stored in the session, and populate the lists with accordingly.
+    //Find the clicked event from the data stored in the session, then populate the Lists in the flow lined out above.
     int count = 0;
     bool first = true;
     EventIndex = index.row();
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
        if(count == EventIndex)
        {
+           //Retrieve & populate Timeslots and respective Attendees
            foreach (int slot, (*it)->getTimeSlots()) {
                ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
                if (first) {
@@ -98,10 +99,15 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
                    }
                }
            }
+           //Retrieve & populate Tasks list
+           foreach (QString task, (*it)->getTasks()) {
+               ui->wListTasks->addItem(task);
+           }
            break;
        }
        count++;
     }
+
 }
 
 
@@ -127,6 +133,10 @@ void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
          }
          count++;
      }
+}
+
+void AddingMode::on_wListTasks_clicked(const QModelIndex &index) {
+
 }
 
 

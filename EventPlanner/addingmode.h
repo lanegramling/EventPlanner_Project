@@ -98,10 +98,20 @@ private slots:
     void on_wListTimeslots_clicked(const QModelIndex &index);
 
     /*!
+     * \brief on_wListTasks_clicked
+     * \details Called when a Task is clicked on in the Task list. This will select a task for the "Volunteer" and "View Tasks" buttons to reference.
+     * \param index
+     */
+    void on_wListTasks_clicked(const QModelIndex &index);
+
+    /*!
      * \brief on_addToTimeSlotButton_clicked
      * \details Called when Add Me to Time Slot button is clicked. Adds the current user (Session.getUser()) to the selected time slot.
      */
     void on_addToTimeSlotButton_clicked();
+
+
+
 signals:
 
     /*!
@@ -109,5 +119,7 @@ signals:
      * \details Signal for switch back to the Event Planner
      */
     void showEventPlanner();
+
+
 };
 #endif // ADDINGMODE_H

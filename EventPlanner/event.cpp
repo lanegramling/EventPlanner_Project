@@ -34,7 +34,7 @@ QStringList Event::getTasks() {
 }
 
 void Event::setTasks(QString tasks) {
-    eventTasks = tasks.split(',');
+    eventTasks = tasks.split(';');
 }
 
 bool Event::removeTask(QString task) {

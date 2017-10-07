@@ -95,7 +95,7 @@ bool Session::saveEventsToFile() {
             out << (*it)->getDays().join(',') << "\n";
             QString times = helpermethods::stringifyTimeslotInts((*it)->getTimeSlots());
             out << times << "\n";
-            out << (*it)->getTasks().join(',') << "\n";
+            out << (*it)->getTasks().join(';') << "\n"; //Changed to semicolon to allow for comma usage in tasks.
 
             QList<attendee*> attn = (*it)->getAttendees();
             int numAttendees = attn.size();
