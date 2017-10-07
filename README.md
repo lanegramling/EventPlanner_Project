@@ -1,20 +1,24 @@
 # TODO List - Current
 
-Multi-day: Functionality is there.
+~~**Event Admin Mode**~~ - (Done.)
+- ~~Need to implement tasks in event creation mode~~ (Done.)
+- ~~Multi-day: Functionality is there.~~ (Done.)
 
-- Need to color cells that have timeslots on them.
-- Need to display the multi-day in a better format on the view page
-	- Need to change the view page from Event->Slot->Signup TO Event->Day->Slot->Signup
+**Event - Add Availability Mode**
+- Implement task list funcionality
+	- Implement tasks
+	- Implement task signup ability
+	- Implement "View Task" form?
+		- For ability to view more information about a task.
+- Implement calendar functionality
+	- Implement Multi-day functionality.
+	- (Need to color calendar cells for days with timeslots)
+	
+	
+- ~~Should remake the view page and just add visual effects to show which mode.~~
+- ~~Need to display the multi-day in a better format on the view page~~ (Done.)
+	- ~~Need to change the view page from Event->Slot->Signup TO Event->Day->Slot->Signup~~ (Done.)
 
-
-Task List: The data text format includes the tasks. The event class and session class is setup already for tasks. Just need to implement
-
-- ~~Need to implement in event creation mode~~ Done.
-- Need to implement signups
-
-Event Creator/Attendee View
-
-- Should remake the view page and just add visual effects to show which mode.
 
 ## (README from original fork)
 
