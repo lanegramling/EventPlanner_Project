@@ -20,20 +20,26 @@ public :
 
     /*!
      * \brief Event
-     * \details Consturctor used to create fully initiallized Event object.
+     * \details Constructor used to create fully initialized Event object.
+     *
      * \param owner
      * \param eventName
+     *
      * \param month
      * \param day
      * \param year
-     * \param timeSlots
+     *
+     * \param tasks
+     *
+     * \param timeslots
      */
     Event(QString owner, QString eventName, int eventID, QStringList days, QStringList tasks, QList<int> timeslots);
     ~Event();
 
+
     /*!
-     * \brief setDate
-     * \param month
+     * \brief setDay
+     * \param day
      * \details Sets private variable month to the passed integer.
      */
     void setDays(QString dayString);
@@ -45,34 +51,31 @@ public :
      */
     QStringList getDays();
 
-    QStringList getTasks();
 
+    //Tasks
+    /*!
+     * \brief setTasks
+     * \details
+     * \return
+     */
     void setTasks(QString tasks);
 
+
+    /*!
+     * \brief getTasks
+     * \return
+     */
+    QStringList getTasks();
     bool removeTask(QString task);
 
 
-    /*!
-     * \brief getOwner
-     * \details Returns the name of the person who created the event.
-     * \return QString
-     */
-    QString getOwner() const;
-
-    /*!
-     * \brief setOwner
-     * \details Sets private variable owner to the passed QString.
-     * \param owner
-     */
-    void setOwner(QString owner);
-
+    //Event Name
     /*!
      * \brief getEventName
      * \details Returns the name of the event.
      * \return QString
      */
     QString getEventName();
-
     /*!
      * \brief setEventName
      * \details Sets private variable eventName to the passed QString.
@@ -80,13 +83,28 @@ public :
      */
     void setEventName(QString eventName);
 
+
+    //Owner
+    /*!
+     * \brief getOwner
+     * \details Returns the name of the person who created the event.
+     * \return QString
+     */
+    QString getOwner() const;
+    /*!
+     * \brief setOwner
+     * \details Sets private variable owner to the passed QString.
+     * \param owner
+     */
+    void setOwner(QString owner);
+
+    //Timeslots
     /*!
      * \brief getTimeSlots
      * \details Returns the private member QList<TimeSlot> timeSlots.
      * \return QList<TimeSlot>
      */
     QList<int> getTimeSlots();
-
     /*!
      * \brief setTimeSlots
      * \details Sets private variable timeSlots to the passed QList<TimeSlot>.
@@ -94,6 +112,7 @@ public :
      */
     void setTimeSlots(QList<int> timeSlots);
 
+    //Print Event
     /*!
      * \brief printEvent
      * \details A formatted QString with the Owner, Event Name, and Date
@@ -101,28 +120,46 @@ public :
      */
     QString printEvent();
 
+    //ID
     /*!
      * \brief getID
      * \return int EventID
      */
     int getID() const;
-
     /*!
      * \brief setID
      * \param ID Event ID
      */
     void setID(int ID);
 
+
+    //Atttendees
+    /*!
+     * \brief getAttendees
+     * \return
+     */
     QList<attendee*> getAttendees();
-
+    /*!
+     * \brief getAttendeesAtTimeslot
+     * \param timeslot
+     * \return
+     */
     QStringList getAttendeesAtTimeslot(int timeslot);
-
+    /*!
+     * \brief setAttendees
+     */
     void setAttendees(QList<attendee*>);
-
+    /*!
+     * \brief addAttendee
+     * \param name
+     * \param slot
+     */
     void addAttendee(QString name, int slot);
-
+    /*!
+     * \brief addAttendee
+     * \param attn
+     */
     void addAttendee(attendee* attn);
-
 
     /*!
      * \brief hasAttendee
@@ -130,6 +167,10 @@ public :
      * \return -1 if no attendee has matching name, otherwise returns the index of the attendee
      */
     int hasAttendee(QString name);
+
+
+
+
 private:
     /*!
      * \brief owner
@@ -156,8 +197,14 @@ private:
      */
     QList<attendee*> attendees;
 
+    /*!
+     * \brief eventDays
+     */
     QStringList eventDays;
 
+    /*!
+     * \brief eventTasks
+     */
     QStringList eventTasks;
 
 };
