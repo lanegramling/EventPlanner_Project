@@ -74,66 +74,115 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
      *          |     ->Tasks->[Show Task View]   |
      */
 
-    //Clear lists (Timeslots, Attendees, Tasks)
+    //Prepare for repopulation of lists (Timeslots, Attendees, Tasks)
     ui->wListTimeslots->clear();
     ui->wListAttendees->clear();
     ui->wListTasks->clear();
 
-    //Find the clicked event from the data stored in the session, then populate the Lists in the flow lined out above.
-    int count = 0;
-    bool first = true;
+    //update Event to the newly selected event.
     EventIndex = index.row();
-    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-       if(count == EventIndex)
-       {
-           //Retrieve & populate Timeslots and respective Attendees
-           foreach (int slot, (*it)->getTimeSlots()) {
-               ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
-               if (first) {
-                   first = false;
-                   ui->wListTimeslots->setCurrentRow(1);
-                   QStringList names = (*it)->getAttendeesAtTimeslot(slot);
-                   QString name;
-                   foreach(name, names) {
-                       ui->wListAttendees->addItem(name);
-                   }
-               }
-           }
-           //Retrieve & populate Tasks list
-           foreach (QString task, (*it)->getTasks()) {
-               ui->wListTasks->addItem(task);
-           }
-           break;
-       }
-       count++;
-    }
+    updateEvent(EventIndex);
+
+
+//    //Find the newly selected from the data stored in the session, then populate the Lists in the flow lined out above.
+//    int count = 0;
+//    EventIndex = index.row();
+//    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+//       if(count == EventIndex)
+//       {
+//           //Retrieve & populate Timeslots and respective Attendees
+//           foreach (int slot, (*it)->getTimeSlots()) {
+//               ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
+//               if (slot == 0) { //Fill rest of fields with first timeslot's info.
+//                   ui->wListTimeslots->setCurrentRow(1);
+//                   QStringList names = (*it)->getAttendeesAtTimeslot(slot);
+//                   QString name;
+//                   foreach(name, names) {
+//                       ui->wListAttendees->addItem(name);
+//                   }
+//               }
+//           }
+//           //Retrieve & populate Tasks list
+//           foreach (QString task, (*it)->getTasks()) {
+//               ui->wListTasks->addItem(task);
+//           }
+//           break;
+//       }
+//       count++;
+//    }
 
 }
 
+//Run on changing of an event
+void AddingMode::updateEvent(int EventIndex) {
+    int count = 0;
+    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
+       if(count == EventIndex) //Found selected event -- now populate
+       {
+           //firstDateofEvent = ... ;
+           //updateDate(firstDateofEvent); -- Will move updateTimeslots(it) from below to within this method.
+           updateTimeslots(it);
+           updateAttendees(it, 1); //Start at Timeslot 0 for showing attendees
+           updateTasksList(it);
+       }
+       count++;
+    }
+    ui->wListTimeslots->setCurrentRow(1);
+}
+void AddingMode::updateDate(std::list<Event*>::iterator it) {
+
+}
+void AddingMode::updateTimeslots(std::list<Event*>::iterator it) {
+    foreach (int slot, (*it)->getTimeSlots())
+        ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
+}
+void AddingMode::updateAttendees(std::list<Event*>::iterator it, int atSlot) {
+    foreach(QString name, (*it)->getAttendeesAtTimeslot(atSlot))
+        ui->wListAttendees->addItem(name);
+}
+
+void AddingMode::updateTasksList(std::list<Event*>::iterator it) {
+    foreach (QString task, (*it)->getTasks())
+        ui->wListTasks->addItem(task);
+}
 
 void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
-
     ui->wListAttendees->clear();
     int count = 0;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
     {
-         if(count == EventIndex)
-         {
-             int slot;
-             foreach (slot, (*it)->getTimeSlots()) {
-                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text()) {
-                    QStringList names = (*it)->getAttendeesAtTimeslot(slot);
-                    QString name;
-                    foreach(name, names) {
-                        ui->wListAttendees->addItem(name);
-                    }
-                 }
-             }
+         if(count == EventIndex) {
+             foreach (int slot, (*it)->getTimeSlots())
+                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text())
+                    updateAttendees(it, slot);
              break;
          }
          count++;
      }
 }
+
+//void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
+//    ui->wListAttendees->clear();
+//    int count = 0;
+//    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+//    {
+//         if(count == EventIndex)
+//         {
+//             //Update rest of chain. (Attendees)
+//             foreach (int slot, (*it)->getTimeSlots()) {
+//                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text()) {
+//                    QStringList names = (*it)->getAttendeesAtTimeslot(slot);
+//                    QString name;
+//                    foreach(name, names) {
+//                        ui->wListAttendees->addItem(name);
+//                    }
+//                 }
+//             }
+//             break;
+//         }
+//         count++;
+//     }
+//}
 
 void AddingMode::on_wListTasks_clicked(const QModelIndex &index) {
 

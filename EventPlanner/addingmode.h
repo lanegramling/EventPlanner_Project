@@ -111,6 +111,39 @@ private slots:
     void on_addToTimeSlotButton_clicked();
 
 
+    /*!
+     * \brief updateEvent
+     * \details Runs on Event change, auto-updating all which follows. ([Event]->Date->Timeslot->Attendees)
+     * \param Index of Event to update
+     */
+    void updateEvent(int EventIndex);
+    /*!
+     * \brief updateDate
+     * \details Update selected Date, auto-updating all which follows. (Event->[Date]->Timeslot->Attendees)
+     * \param it - Iterator containing selected Event
+     */
+    void updateDate(std::list<Event*>::iterator it);
+    /*!
+     * \brief updateTimeslots
+     * \details Update selected Timeslot, auto-updating all which follows. (Event->Date->[Timeslot]->Attendees)
+     * \param it - Iterator containing the Event.
+     */
+    void updateTimeslots(std::list<Event*>::iterator it);
+    /*!
+     * \brief updateAttendees
+     * \details Update Attendees given a timeslot. (Event->Date->Timeslot->[Attendees])
+     * \param it - Iterator containing the Attendees for the slot atSlot
+     * \param atSlot - Slot to update the Attendees for
+     */
+    void updateAttendees(std::list<Event*>::iterator it, int atSlot);
+
+    /*!
+     * \brief updateTasksList
+     * \details Update selected Timeslot. (Event->[Tasks])
+     * \param it - Iterator containing selected Event
+     */
+    void updateTasksList(std::list<Event*>::iterator it);
+
 
 signals:
 
