@@ -9,7 +9,7 @@ Multi-day: Functionality is there.
 
 Task List: The data text format includes the tasks. The event class and session class is setup already for tasks. Just need to implement
 
-- Need to implement in event creation mode
+- ~~Need to implement in event creation mode~~ Done.
 - Need to implement signups
 
 Event Creator/Attendee View
