@@ -14,8 +14,8 @@ Session::~Session() {
     }
 }
 
-void Session::addEvent(QString owner, QString eventName, int eventID, QStringList eventDays, QList<int> timeSlots, attendee* att) {
-    Event* event = new Event(owner, eventName, eventID, eventDays, timeSlots);
+void Session::addEvent(QString owner, QString eventName, int eventID, QStringList eventDays, QStringList eventTasks, QList<int> timeSlots, attendee* att) {
+    Event* event = new Event(owner, eventName, eventID, eventDays, eventTasks, timeSlots);
     event->addAttendee(att);
     events.push_back(event);
 }

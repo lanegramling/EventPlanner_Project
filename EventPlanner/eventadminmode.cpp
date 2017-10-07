@@ -168,6 +168,18 @@ void EventAdminMode::on_eventNameTextBox_textEdited(const QString &arg1)
     EventName = arg1;
 }
 
+void EventAdminMode::on_taskButton_clicked() {
+    if (!taskName.isEmpty()) {
+        ui->tasksWidget->addItem(taskName);
+        eventTasks.append(taskName);
+        ui->taskEdit->clear();
+    }
+}
+
+void EventAdminMode::on_taskEdit_textEdited(const QString &text) {
+    taskName = text;
+}
+
 void EventAdminMode::on_saveButton_clicked()
 {
     bool isTimeSlotSelected = false;
@@ -202,7 +214,7 @@ void EventAdminMode::on_saveButton_clicked()
 
             attn->setAvailability(slotList);
 
-            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, eventDays , slotList, attn);
+            session->addEvent(session->getUser(), EventName, session->numberOfEvents() + 1, eventDays, eventTasks, slotList, attn);
             session->saveEventsToFile();
             on_pushButton_5_clicked();
             break;
@@ -216,7 +228,11 @@ void EventAdminMode::on_saveButton_clicked()
 
 void EventAdminMode::on_pushButton_5_clicked()
 {
-    ui->eventNameTextBox->setText("");
+    ui->eventNameTextBox->clear();
+    ui->tasksWidget->clear();
+    ui->timeSlotsWidget->clear();
+    eventTasks.clear();
+    eventDays.clear();
     ui->startTime->setCurrentIndex(0);
     ui->endTime->setCurrentIndex(0);
     time_t now = time(0);

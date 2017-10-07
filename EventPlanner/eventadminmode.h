@@ -69,6 +69,8 @@ private:
      */
     QString EventName; // Event Name
 
+    QString taskName;
+
     /*!
      * \brief session
      * \details Session passed between all classes to hold events.
@@ -91,6 +93,8 @@ private:
     void on_pushButton_5_clicked();// member function
 
     QStringList eventDays;
+
+    QStringList eventTasks;
 
 private slots:
     /*!
@@ -136,6 +140,10 @@ private slots:
      * \details Calls TimeSlot.clearTimeSlot() on all of the time slots in the timeSlots variable. Then calls resetTimeSlotsWidget().
      */
     void on_clearTimeSlotsButton_clicked();
+
+    void on_taskButton_clicked();
+
+    void on_taskEdit_textEdited(const QString &text);
 
     /*!
      * \brief on_eventNameTextBox_textEdited

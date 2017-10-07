@@ -28,7 +28,7 @@ public :
      * \param year
      * \param timeSlots
      */
-    Event(QString owner, QString eventName, int eventID, QStringList days, QList<int> timeslots);
+    Event(QString owner, QString eventName, int eventID, QStringList days, QStringList tasks, QList<int> timeslots);
     ~Event();
 
     /*!

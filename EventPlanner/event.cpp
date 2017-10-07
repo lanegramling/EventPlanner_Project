@@ -3,12 +3,13 @@
 
 Event::Event() {}
 
-Event::Event(QString owner, QString eventName, int eventID, QStringList days, QList<int> timeslots) :
+Event::Event(QString owner, QString eventName, int eventID, QStringList days, QStringList tasks, QList<int> timeslots) :
 
     owner(owner),
     eventName(eventName),
     eventID(eventID),
     eventDays(days),
+    eventTasks(tasks),
     timeslots(timeslots)
     {}
 
