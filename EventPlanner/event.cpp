@@ -34,7 +34,7 @@ QStringList Event::getTasks() {
 }
 
 void Event::setTasks(QString tasks) {
-    eventTasks = tasks.split(';');
+    if (!tasks.isEmpty()) eventTasks = tasks.split(';');
 }
 
 bool Event::removeTask(QString task) {
@@ -66,7 +66,7 @@ void Event::setTimeSlots(QList<int> timeSlots) {
 }
 
 QString Event::printEvent() {
-    return owner + "'s " + eventName;
+    return eventName + " : Created by " + owner;
 }
 
 int Event::getID() const {

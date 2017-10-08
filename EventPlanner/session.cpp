@@ -59,9 +59,8 @@ bool Session::readEventsFromFile() {
                 attendee* newAtt = new attendee();
                 newAtt->setEventID(eId.toInt());
                 newAtt->setAttendeeName(listNames[i]);
-                QString availTasks = in.readLine();
-                newAtt->setAvailability(helpermethods::listifyTimeslotInts(availTasks.split(';')[0]));
-                newAtt->setTasks(availTasks.split(';')[1]);
+                newAtt->setAvailability(helpermethods::listifyTimeslotInts(in.readLine()));
+                newAtt->setTasks(in.readLine());
 
                 temp.append(newAtt);
             }
@@ -109,7 +108,7 @@ bool Session::saveEventsToFile() {
             }
 
             for (int i = 0; i < numAttendees; i++) {
-                out << helpermethods::stringifyTimeslotInts(attn[i]->getAvailability()) << ";" << attn[i]->getTasks().join(',') << "\n";
+                out << helpermethods::stringifyTimeslotInts(attn[i]->getAvailability()) << "\n" << attn[i]->getTasks().join(';') << "\n";
             }
 
 

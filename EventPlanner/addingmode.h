@@ -47,6 +47,20 @@ private:
      */
     QString EventName;
 
+    QString EventCreator;
+
+    QList<int> EventTimeslots;
+
+    QStringList EventTasks;
+
+    QList<attendee*> EventAttendees;
+
+    int EventUserIndex;
+
+    int EventDateIndex;
+
+    QStringList EventDays;
+
     /*!
      * \brief month
      */
@@ -63,6 +77,14 @@ private:
     int day;
 
     bool format = false;
+
+    void resetView();
+
+    void loadEventData(int index);
+
+    void getUserIndex();
+
+    void loadUserAvailability();
 
     /*!
      * \brief session
@@ -110,6 +132,8 @@ private slots:
      */
     void on_addToTimeSlotButton_clicked();
 
+    void on_wListDates_clicked(const QModelIndex &index);
+
 
     /*!
      * \brief updateEvent
@@ -122,7 +146,7 @@ private slots:
      * \details Update selected Date, auto-updating all which follows. (Event->[Date]->Timeslot->Attendees)
      * \param it - Iterator containing selected Event
      */
-    void updateDate(std::list<Event*>::iterator it);
+    void updateDate();
     /*!
      * \brief updateTimeslots
      * \details Update selected Timeslot, auto-updating all which follows. (Event->Date->[Timeslot]->Attendees)
@@ -142,7 +166,7 @@ private slots:
      * \details Update selected Timeslot. (Event->[Tasks])
      * \param it - Iterator containing selected Event
      */
-    void updateTasksList(std::list<Event*>::iterator it);
+    void updateTasksList();
 
 
 signals:

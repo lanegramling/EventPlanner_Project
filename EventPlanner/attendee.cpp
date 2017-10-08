@@ -40,7 +40,7 @@ QStringList attendee::getTasks() {
 }
 
 void attendee::setTasks(QString taskString) {
-    tasks = taskString.split(',');
+    if (!taskString.isEmpty()) tasks = taskString.split(',');
 }
 
 void attendee::addTask(QString task) {

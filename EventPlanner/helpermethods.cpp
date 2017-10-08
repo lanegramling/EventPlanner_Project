@@ -45,6 +45,7 @@ QString helpermethods::getTimeString(QList<int> timeslots, bool format) {
     int slot;
 
     foreach(slot, timeslots) {
+        slot = slot % 48;
         if (workingTimeslot == -1) {
             workingTimeslot = slot;
         } else if (slot != prevTime + 1) {
