@@ -199,19 +199,6 @@
      <property name="title">
       <string>Time Slots</string>
      </property>
-     <widget class="QListWidget" name="wListTimeslots">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>131</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a timeslot to view attendees who've signed up for it, OR&lt;/p&gt;&lt;p&gt;Sign up to attend it!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="addToTimeSlotButton">
       <property name="geometry">
        <rect>
@@ -231,6 +218,16 @@
       </property>
       <property name="text">
        <string>Join This Time Slot</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="wListSignupSlots">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>131</width>
+        <height>191</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -405,6 +402,19 @@
      <zorder>btnVolunteer</zorder>
      <zorder>gbAttendees</zorder>
     </widget>
+   </widget>
+   <widget class="QListWidget" name="wListTimeslots">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>530</y>
+      <width>131</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a timeslot to view attendees who've signed up for it, OR&lt;/p&gt;&lt;p&gt;Sign up to attend it!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

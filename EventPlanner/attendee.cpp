@@ -33,6 +33,7 @@ void attendee::setAvailability(QList<int> avail) {
 
 void attendee::addAvailability(int slot) {
     if (availability.indexOf(slot) == -1) availability.append(slot);
+    qSort(availability);
 }
 
 QStringList attendee::getTasks() {

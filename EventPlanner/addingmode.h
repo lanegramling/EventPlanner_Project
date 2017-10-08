@@ -56,6 +56,10 @@ private:
 
     QList<attendee*> EventAttendees;
 
+    bool EventPossibleTasks;
+
+    bool EventPossibleTaskSignup;
+
     int EventUserIndex;
 
     int EventDateIndex;
@@ -105,6 +109,8 @@ private slots:
      * \details Function called when Back button is clicked. Emits showEventPlanner()
      */
     void on_btnBack_clicked();
+
+    void on_btnVolunteer_clicked();
 
     /*!
      * \brief on_wListEvents_clicked
