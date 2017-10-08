@@ -160,14 +160,18 @@ void AddingMode::loadEventData(int index) {
 void AddingMode::getUserIndex() {
     QString currentUser = session->getUser();
 
+    qDebug() << currentUser;
     int count = 0;
     foreach(attendee* att, EventAttendees) {
         if (att->getAttendeeName() == currentUser) {
             EventUserIndex = count;
-            break;
+            return;
         }
         count++;
     }
+
+    // Only reached if the current user has not signed up for the event
+    EventUserIndex = -1;
 }
 
 //Run on changing of an event
@@ -207,7 +211,11 @@ void AddingMode::on_wListDates_clicked(const QModelIndex &index) {
 
 void AddingMode::loadUserAvailability() {
     QList<int> thisDaysTimeslots;
-    QList<int> totalUserAvail = EventAttendees[EventUserIndex]->getAvailability();
+    QList<int> totalUserAvail;
+    if (EventUserIndex != -1) {
+        totalUserAvail = EventAttendees[EventUserIndex]->getAvailability();
+    }
+
 
     QList<int> userAvail;
     QList<int> signupAvail;

@@ -6,6 +6,7 @@
 #include "helpermethods.h"
 #include "attendee.h"
 #include <list>
+#include <QDebug>
 namespace Ui{
 class AddingMode;
 }
