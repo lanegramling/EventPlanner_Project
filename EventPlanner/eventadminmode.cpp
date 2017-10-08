@@ -250,8 +250,15 @@ void EventAdminMode::on_pushButton_5_clicked()
     EventName = "";
 }
 
+//Run Date list selections through the calendar widget
+void EventAdminMode::on_addedDatesWidget_clicked(const QModelIndex &index){
+    ui->calendarWidget->setSelectedDate(QDate::fromString(ui->addedDatesWidget->item(index.row())->text(), "M-d-yyyy" ));
+    daySelected();
+    ui->calendarWidget->setFocus();
+}
+
 void EventAdminMode::daySelected() {
-    ui->timeSlotsWidget->clear();
+    ui->timeSlotsWidget->clear(); //Clear timeslots from list
     //ui->addedDatesWidget->clear();
     QString selectedDate = QString::number(ui->calendarWidget->selectedDate().month()) + "-" + QString::number(ui->calendarWidget->selectedDate().day()) + "-" + QString::number(ui->calendarWidget->selectedDate().year());
     int index = eventDays.indexOf(selectedDate);
