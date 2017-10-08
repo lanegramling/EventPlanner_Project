@@ -230,6 +230,7 @@ void EventAdminMode::on_saveButton_clicked()
             break;
         }
     }
+    ui->addedDatesWidget->clear();
     return;
 }
 
