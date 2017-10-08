@@ -6,13 +6,13 @@
 
 **Event - Add Availability Mode**
 - Implement task list funcionality
-	- Implement tasks
-	- Implement task signup ability
-	- Implement "View Task" form?
-		- For ability to view more information about a task.
+	- ~~Implement tasks~~
+	- ~~Implement task signup ability~~
 - Implement calendar functionality
-	- Implement Multi-day functionality.
+	- ~~Implement Multi-day functionality.~~
 	- (Need to color calendar cells for days with timeslots)
+- Implement Event Administrator mode
+	- Implement a view for tasks, days, and attendees
 	
 	
 - ~~Should remake the view page and just add visual effects to show which mode.~~
