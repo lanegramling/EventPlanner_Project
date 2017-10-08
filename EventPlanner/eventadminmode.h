@@ -12,6 +12,7 @@
 #include <QIcon>
 #include <ctime>
 #include <QString>
+#include <Qpen>
 namespace Ui {
 class EventAdminMode;
 }
@@ -51,6 +52,8 @@ public:
      * \details Set a style sheet for calender widget.
      */
     void setStyle_calendarWidget();
+
+
 private:
     /*!
      * \brief ui
@@ -141,6 +144,8 @@ private slots:
      */
     void on_clearTimeSlotsButton_clicked();
 
+    void on_clearDatesButton_clicked();
+
     void on_taskButton_clicked();
 
     void on_taskEdit_textEdited(const QString &text);
@@ -151,6 +156,8 @@ private slots:
      * \param arg1
      */
     void on_eventNameTextBox_textEdited(const QString &arg1);
+
+
 
 signals:
     /*!

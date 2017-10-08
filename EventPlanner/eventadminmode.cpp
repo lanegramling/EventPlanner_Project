@@ -153,11 +153,18 @@ void EventAdminMode::on_addTimeSlots_clicked() { // WORKS but isn't sorted yet
 
 
 
+
+
         daySelected();
     }
 }
 
 void EventAdminMode::on_clearTimeSlotsButton_clicked() {
+    timeslots.clear();
+    eventDays.clear();
+    daySelected();
+}
+void EventAdminMode::on_clearDatesButton_clicked() {
     timeslots.clear();
     eventDays.clear();
     daySelected();
@@ -244,11 +251,29 @@ void EventAdminMode::on_pushButton_5_clicked()
 
 void EventAdminMode::daySelected() {
     ui->timeSlotsWidget->clear();
+    //ui->addedDatesWidget->clear();
     QString selectedDate = QString::number(ui->calendarWidget->selectedDate().month()) + "-" + QString::number(ui->calendarWidget->selectedDate().day()) + "-" + QString::number(ui->calendarWidget->selectedDate().year());
     int index = eventDays.indexOf(selectedDate);
     if (index != -1) {
         foreach(int slot, timeslots[index]) {
             ui->timeSlotsWidget->addItem(helpermethods::toTimeSlot(slot, !set12HourFormat));
+
         }
+        bool found(false);
+        for (int i = ui->addedDatesWidget->count() - 1; i >= 0; i--)
+            if(ui->addedDatesWidget->item(i)->text() == selectedDate){
+                found = true;
+                break;
+            }
+        if (found == false){
+            ui->addedDatesWidget->addItem(selectedDate);
+        }
+
+
+
+
+
+
+
     }
 }

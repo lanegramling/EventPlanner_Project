@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>562</height>
+    <width>1018</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -241,7 +241,7 @@ rgb(255,255,255);
    <widget class="QGroupBox" name="gbTasks">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>720</x>
       <y>0</y>
       <width>291</width>
       <height>241</height>
@@ -308,7 +308,7 @@ rgb(255,255,255);
    <widget class="QGroupBox" name="gbAddedSlots">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>540</x>
       <y>0</y>
       <width>171</width>
       <height>531</height>
@@ -363,8 +363,8 @@ rgb(255,255,255);
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>480</y>
+      <x>890</x>
+      <y>500</y>
       <width>121</width>
       <height>51</height>
      </rect>
@@ -381,8 +381,8 @@ rgb(255,255,255);
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>420</y>
+      <x>890</x>
+      <y>440</y>
       <width>121</width>
       <height>51</height>
      </rect>
@@ -396,14 +396,69 @@ rgb(255,255,255);
      <string>Save</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="gbAddedSlots_2">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>0</y>
+      <width>171</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>These time slots are the ones that have been added to the selected date!</string>
+    </property>
+    <property name="title">
+     <string>Added Dates</string>
+    </property>
+    <widget class="QListWidget" name="addedDatesWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>151</width>
+       <height>451</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="clearDatesButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>480</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Clear Dates</string>
+     </property>
+     <property name="minimumDate" stdset="0">
+      <date>
+       <year>2017</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+     <property name="gridVisible" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="navigationBarVisible" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
-     <height>21</height>
+     <width>1018</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
