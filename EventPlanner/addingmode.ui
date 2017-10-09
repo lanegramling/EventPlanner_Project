@@ -376,9 +376,6 @@
       <bold>true</bold>
      </font>
     </property>
-    <property name="visible">
-     <bool>false</bool>
-    </property>
     <property name="title">
      <string>Admin Mode</string>
     </property>
