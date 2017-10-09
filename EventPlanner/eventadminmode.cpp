@@ -267,6 +267,7 @@ void EventAdminMode::daySelected() {
             ui->timeSlotsWidget->addItem(helpermethods::toTimeSlot(slot, !set12HourFormat));
 
         }
+        /*
         bool found(false);
         for (int i = ui->addedDatesWidget->count() - 1; i >= 0; i--)
             if(ui->addedDatesWidget->item(i)->text() == selectedDate){
@@ -276,12 +277,10 @@ void EventAdminMode::daySelected() {
         if (found == false){
             ui->addedDatesWidget->addItem(selectedDate);
         }
-
-
-
-
-
-
-
+        */
+    }
+    ui->addedDatesWidget->clear();
+    foreach(QString day, eventDays) {
+        ui->addedDatesWidget->addItem(day);
     }
 }
