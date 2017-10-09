@@ -56,6 +56,8 @@ private:
 
     QList<attendee*> EventAttendees;
 
+    QList<attendee*> dayAttendees;
+
     bool EventPossibleTasks;
 
     bool EventPossibleTaskSignup;
@@ -91,6 +93,10 @@ private:
 
     void loadUserAvailability();
 
+    void loadAdminData();
+
+    void loadAdminTasks();
+
     /*!
      * \brief session
      * \details Session passed between all classes to hold events.
@@ -112,26 +118,14 @@ private slots:
 
     void on_btnVolunteer_clicked();
 
+    void on_btnAdminVolunteer_clicked();
+
     /*!
      * \brief on_wListEvents_clicked
      * \details Called when an Event in the Event list is clicked on. Fills TimeSlot list with time slots for the event where TimeSlot.isSelected() true.
      * \param index
      */
     void on_wListEvents_clicked(const QModelIndex &index);
-
-    /*!
-     * \brief on_wListTimeslots_clicked
-     * \details Called when a TimeSlot is clicked on in the Time Slot list. Fills the Attendees list for the selected time slot.
-     * \param index
-     */
-    void on_wListTimeslots_clicked(const QModelIndex &index);
-
-    /*!
-     * \brief on_wListTasks_clicked
-     * \details Called when a Task is clicked on in the Task list. This will select a task for the "Volunteer" and "View Tasks" buttons to reference.
-     * \param index
-     */
-    void on_wListTasks_clicked(const QModelIndex &index);
 
     /*!
      * \brief on_addToTimeSlotButton_clicked
@@ -141,25 +135,16 @@ private slots:
 
     void on_wListDates_clicked(const QModelIndex &index);
 
+    void on_wListAdminDates_clicked(const QModelIndex &index);
 
-    /*!
-     * \brief updateEvent
-     * \details Runs on Event change, auto-updating all which follows. ([Event]->Date->Timeslot->Attendees)
-     * \param Index of Event to update
-     */
-    void updateEvent(int EventIndex);
+    void on_wListAttendees_clicked(const QModelIndex &index);
+
     /*!
      * \brief updateDate
      * \details Update selected Date, auto-updating all which follows. (Event->[Date]->Timeslot->Attendees)
      * \param it - Iterator containing selected Event
      */
-    void updateDate();
-    /*!
-     * \brief updateTimeslots
-     * \details Update selected Timeslot, auto-updating all which follows. (Event->Date->[Timeslot]->Attendees)
-     * \param it - Iterator containing the Event.
-     */
-    void updateTimeslots(std::list<Event*>::iterator it);
+    void updateDate(bool mode);
     /*!
      * \brief updateAttendees
      * \details Update Attendees given a timeslot. (Event->Date->Timeslot->[Attendees])

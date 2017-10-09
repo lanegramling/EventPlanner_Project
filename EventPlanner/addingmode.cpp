@@ -54,7 +54,6 @@ void AddingMode::receiveshow()
 //Back button
 void AddingMode::on_btnBack_clicked()
 {
-    ui->wListTimeslots->clear();
     ui->wListAttendees->clear();
     resetView();
     this->hide();
@@ -87,7 +86,10 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
 
     if (session->getUser() == EventCreator) {
         // Admin Mode
+        ui->gbAdmin->show();
 
+        loadAdminTasks();
+        updateDate(false);
 
     } else {
         // Sign-up Mode
@@ -95,47 +97,8 @@ void AddingMode::on_wListEvents_clicked(const QModelIndex &index)
         ui->gbSignup->show();
 
         updateTasksList();
-        updateDate();
+        updateDate(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    //Find the newly selected from the data stored in the session, then populate the Lists in the flow lined out above.
-//    int count = 0;
-//    EventIndex = index.row();
-//    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-//       if(count == EventIndex)
-//       {
-//           //Retrieve & populate Timeslots and respective Attendees
-//           foreach (int slot, (*it)->getTimeSlots()) {
-//               ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
-//               if (slot == 0) { //Fill rest of fields with first timeslot's info.
-//                   ui->wListTimeslots->setCurrentRow(1);
-//                   QStringList names = (*it)->getAttendeesAtTimeslot(slot);
-//                   QString name;
-//                   foreach(name, names) {
-//                       ui->wListAttendees->addItem(name);
-//                   }
-//               }
-//           }
-//           //Retrieve & populate Tasks list
-//           foreach (QString task, (*it)->getTasks()) {
-//               ui->wListTasks->addItem(task);
-//           }
-//           break;
-//       }
-//       count++;
-//    }
 
 }
 
@@ -175,27 +138,13 @@ void AddingMode::getUserIndex() {
     EventUserIndex = -1;
 }
 
-//Run on changing of an event
-void AddingMode::updateEvent(int EventIndex) {
-    int count = 0;
-    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
-       if(count == EventIndex) //Found selected event -- now populate
-       {
-           EventCreator = (*it)->getOwner();
-           //firstDateofEvent = ... ;
-           //updateDate(firstDateofEvent); -- Will move updateTimeslots(it) from below to within this method.
-           //updateTimeslots(it);
-           //updateAttendees(it, 1); //Start at Timeslot 0 for showing attendees
-           //updateTasksList(it);
-       }
-       count++;
-    }
-    ui->wListTimeslots->setCurrentRow(1);
-}
-
-void AddingMode::updateDate() {
+void AddingMode::updateDate(bool mode) { // True = usermode, false = admin mode
     foreach(QString day, EventDays) {
-        ui->wListDates->addItem(day);
+        if (mode) {
+            ui->wListDates->addItem(day);
+        } else {
+            ui->wListAdminDates->addItem(day);
+        }
     }
 }
 
@@ -209,6 +158,87 @@ void AddingMode::on_wListDates_clicked(const QModelIndex &index) {
     EventDateIndex = index.row();
 
     loadUserAvailability();
+}
+
+void AddingMode::on_wListAdminDates_clicked(const QModelIndex &index) {
+    ui->lblAdminTitle1->show();
+    ui->lblAdminTitle2->clear();
+    ui->lblAdminAttn->show();
+    ui->lblAdminTimeframe->show();
+    ui->lblAdminTimeframe->clear();
+    ui->lblAdminAttn->clear();
+    ui->gbAttendees->show();
+    ui->wListAttendees->clear();
+    dayAttendees.clear();
+
+    EventDateIndex = index.row();
+
+    ui->gbAttendees->setTitle(EventDays[EventDateIndex] + "Attendees");
+
+    loadAdminData();
+}
+
+void AddingMode::loadAdminData() {
+    // Need to load Attendees and event timeframe here
+
+    foreach (attendee* att, EventAttendees) {
+        // Add attendee name ONLY if they are attending on this date.
+        // Let's keep track of which attendees we have added
+
+        foreach (int slot, att->getAvailability()) {
+            if (slot / 48 == EventDateIndex) {
+                // They are on this date
+                dayAttendees.append(att); // Using this list will make it easier to handle click events on wListAttendees
+                ui->wListAttendees->addItem(att->getAttendeeName());
+                break;
+            }
+        }
+    }
+
+    QList<int> daySlots; // This will keep track of which timeslots correspond to this day
+
+    bool found = false;
+    foreach(int slot, EventTimeslots) {
+        if (EventDateIndex == 0) {
+            if (slot > 47) break;
+            daySlots.append(slot);
+        } else if (slot / 48 == EventDateIndex) {
+            found = true;
+            daySlots.append(slot);
+        } else if (found) {
+            break;
+        }
+    }
+
+    QString timestring = helpermethods::getTimeString(daySlots, format);
+    qDebug() << timestring;
+    ui->lblAdminTitle1->setText(EventDays[EventDateIndex] + " Timeframe");
+    ui->lblAdminTimeframe->setText(timestring);
+}
+
+void AddingMode::on_wListAttendees_clicked(const QModelIndex &index) {
+    ui->lblAdminTitle2->show();
+
+    int ind = index.row();
+
+    ui->lblAdminTitle2->setText(dayAttendees[ind]->getAttendeeName() + "'s Availability");
+
+    QList<int> daySlots;
+
+    bool found = false;
+    foreach(int slot, dayAttendees[ind]->getAvailability()) {
+        if (EventDateIndex == 0){
+            if (slot > 47) break;
+            daySlots.append(slot);
+        } else if (slot / 48 == EventDateIndex) {
+            found = true;
+            daySlots.append(slot);
+        } else if (found) {
+            break;
+        }
+    }
+
+    ui->lblAdminAttn->setText(helpermethods::getTimeString(daySlots, format));
 }
 
 void AddingMode::loadUserAvailability() {
@@ -229,7 +259,7 @@ void AddingMode::loadUserAvailability() {
             if (totalUserAvail.contains(slot)) {
                 userAvail.append(slot);
             } else {
-                ui->wListSignupSlots->addItem(helpermethods::toTimeSlot(slot, false));
+                ui->wListSignupSlots->addItem(helpermethods::toTimeSlot(slot, format));
             }
         } else if (slot / 48 == EventDateIndex) {
             found = true;
@@ -237,15 +267,15 @@ void AddingMode::loadUserAvailability() {
             if (totalUserAvail.contains(slot)) {
                 userAvail.append(slot);
             } else {
-                ui->wListSignupSlots->addItem(helpermethods::toTimeSlot(slot, false));
+                ui->wListSignupSlots->addItem(helpermethods::toTimeSlot(slot, format));
             }
         } else if (found) {
             break;
         }
     }
 
-    QString timeframe = helpermethods::getTimeString(thisDaysTimeslots, false);
-    QString userAvailability = helpermethods::getTimeString(userAvail, false);
+    QString timeframe = helpermethods::getTimeString(thisDaysTimeslots, format);
+    QString userAvailability = helpermethods::getTimeString(userAvail, format);
 
     ui->lblTimeframe->setText(timeframe);
     ui->lblUserAvail->setText(userAvailability);
@@ -256,13 +286,42 @@ void AddingMode::loadUserAvailability() {
     ui->wListSignupSlots->setFocus();
 }
 
-void AddingMode::updateTimeslots(std::list<Event*>::iterator it) {
-    foreach (int slot, (*it)->getTimeSlots())
-        ui->wListTimeslots->addItem(helpermethods::toTimeSlot(slot, format));
-}
 void AddingMode::updateAttendees(std::list<Event*>::iterator it, int atSlot) {
     foreach(QString name, (*it)->getAttendeesAtTimeslot(atSlot))
         ui->wListAttendees->addItem(name);
+}
+
+void AddingMode::loadAdminTasks() {
+    ui->wListAdminTasks->clear();
+    EventPossibleTasks = false;
+
+    ui->lblTasks->hide();
+
+    ui->lblTasks->setStyleSheet("QLabel { color : red; }");
+
+    int count = 0;
+    foreach (QString task, EventTasks) {
+        ui->wListAdminTasks->addItem(task);
+        ui->wListAdminTasks->item(count)->setForeground(Qt::red);
+        count++;
+        ui->lblTasks->show();
+        EventPossibleTasks = true;
+    }
+
+    foreach(attendee* att, EventAttendees) {
+        foreach(QString task, att->getTasks()) {
+            QString finishedTaskString = "'" + task + "' : " + att->getAttendeeName() + " has volunteered.";
+            ui->wListAdminTasks->addItem(finishedTaskString);
+            ui->wListAdminTasks->item(count)->setForeground(Qt::darkGreen);
+            ui->wListAdminTasks->item(count)->setFlags(!Qt::ItemIsEditable & !Qt::ItemIsSelectable);
+            count++;
+        }
+    }
+
+    if (ui->wListAdminTasks->count() > 0) {
+        ui->wListAdminTasks->item(0)->setSelected(true);
+    }
+    ui->wListAdminTasks->setFocus();
 }
 
 void AddingMode::updateTasksList() {
@@ -287,6 +346,36 @@ void AddingMode::updateTasksList() {
         ui->wListTasks->item(0)->setSelected(true);
     }
     ui->wListTasks->setFocus();
+}
+
+void AddingMode::on_btnAdminVolunteer_clicked() {
+    if (!EventPossibleTasks) return;
+
+    QString selectedTask = ui->wListAdminTasks->currentItem()->text();
+
+    int count = 0;
+
+    switch(QMessageBox::question(this,"Adding","Are you sure you want to volunteer to '" + selectedTask + "'?",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
+        case QMessageBox::Ok:
+            for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
+            {
+             if(count == EventIndex)
+             {
+                (*it)->removeTask(selectedTask);
+                (*it)->getAttendees()[EventUserIndex]->addTask(selectedTask);
+                break;
+             }
+               count++;
+            }
+            session->saveEventsToFile();
+            loadEventData(EventIndex);
+            loadAdminTasks();
+            break;
+        case QMessageBox::Cancel:
+            break;
+        default:
+            break;
+    }
 }
 
 void AddingMode::on_btnVolunteer_clicked() {
@@ -325,26 +414,12 @@ void AddingMode::on_btnVolunteer_clicked() {
     }
 }
 
-void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
-    ui->wListAttendees->clear();
-    int count = 0;
-    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
-    {
-         if(count == EventIndex) {
-             foreach (int slot, (*it)->getTimeSlots())
-                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text())
-                    updateAttendees(it, slot);
-             break;
-         }
-         count++;
-     }
-
-}
-
 void AddingMode::resetView() {
     ui->gbSignup->hide();
-    //ui->gbAdmin->hide();
-    ui->wListTimeslots->clear();
+    ui->gbAdmin->hide();
+    ui->wListAdminDates->clear();
+    ui->wListAdminTasks->clear();
+    ui->wListAttendees->clear();
     ui->wListSignupSlots->clear();
     ui->wListTasks->clear();
     ui->wListDates->clear();
@@ -352,35 +427,14 @@ void AddingMode::resetView() {
     ui->lblUserAvail->clear();
     ui->lblTitle1->hide();
     ui->lblTitle2->hide();
+    ui->lblAdminTitle1->hide();
+    ui->lblAdminTitle2->hide();
+    ui->lblAdminTimeframe->hide();
+    ui->lblAdminAttn->hide();
+    ui->gbAttendees->hide();
+
+    dayAttendees.clear();
 }
-
-//void AddingMode::on_wListTimeslots_clicked(const QModelIndex &index) {
-//    ui->wListAttendees->clear();
-//    int count = 0;
-//    for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
-//    {
-//         if(count == EventIndex)
-//         {
-//             //Update rest of chain. (Attendees)
-//             foreach (int slot, (*it)->getTimeSlots()) {
-//                 if (helpermethods::toTimeSlot(slot, format) == ui->wListTimeslots->item(index.row())->text()) {
-//                    QStringList names = (*it)->getAttendeesAtTimeslot(slot);
-//                    QString name;
-//                    foreach(name, names) {
-//                        ui->wListAttendees->addItem(name);
-//                    }
-//                 }
-//             }
-//             break;
-//         }
-//         count++;
-//     }
-//}
-
-void AddingMode::on_wListTasks_clicked(const QModelIndex &index) {
-
-}
-
 
 void AddingMode::on_addToTimeSlotButton_clicked(){
 
