@@ -13,6 +13,8 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
     ui->wListEvents->clear();
+    ui->gbAdmin->setStyleSheet("background-color: #e2edff;");
+    ui->gbSignup->setStyleSheet("background-color: #fff4e0;");
     EventIndex = 0;
     int number = 1;
     for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it) {
@@ -170,7 +172,7 @@ void AddingMode::on_wListAdminDates_clicked(const QModelIndex &index) {
 
     EventDateIndex = index.row();
 
-    ui->gbAttendees->setTitle(EventDays[EventDateIndex] + "Attendees");
+    ui->gbAttendees->setTitle(EventDays[EventDateIndex] + " Attendees");
 
     loadAdminData();
 }
