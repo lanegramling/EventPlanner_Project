@@ -18,6 +18,7 @@ class EventPlanner : public QMainWindow
     Q_OBJECT
 
 public:
+
     /*!
      * \brief EventPlanner
      * \details Construtor for menu window of main page.
@@ -33,9 +34,7 @@ public:
     void setPicture();
 
 private:
-    /*!
-     * \brief ui
-     */
+
     Ui::EventPlanner *ui;
 
 private slots:
@@ -58,28 +57,28 @@ private slots:
     void getMode2();
 
     /*!
-     * \brief on_pushButton_clicked
+     * \brief on_btnAddAvailabilityMode_clicked
      * \details Hides window and emits AddingModeshow().
      */
-    void on_pushButton_clicked();// use for Adding mode
+    void on_btnAddAvailabilityMode_clicked();// use for Adding mode
 
     /*!
-     * \brief on_pushButton_2_clicked
+     * \brief on_btnEventAdminMode_clicked
      * \details Hides window and emits AdminModeshow().
      */
-    void on_pushButton_2_clicked();// use for Event Admin mode
+    void on_btnEventAdminMode_clicked();// use for Event Admin mode
 
     /*!
-     * \brief on_pushButton_4_clicked
+     * \brief on_btnHelp_clicked
      * \details Opens QMessageBox for About Us.
      */
-    void on_pushButton_4_clicked();// use for Help
+    void on_btnHelp_clicked();// use for Help
 
     /*!
-     * \brief on_pushButton_3_clicked
+     * \brief on_btnAboutUs_clicked
      * \details Opens QMessageBox for Help.
      */
-    void on_pushButton_3_clicked();// use for AboutUs
+    void on_btnAboutUs_clicked();// use for AboutUs
 
     /*!
      * \brief on_logoutButton_clicked

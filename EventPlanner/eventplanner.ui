@@ -20,7 +20,7 @@
    <string>EventPlanner</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lblPicFood">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -30,10 +30,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>(none)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="lblPicPerson">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -43,10 +43,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>(none)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="lblPicNote">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -64,7 +64,7 @@
      <string>Te</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="lblPicPokemon">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -74,10 +74,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>(none)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QLabel" name="lblPlanner">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -127,7 +127,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="lblPicUpArrow">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -140,7 +140,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>(none)</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -161,7 +161,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btnAboutUs">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -174,7 +174,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="btnHelp">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -188,7 +188,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblEvents">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -238,7 +238,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnAddAvailabilityMode">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -260,7 +260,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnEventAdminMode">
     <property name="geometry">
      <rect>
       <x>10</x>

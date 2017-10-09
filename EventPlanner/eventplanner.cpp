@@ -7,7 +7,7 @@ EventPlanner::EventPlanner(QWidget *parent) :
     ui(new Ui::EventPlanner)
 {
     ui->setupUi(this);
-    setWindowTitle("EventPlanner"); 
+    setWindowTitle("EventPlanner");
     setPicture();
 }
 
@@ -28,30 +28,30 @@ void EventPlanner::setPicture()
             note(":/eventMainWindow/Note.png"),
             pokemon(":/eventMainWindow/Poke.png"),
             up(":/eventMainWindow/Up.png");
-    ui->label_2->setPixmap(food);
-    ui->label_3->setPixmap(job);
-    ui->label_4->setPixmap(note);
-    ui->label_5->setPixmap(pokemon);
-    ui->label_7->setPixmap(up);
-    ui->label_2->setScaledContents(true);
-    ui->label_3->setScaledContents(true);
-    ui->label_4->setScaledContents(true);
-    ui->label_5->setScaledContents(true);
-    ui->label_7->setScaledContents(true);
-    ui->label_2->show();
-    ui->label_3->show();
-    ui->label_4->show();
-    ui->label_5->show();
-    ui->label_7->show();
+    ui->lblPicFood->setPixmap(food);
+    ui->lblPicPerson->setPixmap(job);
+    ui->lblPicNote->setPixmap(note);
+    ui->lblPicPokemon->setPixmap(pokemon);
+    ui->lblPicUpArrow->setPixmap(up);
+    ui->lblPicFood->setScaledContents(true);
+    ui->lblPicPerson->setScaledContents(true);
+    ui->lblPicNote->setScaledContents(true);
+    ui->lblPicPokemon->setScaledContents(true);
+    ui->lblPicUpArrow->setScaledContents(true);
+    ui->lblPicFood->show();
+    ui->lblPicPerson->show();
+    ui->lblPicNote->show();
+    ui->lblPicPokemon->show();
+    ui->lblPicUpArrow->show();
 }
 
-void EventPlanner::on_pushButton_clicked()
+void EventPlanner::on_btnAddAvailabilityMode_clicked()
 {
     this->hide();
     emit AddingModeshow();
 }
 
-void EventPlanner::on_pushButton_2_clicked()
+void EventPlanner::on_btnEventAdminMode_clicked()
 {
     this->hide();
     emit AdminModeshow();
@@ -67,7 +67,7 @@ void EventPlanner::getMode2()
     this->show();
 }
 
-void EventPlanner::on_pushButton_3_clicked()
+void EventPlanner::on_btnAboutUs_clicked()
 {
     QMessageBox::about(this,"About us",tr("We are team J-Hawk!!\n"
                                           "\n"
@@ -80,7 +80,7 @@ void EventPlanner::on_pushButton_3_clicked()
                                           "\nModified October 2017 by Dustin Bingham, Lane Gramling, and Damian Vu."));
 }
 
-void EventPlanner::on_pushButton_4_clicked()
+void EventPlanner::on_btnHelp_clicked()
 {
 
     QMessageBox::about(this,"Help",tr("How to use EventPlanner:\n"
@@ -100,5 +100,3 @@ void EventPlanner::on_logoutButton_clicked() {
     this->hide();
     emit Logout();
 }
-
-
