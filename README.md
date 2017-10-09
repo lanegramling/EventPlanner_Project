@@ -1,10 +1,10 @@
-# TODO List - Current
+# TODO List - Team Wubba Lubba Dub Dub
 
 ~~**Event Admin Mode**~~ - (Done.)
 - ~~Need to implement tasks in event creation mode~~ (Done.)
 - ~~Multi-day: Functionality is there.~~ (Done.)
 
-**Event - Add Availability Mode**
+**~~Event - Add Availability Mode~~**
 - ~~Implement task list funcionality~~ (Done.)
 	- ~~Implement tasks~~ (Done.)
 	- ~~Implement task signup ability~~ (Done.)
@@ -13,7 +13,7 @@
 	- ~~Show dates which have timeslots selected~~ (Done.)
 - ~~Implement Event Administrator mode~~ (Done.)
 	- ~~Implement a view for tasks, days, and attendees~~ (Done.)
-- Support Multi-day Selection
+- ~~Support Multi-day Selection~~
 	
 	
 - ~~Should remake the view page and just add visual effects to show which mode.~~
