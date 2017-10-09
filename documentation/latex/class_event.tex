@@ -1,0 +1,427 @@
+\hypertarget{class_event}{}\section{Event Class Reference}
+\label{class_event}\index{Event@{Event}}
+
+
+The \hyperlink{class_event}{Event} class.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{Event} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_event}{Event}. \end{DoxyCompactList}\item 
+\hyperlink{class_event_a7d7306f5661b66b543be76e849f20329}{Event} (Q\+String owner, Q\+String event\+Name, int event\+ID, Q\+String\+List days, Q\+String\+List tasks, Q\+List$<$ int $>$ timeslots)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_event}{Event}. \end{DoxyCompactList}\item 
+\hyperlink{class_event_a7704ec01ce91e673885792054214b3d2}{$\sim$\+Event} ()
+\item 
+void \hyperlink{class_event_a0cc103761f52f4a7c2e4d935c8e0809e}{set\+Days} (Q\+String day\+String)
+\begin{DoxyCompactList}\small\item\em set\+Days \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{class_event_ac8aac8eac691a08cf0822a380fe29eb2}{get\+Days} ()
+\begin{DoxyCompactList}\small\item\em get\+Day \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a23cb6c79d76f416edcbdc2044fa73138}{set\+Tasks} (Q\+String tasks)
+\begin{DoxyCompactList}\small\item\em set\+Tasks \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{class_event_afd035786dd05f97c7a820878444306f6}{get\+Tasks} ()
+\begin{DoxyCompactList}\small\item\em get\+Tasks \end{DoxyCompactList}\item 
+bool \hyperlink{class_event_a81270b85694de5ceaa79ae4e6588d000}{remove\+Task} (Q\+String task)
+\begin{DoxyCompactList}\small\item\em remove\+Task \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_event_a2846f2dfad84c083d829fdf3d915c05a}{get\+Event\+Name} ()
+\begin{DoxyCompactList}\small\item\em get\+Event\+Name \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a15b675acab68dd6a840421ec72aeef57}{set\+Event\+Name} (Q\+String event\+Name)
+\begin{DoxyCompactList}\small\item\em set\+Event\+Name \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_event_ab7e1dc08bd691aaf95ad994afdea6d2b}{get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em get\+Owner \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a4c5b75b1d4c162cb7489ee6a4ced8af0}{set\+Owner} (Q\+String owner)
+\begin{DoxyCompactList}\small\item\em set\+Owner \end{DoxyCompactList}\item 
+Q\+List$<$ int $>$ \hyperlink{class_event_ae105da8497f73e20c687060c5837e6f8}{get\+Time\+Slots} ()
+\begin{DoxyCompactList}\small\item\em get\+Time\+Slots \end{DoxyCompactList}\item 
+void \hyperlink{class_event_ad39ee28106d13c32165cb091a500f896}{set\+Time\+Slots} (Q\+List$<$ int $>$ time\+Slots)
+\begin{DoxyCompactList}\small\item\em set\+Time\+Slots \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_event_ab2c59affdf5f762ecedd77a689ba08de}{print\+Event} ()
+\begin{DoxyCompactList}\small\item\em print\+Event \end{DoxyCompactList}\item 
+int \hyperlink{class_event_a019343d5fbe993108f49362f134ef746}{get\+ID} () const
+\begin{DoxyCompactList}\small\item\em get\+ID \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a3c90e712012a92068a2fb14e302de0be}{set\+ID} (int ID)
+\begin{DoxyCompactList}\small\item\em set\+ID \end{DoxyCompactList}\item 
+Q\+List$<$ \hyperlink{classattendee}{attendee} $\ast$ $>$ \hyperlink{class_event_a56f9898f75ae301df1d10523de57f500}{get\+Attendees} ()
+\begin{DoxyCompactList}\small\item\em get\+Attendees \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{class_event_adb10c77700599fb4c6047fd8f4476beb}{get\+Attendees\+At\+Timeslot} (int timeslot)
+\begin{DoxyCompactList}\small\item\em get\+Attendees\+At\+Timeslot \end{DoxyCompactList}\item 
+void \hyperlink{class_event_af632e4550dcd4eb70c5a45c57af615b7}{set\+Attendees} (Q\+List$<$ \hyperlink{classattendee}{attendee} $\ast$$>$)
+\begin{DoxyCompactList}\small\item\em set\+Attendees \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a0940f63f5ac2324d7c61e204ed782bd0}{add\+Attendee} (Q\+String name, int slot)
+\begin{DoxyCompactList}\small\item\em add\+Attendee \end{DoxyCompactList}\item 
+void \hyperlink{class_event_a7be36f174942f39cab6917d09e139a14}{add\+Attendee} (\hyperlink{classattendee}{attendee} $\ast$attn)
+\begin{DoxyCompactList}\small\item\em add\+Attendee \end{DoxyCompactList}\item 
+void \hyperlink{class_event_abd8ba2203b1fc2e1c66280ed2d63adda}{add\+Attendee} (Q\+String name, Q\+List$<$ int $>$ slot)
+\begin{DoxyCompactList}\small\item\em add\+Attendee \end{DoxyCompactList}\item 
+int \hyperlink{class_event_ac06e3e571247a3804491b14301b045d3}{has\+Attendee} (Q\+String name)
+\begin{DoxyCompactList}\small\item\em has\+Attendee \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_event}{Event} class. 
+
+Class used to store details of an event. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_event_a5a40dd4708297f7031e29b39e039ae10}\label{class_event_a5a40dd4708297f7031e29b39e039ae10}} 
+\index{Event@{Event}!Event@{Event}}
+\index{Event@{Event}!Event@{Event}}
+\subsubsection{\texorpdfstring{Event()}{Event()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_event}{Event}. 
+
+Default constructor. Only default initilizations are made. \mbox{\Hypertarget{class_event_a7d7306f5661b66b543be76e849f20329}\label{class_event_a7d7306f5661b66b543be76e849f20329}} 
+\index{Event@{Event}!Event@{Event}}
+\index{Event@{Event}!Event@{Event}}
+\subsubsection{\texorpdfstring{Event()}{Event()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}\item[{Q\+String}]{owner,  }\item[{Q\+String}]{event\+Name,  }\item[{int}]{event\+ID,  }\item[{Q\+String\+List}]{days,  }\item[{Q\+String\+List}]{tasks,  }\item[{Q\+List$<$ int $>$}]{timeslots }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_event}{Event}. 
+
+Constructor used to create fully initialized \hyperlink{class_event}{Event} object. 
+\begin{DoxyParams}{Parameters}
+{\em owner} & Name of the creator \\
+\hline
+{\em event\+Name} & Name of the event \\
+\hline
+{\em event\+ID} & \hyperlink{class_event}{Event}\textquotesingle{}s ID \\
+\hline
+{\em days} & List of days of format \textquotesingle{}M\+M-\/\+D\+D-\/\+Y\+Y\+YY\textquotesingle{} that it spans \\
+\hline
+{\em tasks} & List of tasks that have not been fulfilled \\
+\hline
+{\em timeslots} & List of timeslots that range from 0 -\/ ((number of days $\ast$ 48) -\/ 1) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a7704ec01ce91e673885792054214b3d2}\label{class_event_a7704ec01ce91e673885792054214b3d2}} 
+\index{Event@{Event}!````~Event@{$\sim$\+Event}}
+\index{````~Event@{$\sim$\+Event}!Event@{Event}}
+\subsubsection{\texorpdfstring{$\sim$\+Event()}{~Event()}}
+{\footnotesize\ttfamily Event\+::$\sim$\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_event_a0940f63f5ac2324d7c61e204ed782bd0}\label{class_event_a0940f63f5ac2324d7c61e204ed782bd0}} 
+\index{Event@{Event}!add\+Attendee@{add\+Attendee}}
+\index{add\+Attendee@{add\+Attendee}!Event@{Event}}
+\subsubsection{\texorpdfstring{add\+Attendee()}{addAttendee()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Event\+::add\+Attendee (\begin{DoxyParamCaption}\item[{Q\+String}]{name,  }\item[{int}]{slot }\end{DoxyParamCaption})}
+
+
+
+add\+Attendee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em slot} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a7be36f174942f39cab6917d09e139a14}\label{class_event_a7be36f174942f39cab6917d09e139a14}} 
+\index{Event@{Event}!add\+Attendee@{add\+Attendee}}
+\index{add\+Attendee@{add\+Attendee}!Event@{Event}}
+\subsubsection{\texorpdfstring{add\+Attendee()}{addAttendee()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Event\+::add\+Attendee (\begin{DoxyParamCaption}\item[{\hyperlink{classattendee}{attendee} $\ast$}]{attn }\end{DoxyParamCaption})}
+
+
+
+add\+Attendee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attn} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_abd8ba2203b1fc2e1c66280ed2d63adda}\label{class_event_abd8ba2203b1fc2e1c66280ed2d63adda}} 
+\index{Event@{Event}!add\+Attendee@{add\+Attendee}}
+\index{add\+Attendee@{add\+Attendee}!Event@{Event}}
+\subsubsection{\texorpdfstring{add\+Attendee()}{addAttendee()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Event\+::add\+Attendee (\begin{DoxyParamCaption}\item[{Q\+String}]{name,  }\item[{Q\+List$<$ int $>$}]{slot }\end{DoxyParamCaption})}
+
+
+
+add\+Attendee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em slots} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a56f9898f75ae301df1d10523de57f500}\label{class_event_a56f9898f75ae301df1d10523de57f500}} 
+\index{Event@{Event}!get\+Attendees@{get\+Attendees}}
+\index{get\+Attendees@{get\+Attendees}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Attendees()}{getAttendees()}}
+{\footnotesize\ttfamily Q\+List$<$ \hyperlink{classattendee}{attendee} $\ast$ $>$ Event\+::get\+Attendees (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Attendees 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_adb10c77700599fb4c6047fd8f4476beb}\label{class_event_adb10c77700599fb4c6047fd8f4476beb}} 
+\index{Event@{Event}!get\+Attendees\+At\+Timeslot@{get\+Attendees\+At\+Timeslot}}
+\index{get\+Attendees\+At\+Timeslot@{get\+Attendees\+At\+Timeslot}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Attendees\+At\+Timeslot()}{getAttendeesAtTimeslot()}}
+{\footnotesize\ttfamily Q\+String\+List Event\+::get\+Attendees\+At\+Timeslot (\begin{DoxyParamCaption}\item[{int}]{timeslot }\end{DoxyParamCaption})}
+
+
+
+get\+Attendees\+At\+Timeslot 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslot} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_ac8aac8eac691a08cf0822a380fe29eb2}\label{class_event_ac8aac8eac691a08cf0822a380fe29eb2}} 
+\index{Event@{Event}!get\+Days@{get\+Days}}
+\index{get\+Days@{get\+Days}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Days()}{getDays()}}
+{\footnotesize\ttfamily Q\+String\+List Event\+::get\+Days (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Day 
+
+Returns the date of the event \begin{DoxyReturn}{Returns}
+Q\+String\+List of Q\+String with format \char`\"{}\+M\+M-\/\+D\+D-\/\+Y\+Y\+Y\+Y\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_a2846f2dfad84c083d829fdf3d915c05a}\label{class_event_a2846f2dfad84c083d829fdf3d915c05a}} 
+\index{Event@{Event}!get\+Event\+Name@{get\+Event\+Name}}
+\index{get\+Event\+Name@{get\+Event\+Name}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Event\+Name()}{getEventName()}}
+{\footnotesize\ttfamily Q\+String Event\+::get\+Event\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Event\+Name 
+
+Returns the name of the event. \begin{DoxyReturn}{Returns}
+Q\+String 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_a019343d5fbe993108f49362f134ef746}\label{class_event_a019343d5fbe993108f49362f134ef746}} 
+\index{Event@{Event}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily int Event\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+ID 
+
+\begin{DoxyReturn}{Returns}
+int Event\+ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_ab7e1dc08bd691aaf95ad994afdea6d2b}\label{class_event_ab7e1dc08bd691aaf95ad994afdea6d2b}} 
+\index{Event@{Event}!get\+Owner@{get\+Owner}}
+\index{get\+Owner@{get\+Owner}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Owner()}{getOwner()}}
+{\footnotesize\ttfamily Q\+String Event\+::get\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Owner 
+
+Returns the name of the person who created the event. \begin{DoxyReturn}{Returns}
+Q\+String 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_afd035786dd05f97c7a820878444306f6}\label{class_event_afd035786dd05f97c7a820878444306f6}} 
+\index{Event@{Event}!get\+Tasks@{get\+Tasks}}
+\index{get\+Tasks@{get\+Tasks}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Tasks()}{getTasks()}}
+{\footnotesize\ttfamily Q\+String\+List Event\+::get\+Tasks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Tasks 
+
+\begin{DoxyReturn}{Returns}
+Q\+String\+List of tasks 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_ae105da8497f73e20c687060c5837e6f8}\label{class_event_ae105da8497f73e20c687060c5837e6f8}} 
+\index{Event@{Event}!get\+Time\+Slots@{get\+Time\+Slots}}
+\index{get\+Time\+Slots@{get\+Time\+Slots}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Time\+Slots()}{getTimeSlots()}}
+{\footnotesize\ttfamily Q\+List$<$ int $>$ Event\+::get\+Time\+Slots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Time\+Slots 
+
+Returns the private member Q\+List$<$\+Time\+Slot$>$ time\+Slots. \begin{DoxyReturn}{Returns}
+Q\+List$<$\+Time\+Slot$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_ac06e3e571247a3804491b14301b045d3}\label{class_event_ac06e3e571247a3804491b14301b045d3}} 
+\index{Event@{Event}!has\+Attendee@{has\+Attendee}}
+\index{has\+Attendee@{has\+Attendee}!Event@{Event}}
+\subsubsection{\texorpdfstring{has\+Attendee()}{hasAttendee()}}
+{\footnotesize\ttfamily int Event\+::has\+Attendee (\begin{DoxyParamCaption}\item[{Q\+String}]{name }\end{DoxyParamCaption})}
+
+
+
+has\+Attendee 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if no attendee has matching name, otherwise returns the index of the attendee 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_ab2c59affdf5f762ecedd77a689ba08de}\label{class_event_ab2c59affdf5f762ecedd77a689ba08de}} 
+\index{Event@{Event}!print\+Event@{print\+Event}}
+\index{print\+Event@{print\+Event}!Event@{Event}}
+\subsubsection{\texorpdfstring{print\+Event()}{printEvent()}}
+{\footnotesize\ttfamily Q\+String Event\+::print\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+print\+Event 
+
+A formatted Q\+String with the Owner, \hyperlink{class_event}{Event} Name, and Date \begin{DoxyReturn}{Returns}
+Q\+String 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_a81270b85694de5ceaa79ae4e6588d000}\label{class_event_a81270b85694de5ceaa79ae4e6588d000}} 
+\index{Event@{Event}!remove\+Task@{remove\+Task}}
+\index{remove\+Task@{remove\+Task}!Event@{Event}}
+\subsubsection{\texorpdfstring{remove\+Task()}{removeTask()}}
+{\footnotesize\ttfamily bool Event\+::remove\+Task (\begin{DoxyParamCaption}\item[{Q\+String}]{task }\end{DoxyParamCaption})}
+
+
+
+remove\+Task 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & to be removed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the task was successfully removed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_event_af632e4550dcd4eb70c5a45c57af615b7}\label{class_event_af632e4550dcd4eb70c5a45c57af615b7}} 
+\index{Event@{Event}!set\+Attendees@{set\+Attendees}}
+\index{set\+Attendees@{set\+Attendees}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Attendees()}{setAttendees()}}
+{\footnotesize\ttfamily void Event\+::set\+Attendees (\begin{DoxyParamCaption}\item[{Q\+List$<$ \hyperlink{classattendee}{attendee} $\ast$$>$}]{a\+List }\end{DoxyParamCaption})}
+
+
+
+set\+Attendees 
+
+\mbox{\Hypertarget{class_event_a0cc103761f52f4a7c2e4d935c8e0809e}\label{class_event_a0cc103761f52f4a7c2e4d935c8e0809e}} 
+\index{Event@{Event}!set\+Days@{set\+Days}}
+\index{set\+Days@{set\+Days}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Days()}{setDays()}}
+{\footnotesize\ttfamily void Event\+::set\+Days (\begin{DoxyParamCaption}\item[{Q\+String}]{day\+String }\end{DoxyParamCaption})}
+
+
+
+set\+Days 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day\+String} & \\
+\hline
+\end{DoxyParams}
+Takes list of comma separated days of format \textquotesingle{}M\+M-\/\+D\+D-\/\+Y\+Y\+YY\textquotesingle{} and separates it into a list \mbox{\Hypertarget{class_event_a15b675acab68dd6a840421ec72aeef57}\label{class_event_a15b675acab68dd6a840421ec72aeef57}} 
+\index{Event@{Event}!set\+Event\+Name@{set\+Event\+Name}}
+\index{set\+Event\+Name@{set\+Event\+Name}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Event\+Name()}{setEventName()}}
+{\footnotesize\ttfamily void Event\+::set\+Event\+Name (\begin{DoxyParamCaption}\item[{Q\+String}]{event\+Name }\end{DoxyParamCaption})}
+
+
+
+set\+Event\+Name 
+
+Sets private variable event\+Name to the passed Q\+String. 
+\begin{DoxyParams}{Parameters}
+{\em event\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a3c90e712012a92068a2fb14e302de0be}\label{class_event_a3c90e712012a92068a2fb14e302de0be}} 
+\index{Event@{Event}!set\+ID@{set\+ID}}
+\index{set\+ID@{set\+ID}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+I\+D()}{setID()}}
+{\footnotesize\ttfamily void Event\+::set\+ID (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
+
+
+
+set\+ID 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & \hyperlink{class_event}{Event} ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a4c5b75b1d4c162cb7489ee6a4ced8af0}\label{class_event_a4c5b75b1d4c162cb7489ee6a4ced8af0}} 
+\index{Event@{Event}!set\+Owner@{set\+Owner}}
+\index{set\+Owner@{set\+Owner}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Owner()}{setOwner()}}
+{\footnotesize\ttfamily void Event\+::set\+Owner (\begin{DoxyParamCaption}\item[{Q\+String}]{owner }\end{DoxyParamCaption})}
+
+
+
+set\+Owner 
+
+Sets private variable owner to the passed Q\+String. 
+\begin{DoxyParams}{Parameters}
+{\em owner} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_a23cb6c79d76f416edcbdc2044fa73138}\label{class_event_a23cb6c79d76f416edcbdc2044fa73138}} 
+\index{Event@{Event}!set\+Tasks@{set\+Tasks}}
+\index{set\+Tasks@{set\+Tasks}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Tasks()}{setTasks()}}
+{\footnotesize\ttfamily void Event\+::set\+Tasks (\begin{DoxyParamCaption}\item[{Q\+String}]{tasks }\end{DoxyParamCaption})}
+
+
+
+set\+Tasks 
+
+Takes a list of semi-\/colon separated strings and splits it into a list 
+\begin{DoxyParams}{Parameters}
+{\em tasks} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_event_ad39ee28106d13c32165cb091a500f896}\label{class_event_ad39ee28106d13c32165cb091a500f896}} 
+\index{Event@{Event}!set\+Time\+Slots@{set\+Time\+Slots}}
+\index{set\+Time\+Slots@{set\+Time\+Slots}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Time\+Slots()}{setTimeSlots()}}
+{\footnotesize\ttfamily void Event\+::set\+Time\+Slots (\begin{DoxyParamCaption}\item[{Q\+List$<$ int $>$}]{time\+Slots }\end{DoxyParamCaption})}
+
+
+
+set\+Time\+Slots 
+
+Sets private variable time\+Slots to the passed Q\+List$<$\+Time\+Slot$>$. 
+\begin{DoxyParams}{Parameters}
+{\em time\+Slots} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{event_8h}{event.\+h}\item 
+\hyperlink{event_8cpp}{event.\+cpp}\end{DoxyCompactItemize}

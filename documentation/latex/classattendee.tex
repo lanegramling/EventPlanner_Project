@@ -1,0 +1,216 @@
+\hypertarget{classattendee}{}\section{attendee Class Reference}
+\label{classattendee}\index{attendee@{attendee}}
+
+
+{\ttfamily \#include $<$attendee.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classattendee_a9a40f413382f38d884f549e839d597be}{attendee} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classattendee_a18ac0517146b42c12028c2cc7d056ca3}{attendee} (int id, Q\+String aname, Q\+List$<$ int $>$ avail)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+int \hyperlink{classattendee_a401329192a983fa7ce39a23864082d9c}{get\+Event\+ID} ()
+\begin{DoxyCompactList}\small\item\em get\+Event\+ID \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_a9342533ee9136a1714329114b2a9c114}{set\+Event\+ID} (int id)
+\begin{DoxyCompactList}\small\item\em set\+Event\+ID \end{DoxyCompactList}\item 
+Q\+String \hyperlink{classattendee_a7af6210007dc95cb254562f5e3ed695b}{get\+Attendee\+Name} ()
+\begin{DoxyCompactList}\small\item\em get\+Attendee\+Name \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_a1474b7029b761e5c0bdd418d6b985ff9}{set\+Attendee\+Name} (Q\+String aname)
+\begin{DoxyCompactList}\small\item\em set\+Attendee\+Name \end{DoxyCompactList}\item 
+Q\+List$<$ int $>$ \hyperlink{classattendee_a2ec27aa5e40dd1bab0123f0472f2fed0}{get\+Availability} ()
+\begin{DoxyCompactList}\small\item\em get\+Availability \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_a7f9eed27b7b780b59cbbb6931e086ee9}{set\+Availability} (Q\+List$<$ int $>$ avail)
+\begin{DoxyCompactList}\small\item\em set\+Availability \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_a0bae1f348a38a1fc8ca67a141f8c771c}{add\+Availability} (int slot)
+\begin{DoxyCompactList}\small\item\em add\+Availability \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{classattendee_a69818adb55caa399615fa43b7b7f0588}{get\+Tasks} ()
+\begin{DoxyCompactList}\small\item\em get\+Tasks \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_a9b172bfafdfeb9b36a6b4ea1ec78537a}{set\+Tasks} (Q\+String task\+String)
+\begin{DoxyCompactList}\small\item\em set\+Tasks \end{DoxyCompactList}\item 
+void \hyperlink{classattendee_ac80fc3f8fb032f0b856da59aaedeecab}{add\+Task} (Q\+String task)
+\begin{DoxyCompactList}\small\item\em add\+Task \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classattendee_a9a40f413382f38d884f549e839d597be}\label{classattendee_a9a40f413382f38d884f549e839d597be}} 
+\index{attendee@{attendee}!attendee@{attendee}}
+\index{attendee@{attendee}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{attendee()}{attendee()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily attendee\+::attendee (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+\mbox{\Hypertarget{classattendee_a18ac0517146b42c12028c2cc7d056ca3}\label{classattendee_a18ac0517146b42c12028c2cc7d056ca3}} 
+\index{attendee@{attendee}!attendee@{attendee}}
+\index{attendee@{attendee}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{attendee()}{attendee()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily attendee\+::attendee (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{Q\+String}]{aname,  }\item[{Q\+List$<$ int $>$}]{avail }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Will create a full attendee object with an eventid, name, and list of availability 
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em aname} & \\
+\hline
+{\em avail} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classattendee_a0bae1f348a38a1fc8ca67a141f8c771c}\label{classattendee_a0bae1f348a38a1fc8ca67a141f8c771c}} 
+\index{attendee@{attendee}!add\+Availability@{add\+Availability}}
+\index{add\+Availability@{add\+Availability}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{add\+Availability()}{addAvailability()}}
+{\footnotesize\ttfamily void attendee\+::add\+Availability (\begin{DoxyParamCaption}\item[{int}]{slot }\end{DoxyParamCaption})}
+
+
+
+add\+Availability 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & to add to availability list \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classattendee_ac80fc3f8fb032f0b856da59aaedeecab}\label{classattendee_ac80fc3f8fb032f0b856da59aaedeecab}} 
+\index{attendee@{attendee}!add\+Task@{add\+Task}}
+\index{add\+Task@{add\+Task}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{add\+Task()}{addTask()}}
+{\footnotesize\ttfamily void attendee\+::add\+Task (\begin{DoxyParamCaption}\item[{Q\+String}]{task }\end{DoxyParamCaption})}
+
+
+
+add\+Task 
+
+Adds a Q\+String task to the list of tasks 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classattendee_a7af6210007dc95cb254562f5e3ed695b}\label{classattendee_a7af6210007dc95cb254562f5e3ed695b}} 
+\index{attendee@{attendee}!get\+Attendee\+Name@{get\+Attendee\+Name}}
+\index{get\+Attendee\+Name@{get\+Attendee\+Name}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{get\+Attendee\+Name()}{getAttendeeName()}}
+{\footnotesize\ttfamily Q\+String attendee\+::get\+Attendee\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Attendee\+Name 
+
+\begin{DoxyReturn}{Returns}
+Q\+String attendee name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classattendee_a2ec27aa5e40dd1bab0123f0472f2fed0}\label{classattendee_a2ec27aa5e40dd1bab0123f0472f2fed0}} 
+\index{attendee@{attendee}!get\+Availability@{get\+Availability}}
+\index{get\+Availability@{get\+Availability}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{get\+Availability()}{getAvailability()}}
+{\footnotesize\ttfamily Q\+List$<$ int $>$ attendee\+::get\+Availability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Availability 
+
+\begin{DoxyReturn}{Returns}
+List of ints with user availability 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classattendee_a401329192a983fa7ce39a23864082d9c}\label{classattendee_a401329192a983fa7ce39a23864082d9c}} 
+\index{attendee@{attendee}!get\+Event\+ID@{get\+Event\+ID}}
+\index{get\+Event\+ID@{get\+Event\+ID}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{get\+Event\+I\+D()}{getEventID()}}
+{\footnotesize\ttfamily int attendee\+::get\+Event\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Event\+ID 
+
+\begin{DoxyReturn}{Returns}
+int ID of event 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classattendee_a69818adb55caa399615fa43b7b7f0588}\label{classattendee_a69818adb55caa399615fa43b7b7f0588}} 
+\index{attendee@{attendee}!get\+Tasks@{get\+Tasks}}
+\index{get\+Tasks@{get\+Tasks}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{get\+Tasks()}{getTasks()}}
+{\footnotesize\ttfamily Q\+String\+List attendee\+::get\+Tasks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Tasks 
+
+\begin{DoxyReturn}{Returns}
+Q\+String\+List of tasks 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classattendee_a1474b7029b761e5c0bdd418d6b985ff9}\label{classattendee_a1474b7029b761e5c0bdd418d6b985ff9}} 
+\index{attendee@{attendee}!set\+Attendee\+Name@{set\+Attendee\+Name}}
+\index{set\+Attendee\+Name@{set\+Attendee\+Name}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{set\+Attendee\+Name()}{setAttendeeName()}}
+{\footnotesize\ttfamily void attendee\+::set\+Attendee\+Name (\begin{DoxyParamCaption}\item[{Q\+String}]{aname }\end{DoxyParamCaption})}
+
+
+
+set\+Attendee\+Name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & of event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classattendee_a7f9eed27b7b780b59cbbb6931e086ee9}\label{classattendee_a7f9eed27b7b780b59cbbb6931e086ee9}} 
+\index{attendee@{attendee}!set\+Availability@{set\+Availability}}
+\index{set\+Availability@{set\+Availability}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{set\+Availability()}{setAvailability()}}
+{\footnotesize\ttfamily void attendee\+::set\+Availability (\begin{DoxyParamCaption}\item[{Q\+List$<$ int $>$}]{avail }\end{DoxyParamCaption})}
+
+
+
+set\+Availability 
+
+
+\begin{DoxyParams}{Parameters}
+{\em avail} & of user for event id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classattendee_a9342533ee9136a1714329114b2a9c114}\label{classattendee_a9342533ee9136a1714329114b2a9c114}} 
+\index{attendee@{attendee}!set\+Event\+ID@{set\+Event\+ID}}
+\index{set\+Event\+ID@{set\+Event\+ID}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{set\+Event\+I\+D()}{setEventID()}}
+{\footnotesize\ttfamily void attendee\+::set\+Event\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+set\+Event\+ID 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classattendee_a9b172bfafdfeb9b36a6b4ea1ec78537a}\label{classattendee_a9b172bfafdfeb9b36a6b4ea1ec78537a}} 
+\index{attendee@{attendee}!set\+Tasks@{set\+Tasks}}
+\index{set\+Tasks@{set\+Tasks}!attendee@{attendee}}
+\subsubsection{\texorpdfstring{set\+Tasks()}{setTasks()}}
+{\footnotesize\ttfamily void attendee\+::set\+Tasks (\begin{DoxyParamCaption}\item[{Q\+String}]{task\+String }\end{DoxyParamCaption})}
+
+
+
+set\+Tasks 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+String} & String of semi-\/colon separated task strings \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{attendee_8h}{attendee.\+h}\item 
+\hyperlink{attendee_8cpp}{attendee.\+cpp}\end{DoxyCompactItemize}

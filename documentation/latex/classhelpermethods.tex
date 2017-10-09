@@ -1,0 +1,146 @@
+\hypertarget{classhelpermethods}{}\section{helpermethods Class Reference}
+\label{classhelpermethods}\index{helpermethods@{helpermethods}}
+
+
+{\ttfamily \#include $<$helpermethods.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Q\+String \hyperlink{classhelpermethods_a5357a7fde87ac02fce1e8ed64aa53648}{to\+Time} (int slot, bool format)
+\begin{DoxyCompactList}\small\item\em to\+Time Will give specific time for given timeslot int e.\+g. 12$\vert$24h\+: 27 = 1\+:30pm$\vert$13\+:30 \end{DoxyCompactList}\item 
+static Q\+String \hyperlink{classhelpermethods_a3ab55da6e3e7558936e9881f30465e75}{to\+Time\+Slot} (int timeslot, bool format)
+\begin{DoxyCompactList}\small\item\em to\+Time\+Slot Will utilize to\+Time to create 30min timeslot string e.\+g. Timeslot-\/\+Timeslot+1\+: 27 = 1\+:30pm-\/2\+:00pm$\vert$13\+:30-\/14\+:00 \end{DoxyCompactList}\item 
+static Q\+String \hyperlink{classhelpermethods_a8eb0fa4dbe1ac5465ba69976ed93b7e9}{get\+Time\+String} (Q\+List$<$ int $>$ timeslots, bool format)
+\begin{DoxyCompactList}\small\item\em get\+Time\+String Returns a smarter timeslot string based on contiguous timeslots \end{DoxyCompactList}\item 
+static Q\+String \hyperlink{classhelpermethods_aa6324bf2fa835db5e8baacc6500e0447}{stringify\+Timeslot\+Ints} (Q\+List$<$ int $>$ timeslots)
+\begin{DoxyCompactList}\small\item\em stringify\+Timeslot\+Ints Inverse function of listify\+Timeslot\+Ints \end{DoxyCompactList}\item 
+static Q\+List$<$ int $>$ \hyperlink{classhelpermethods_ab2c39e2fbd1d97104b57f8f5cbf2c3ab}{listify\+Timeslot\+Ints} (Q\+String timeslot\+String)
+\begin{DoxyCompactList}\small\item\em listify\+Timeslot\+Ints Inverse function of stringify\+Timeslot\+Ints \end{DoxyCompactList}\item 
+static bool \hyperlink{classhelpermethods_a78e0af34a4ee72796f2e1ea3504bf678}{compare\+Dates} (Q\+String date1, Q\+String date2)
+\begin{DoxyCompactList}\small\item\em compare\+Dates Essentially a $<$ function for dates of format \char`\"{}\+M\+M-\/\+D\+D-\/\+Y\+Y\+Y\+Y\char`\"{} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classhelpermethods_a78e0af34a4ee72796f2e1ea3504bf678}\label{classhelpermethods_a78e0af34a4ee72796f2e1ea3504bf678}} 
+\index{helpermethods@{helpermethods}!compare\+Dates@{compare\+Dates}}
+\index{compare\+Dates@{compare\+Dates}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{compare\+Dates()}{compareDates()}}
+{\footnotesize\ttfamily bool helpermethods\+::compare\+Dates (\begin{DoxyParamCaption}\item[{Q\+String}]{date1,  }\item[{Q\+String}]{date2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+compare\+Dates Essentially a $<$ function for dates of format \char`\"{}\+M\+M-\/\+D\+D-\/\+Y\+Y\+Y\+Y\char`\"{} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date1} & \\
+\hline
+{\em date2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if date1 is prior to date2. False otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classhelpermethods_a8eb0fa4dbe1ac5465ba69976ed93b7e9}\label{classhelpermethods_a8eb0fa4dbe1ac5465ba69976ed93b7e9}} 
+\index{helpermethods@{helpermethods}!get\+Time\+String@{get\+Time\+String}}
+\index{get\+Time\+String@{get\+Time\+String}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{get\+Time\+String()}{getTimeString()}}
+{\footnotesize\ttfamily Q\+String helpermethods\+::get\+Time\+String (\begin{DoxyParamCaption}\item[{Q\+List$<$ int $>$}]{timeslots,  }\item[{bool}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Time\+String Returns a smarter timeslot string based on contiguous timeslots 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslots} & Will sort then utilize list of ints with range 0-\/47 \\
+\hline
+{\em format} & T\+R\+UE\+: 24h format $\vert$ F\+A\+L\+SE\+: 12h format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classhelpermethods_ab2c39e2fbd1d97104b57f8f5cbf2c3ab}\label{classhelpermethods_ab2c39e2fbd1d97104b57f8f5cbf2c3ab}} 
+\index{helpermethods@{helpermethods}!listify\+Timeslot\+Ints@{listify\+Timeslot\+Ints}}
+\index{listify\+Timeslot\+Ints@{listify\+Timeslot\+Ints}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{listify\+Timeslot\+Ints()}{listifyTimeslotInts()}}
+{\footnotesize\ttfamily Q\+List$<$ int $>$ helpermethods\+::listify\+Timeslot\+Ints (\begin{DoxyParamCaption}\item[{Q\+String}]{timeslot\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+listify\+Timeslot\+Ints Inverse function of stringify\+Timeslot\+Ints 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslot\+String} & e.\+g. \char`\"{}0,1,2,3,4\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+List of timeslots 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classhelpermethods_aa6324bf2fa835db5e8baacc6500e0447}\label{classhelpermethods_aa6324bf2fa835db5e8baacc6500e0447}} 
+\index{helpermethods@{helpermethods}!stringify\+Timeslot\+Ints@{stringify\+Timeslot\+Ints}}
+\index{stringify\+Timeslot\+Ints@{stringify\+Timeslot\+Ints}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{stringify\+Timeslot\+Ints()}{stringifyTimeslotInts()}}
+{\footnotesize\ttfamily Q\+String helpermethods\+::stringify\+Timeslot\+Ints (\begin{DoxyParamCaption}\item[{Q\+List$<$ int $>$}]{timeslots }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+stringify\+Timeslot\+Ints Inverse function of listify\+Timeslot\+Ints 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslots} & Q\+List$<$int$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+String of timeslots e.\+g. \char`\"{}0,1,2,3,4\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classhelpermethods_a5357a7fde87ac02fce1e8ed64aa53648}\label{classhelpermethods_a5357a7fde87ac02fce1e8ed64aa53648}} 
+\index{helpermethods@{helpermethods}!to\+Time@{to\+Time}}
+\index{to\+Time@{to\+Time}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{to\+Time()}{toTime()}}
+{\footnotesize\ttfamily Q\+String helpermethods\+::to\+Time (\begin{DoxyParamCaption}\item[{int}]{slot,  }\item[{bool}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to\+Time Will give specific time for given timeslot int e.\+g. 12$\vert$24h\+: 27 = 1\+:30pm$\vert$13\+:30 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslot} & 0-\/47 \\
+\hline
+{\em format} & T\+R\+UE\+: 24h format $\vert$ F\+A\+L\+SE\+: 12h format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+String Time in 12h/24h format 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classhelpermethods_a3ab55da6e3e7558936e9881f30465e75}\label{classhelpermethods_a3ab55da6e3e7558936e9881f30465e75}} 
+\index{helpermethods@{helpermethods}!to\+Time\+Slot@{to\+Time\+Slot}}
+\index{to\+Time\+Slot@{to\+Time\+Slot}!helpermethods@{helpermethods}}
+\subsubsection{\texorpdfstring{to\+Time\+Slot()}{toTimeSlot()}}
+{\footnotesize\ttfamily Q\+String helpermethods\+::to\+Time\+Slot (\begin{DoxyParamCaption}\item[{int}]{timeslot,  }\item[{bool}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to\+Time\+Slot Will utilize to\+Time to create 30min timeslot string e.\+g. Timeslot-\/\+Timeslot+1\+: 27 = 1\+:30pm-\/2\+:00pm$\vert$13\+:30-\/14\+:00 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeslot} & 0-\/47 \\
+\hline
+{\em format} & T\+R\+UE\+: 24h format $\vert$ F\+A\+L\+SE\+: 12h format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{helpermethods_8h}{helpermethods.\+h}\item 
+\hyperlink{helpermethods_8cpp}{helpermethods.\+cpp}\end{DoxyCompactItemize}

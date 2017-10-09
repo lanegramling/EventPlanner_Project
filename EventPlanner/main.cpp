@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
 {
     /*!
      * \mainpage
-     * \author Team Jayhawk
+     * \author Team Wubba Lubba Dub Dub!
+     * \details This project was modified and updated by team Wubba lubba dub dub. The original creators was team JayHawk
      * \details The %Event Planner is a project created for EECS 448 course at the Univerty of Kansas.
      * \details This project was created using <a href="https://www.qt.io/qt-features-libraries-apis-tools-and-ide/" target="_blank">Qt Creator IDE</a> version 5.9.1.
      * \details Qt framework is used under <a href="https://www.gnu.org/licenses/lgpl.txt" target="_blank">LGPL</a>.
