@@ -13,6 +13,13 @@ public:
      */
     attendee();
 
+    /*!
+     * \brief Constructor
+     * \details Will create a full attendee object with an eventid, name, and list of availability
+     * \param id
+     * \param aname
+     * \param avail
+     */
     attendee(int id, QString aname, QList<int> avail);
 
     /*!
@@ -51,12 +58,29 @@ public:
      */
     void setAvailability(QList<int> avail);
 
+    /*!
+     * \brief addAvailability
+     * \param slot to add to availability list
+     */
     void addAvailability(int slot);
 
+    /*!
+     * \brief getTasks
+     * \return  QStringList of tasks
+     */
     QStringList getTasks();
 
+    /*!
+     * \brief setTasks
+     * \param taskString String of semi-colon separated task strings
+     */
     void setTasks(QString taskString);
 
+    /*!
+     * \brief addTask
+     * \details Adds a QString task to the list of tasks
+     * \param task
+     */
     void addTask(QString task);
 
 private:

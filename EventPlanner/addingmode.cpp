@@ -12,9 +12,6 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Adding Mode");
-    month = 1;
-    day = 1;
-    year = 2017;
     ui->wListEvents->clear();
     EventIndex = 0;
     int number = 1;
