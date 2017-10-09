@@ -254,7 +254,7 @@
      </sizepolicy>
     </property>
     <property name="text">
-     <string>Adding Availability Mode</string>
+     <string>Event Viewer</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -276,7 +276,7 @@
      </sizepolicy>
     </property>
     <property name="text">
-     <string>Event Admin Mode</string>
+     <string>Create an Event</string>
     </property>
    </widget>
   </widget>

@@ -11,7 +11,7 @@ EventAdminMode::EventAdminMode(Session *session, QWidget *parent) :
     ui->setupUi(this);
 
     //initialzation for all value
-    setWindowTitle("EventAdmin Mode");
+    setWindowTitle("Event Creation");
     EventName = "";
     time_t now = time(0);
     struct tm *date = localtime(&now);

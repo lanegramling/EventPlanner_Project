@@ -11,7 +11,7 @@ AddingMode::AddingMode(Session *session, QWidget *parent) :
     session(session)
 {
     ui->setupUi(this);
-    setWindowTitle("Adding Mode");
+    setWindowTitle("Event Viewer");
     ui->wListEvents->clear();
     ui->gbAdmin->setStyleSheet("background-color: #e2edff;");
     ui->gbSignup->setStyleSheet("background-color: #fff4e0;");
