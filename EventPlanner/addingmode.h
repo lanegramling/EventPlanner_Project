@@ -30,114 +30,46 @@ public:
     explicit AddingMode(Session *session, QWidget *parent = 0);
 
     ~AddingMode();
+
 private:
 
-    /*!
-     * \brief ui
-     */
-    Ui::AddingMode *ui;
 
     /*!
-     * \brief EventIndex
-     * \details Holds index of the selected Event.
+     * \brief resetView
+     * \details Resets on-screen widgets to default settings
      */
-    int EventIndex;
-
-    /*!
-     * \brief EventName
-     */
-    QString EventName;
-
-    QString EventCreator;
-
-    QList<int> EventTimeslots;
-
-    QStringList EventTasks;
-
-    QList<attendee*> EventAttendees;
-
-    QList<attendee*> dayAttendees;
-
-    bool EventPossibleTasks;
-
-    bool EventPossibleTaskSignup;
-
-    int EventUserIndex;
-
-    int EventDateIndex;
-
-    QStringList EventDays;
-
-    /*!
-     * \brief month
-     */
-    int month;
-
-    /*!
-     * \brief year
-     */
-    int year;
-
-    /*!
-     * \brief day
-     */
-    int day;
-
-    bool format = false;
-
     void resetView();
 
-    void loadEventData(int index);
-
-    void getUserIndex();
-
-    void loadUserAvailability();
-
-    void loadAdminData();
-
-    void loadAdminTasks();
-
     /*!
-     * \brief session
-     * \details Session passed between all classes to hold events.
-     */
-    Session *session;
-private slots:
-
-    /*!
-     * \brief receiveshow
-     * \details Function called when class receives signal to become visibale. Sets visiblity to true.
-     */
-    void receiveshow();
-
-    /*!
-     * \brief on_btnBack_clicked
-     * \details Function called when Back button is clicked. Emits showEventPlanner()
-     */
-    void on_btnBack_clicked();
-
-    void on_btnVolunteer_clicked();
-
-    void on_btnAdminVolunteer_clicked();
-
-    /*!
-     * \brief on_wListEvents_clicked
-     * \details Called when an Event in the Event list is clicked on. Fills TimeSlot list with time slots for the event where TimeSlot.isSelected() true.
+     * \brief loadEventData
+     * \details Loads event's data from the event's index
      * \param index
      */
-    void on_wListEvents_clicked(const QModelIndex &index);
+    void loadEventData(int index);
 
     /*!
-     * \brief on_addToTimeSlotButton_clicked
-     * \details Called when Add Me to Time Slot button is clicked. Adds the current user (Session.getUser()) to the selected time slot.
+     * \brief getUserIndex
+     * \details Sets EventUserIndex to their index in the event's attendees list
      */
-    void on_addToTimeSlotButton_clicked();
+    void getUserIndex();
 
-    void on_wListDates_clicked(const QModelIndex &index);
+    /*!
+     * \brief loadUserAvailability
+     * \details Loads user's availability into the signup form
+     */
+    void loadUserAvailability();
 
-    void on_wListAdminDates_clicked(const QModelIndex &index);
+    /*!
+     * \brief loadAdminData
+     * \details Loads all the data needed for the admin mode
+     */
+    void loadAdminData();
 
-    void on_wListAttendees_clicked(const QModelIndex &index);
+    /*!
+     * \brief loadAdminTasks
+     * \details Loads the list of tasks for the administrator mode
+     */
+    void loadAdminTasks();
 
     /*!
      * \brief updateDate
@@ -159,6 +91,99 @@ private slots:
      * \param it - Iterator containing selected Event
      */
     void updateTasksList();
+
+    Ui::AddingMode *ui;
+
+    int EventIndex;
+
+    QString EventName;
+
+    QString EventCreator;
+
+    QStringList EventTasks;
+
+    QList<int> EventTimeslots;
+
+    QList<attendee*> EventAttendees;
+
+    QList<attendee*> dayAttendees;
+
+    bool EventPossibleTasks;
+
+    bool EventPossibleTaskSignup;
+
+    int EventUserIndex;
+
+    int EventDateIndex;
+
+    QStringList EventDays;
+
+    bool format = false;
+
+    /*!
+     * \brief session
+     * \details Session passed between all classes to hold events.
+     */
+    Session *session;
+private slots:
+
+    /*!
+     * \brief receiveshow
+     * \details Function called when class receives signal to become visibale. Sets visiblity to true.
+     */
+    void receiveshow();
+
+    /*!
+     * \brief on_btnBack_clicked
+     * \details Function called when Back button is clicked. Emits showEventPlanner()
+     */
+    void on_btnBack_clicked();
+
+    /*!
+     * \brief on_btnVolunteer_clicked
+     * \details function called when volunteer button clicked in signup mode
+     */
+    void on_btnVolunteer_clicked();
+
+    /*!
+     * \brief on_btnAdminVolunteer_clicked
+     * \details function called when volunteer button clicked in admin mode
+     */
+    void on_btnAdminVolunteer_clicked();
+
+    /*!
+     * \brief on_wListEvents_clicked
+     * \details Called when an Event in the Event list is clicked on. Fills TimeSlot list with time slots for the event where TimeSlot.isSelected() true.
+     * \param index
+     */
+    void on_wListEvents_clicked(const QModelIndex &index);
+
+    /*!
+     * \brief on_addToTimeSlotButton_clicked
+     * \details Called when Add Me to Time Slot button is clicked. Adds the current user (Session.getUser()) to the selected time slot.
+     */
+    void on_addToTimeSlotButton_clicked();
+
+    /*!
+     * \brief on_wListDates_clicked
+     * \details Called when the Dates ListWidget is clicked in signup mode
+     * \param index
+     */
+    void on_wListDates_clicked(const QModelIndex &index);
+
+    /*!
+     * \brief on_wListAdminDates_clicked
+     * \details Called when the Dates ListWidget is clicked in admin mode
+     * \param index
+     */
+    void on_wListAdminDates_clicked(const QModelIndex &index);
+
+    /*!
+     * \brief on_wListAttendees_clicked
+     * \details Called when the Attendees ListWidget is clicked in admin mode
+     * \param index
+     */
+    void on_wListAttendees_clicked(const QModelIndex &index);
 
 
 signals:
