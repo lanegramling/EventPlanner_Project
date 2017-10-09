@@ -107,6 +107,21 @@ void Event::addAttendee(QString name, int slot) {
     }
 }
 
+void Event::addAttendee(QString name, QList<int> slot) {
+    int index = hasAttendee(name);
+    if (index == -1) {
+        attendee* att = new attendee();
+        att->setAttendeeName(name);
+        att->setAvailability(slot);
+        att->setEventID(eventID);
+        attendees.append(att);
+    } else {
+        foreach(int timeslot, slot) {
+            attendees[index]->addAvailability(timeslot);
+        }
+    }
+}
+
 void Event::addAttendee(attendee *attn) {
     attendees.append(attn);
 }

@@ -279,10 +279,6 @@ void AddingMode::loadUserAvailability() {
     ui->lblTimeframe->setText(timeframe);
     ui->lblUserAvail->setText(userAvailability);
 
-    if (ui->wListSignupSlots->count() > 0) {
-        ui->wListSignupSlots->item(0)->setSelected(true);
-    }
-    ui->wListSignupSlots->setFocus();
 }
 
 void AddingMode::updateAttendees(std::list<Event*>::iterator it, int atSlot) {
@@ -435,28 +431,51 @@ void AddingMode::resetView() {
     dayAttendees.clear();
 }
 
+void AddingMode::on_btnAll_clicked() {
+    if (ui->wListSignupSlots->count() == 0) return;
+    if (ui->wListSignupSlots->selectedItems().count() == ui->wListSignupSlots->count()) {
+        ui->wListSignupSlots->clearSelection();
+    } else {
+        ui->wListSignupSlots->selectAll();
+        ui->wListSignupSlots->setFocus();
+    }
+}
+
 void AddingMode::on_addToTimeSlotButton_clicked(){
 
     // TODO Allow multiple selection at once.
 
     if (ui->wListSignupSlots->count() == 0) return;
 
-    QString selectedTime = ui->wListSignupSlots->currentItem()->text();
-        int count = 0;
-    switch(QMessageBox::question(this,"Adding","Are you sure you want to add " + selectedTime + " on " + EventDays[EventDateIndex] + " to your availability?",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
+    QList<QListWidgetItem *> selection = ui->wListSignupSlots->selectedItems();
+
+    if (selection.count() == 0) return;
+
+    // Create the confirmation string THIS IS REDUNDANT BECAUSE OF THE STUFF LATER BUT OH WELL.
+    int slot;
+    QList<QString> addSlotsString;
+    QList<int> addSlots;
+    foreach(QListWidgetItem* item, selection) {
+       QString selectedTime = item->text();
+       foreach(slot, EventTimeslots) {
+           if (helpermethods::toTimeSlot(slot, format) == selectedTime && slot / 48 == EventDateIndex) {
+               addSlots.append(slot);
+               break;
+           }
+       }
+    }
+
+    QString selectionString = helpermethods::getTimeString(addSlots, format);
+
+    int count = 0;
+    switch(QMessageBox::question(this,"Adding","Are you sure you want to add " + selectionString + " on " + EventDays[EventDateIndex] + " to your availability?",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Cancel)){
         case QMessageBox::Ok:
             for(std::list<Event*>::iterator it = (session->getEvents()).begin(); it != (session->getEvents()).end(); ++it)
             {
              if(count == EventIndex)
              {
-                 QList<attendee*> attn = (*it)->getAttendees();
-                 int slot;
-                 foreach(slot, EventTimeslots) {
-                     if (helpermethods::toTimeSlot(slot, format) == selectedTime && slot / 48 == EventDateIndex) {
-                        (*it)->addAttendee(session->getUser(), slot);
-                         break;
-                     }
-                 }
+                (*it)->addAttendee(session->getUser(), addSlots);
+
              break;
              }
                count++;

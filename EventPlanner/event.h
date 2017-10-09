@@ -156,6 +156,13 @@ public :
     void addAttendee(attendee* attn);
 
     /*!
+     * \brief addAttendee
+     * \param name
+     * \param slots
+     */
+    void addAttendee(QString name, QList<int> slot);
+
+    /*!
      * \brief hasAttendee
      * \param name
      * \return -1 if no attendee has matching name, otherwise returns the index of the attendee

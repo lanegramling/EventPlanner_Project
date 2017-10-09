@@ -139,6 +139,8 @@ private slots:
      */
     void on_btnBack_clicked();
 
+    void on_btnAll_clicked();
+
     /*!
      * \brief on_btnVolunteer_clicked
      * \details function called when volunteer button clicked in signup mode
