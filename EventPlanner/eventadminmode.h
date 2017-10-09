@@ -130,12 +130,6 @@ private slots:
     void on_addTimeSlots_clicked();
 
     /*!
-     * \brief on_clearTimeSlotsButton_clicked
-     * \details Calls TimeSlot.clearTimeSlot() on all of the time slots in the timeSlots variable. Then calls resetTimeSlotsWidget().
-     */
-    void on_clearTimeSlotsButton_clicked();
-
-    /*!
      * \brief on_clearDatesButton_clicked
      * \details Clears teh dates
      */

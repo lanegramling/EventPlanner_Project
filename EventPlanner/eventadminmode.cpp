@@ -159,11 +159,6 @@ void EventAdminMode::on_addTimeSlots_clicked() { // WORKS but isn't sorted yet
     }
 }
 
-void EventAdminMode::on_clearTimeSlotsButton_clicked() {
-    timeslots.clear();
-    eventDays.clear();
-    daySelected();
-}
 void EventAdminMode::on_clearDatesButton_clicked() {
     timeslots.clear();
     eventDays.clear();
