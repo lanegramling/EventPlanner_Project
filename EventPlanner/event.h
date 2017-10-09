@@ -21,26 +21,21 @@ public :
     /*!
      * \brief Event
      * \details Constructor used to create fully initialized Event object.
-     *
-     * \param owner
-     * \param eventName
-     *
-     * \param month
-     * \param day
-     * \param year
-     *
-     * \param tasks
-     *
-     * \param timeslots
+     * \param owner Name of the creator
+     * \param eventName Name of the event
+     * \param eventID Event's ID
+     * \param days List of days of format 'MM-DD-YYYY' that it spans
+     * \param tasks List of tasks that have not been fulfilled
+     * \param timeslots List of timeslots that range from 0 - ((number of days * 48) - 1)
      */
     Event(QString owner, QString eventName, int eventID, QStringList days, QStringList tasks, QList<int> timeslots);
     ~Event();
 
 
     /*!
-     * \brief setDay
-     * \param day
-     * \details Sets private variable month to the passed integer.
+     * \brief setDays
+     * \param dayString
+     * \details Takes list of comma separated days of format 'MM-DD-YYYY' and separates it into a list
      */
     void setDays(QString dayString);
 
@@ -52,30 +47,34 @@ public :
     QStringList getDays();
 
 
-    //Tasks
     /*!
      * \brief setTasks
-     * \details
-     * \return
+     * \details Takes a list of semi-colon separated strings and splits it into a list
+     * \param tasks
      */
     void setTasks(QString tasks);
 
 
     /*!
      * \brief getTasks
-     * \return
+     * \return QStringList of tasks
      */
     QStringList getTasks();
+
+    /*!
+     * \brief removeTask
+     * \param task to be removed
+     * \return true if the task was successfully removed
+     */
     bool removeTask(QString task);
 
-
-    //Event Name
     /*!
      * \brief getEventName
      * \details Returns the name of the event.
      * \return QString
      */
     QString getEventName();
+
     /*!
      * \brief setEventName
      * \details Sets private variable eventName to the passed QString.
@@ -83,14 +82,13 @@ public :
      */
     void setEventName(QString eventName);
 
-
-    //Owner
     /*!
      * \brief getOwner
      * \details Returns the name of the person who created the event.
      * \return QString
      */
     QString getOwner() const;
+
     /*!
      * \brief setOwner
      * \details Sets private variable owner to the passed QString.
@@ -98,13 +96,13 @@ public :
      */
     void setOwner(QString owner);
 
-    //Timeslots
     /*!
      * \brief getTimeSlots
      * \details Returns the private member QList<TimeSlot> timeSlots.
      * \return QList<TimeSlot>
      */
     QList<int> getTimeSlots();
+
     /*!
      * \brief setTimeSlots
      * \details Sets private variable timeSlots to the passed QList<TimeSlot>.
@@ -112,7 +110,6 @@ public :
      */
     void setTimeSlots(QList<int> timeSlots);
 
-    //Print Event
     /*!
      * \brief printEvent
      * \details A formatted QString with the Owner, Event Name, and Date
@@ -120,7 +117,6 @@ public :
      */
     QString printEvent();
 
-    //ID
     /*!
      * \brief getID
      * \return int EventID
@@ -132,8 +128,6 @@ public :
      */
     void setID(int ID);
 
-
-    //Atttendees
     /*!
      * \brief getAttendees
      * \return
@@ -172,39 +166,17 @@ public :
 
 
 private:
-    /*!
-     * \brief owner
-     */
-    QString owner;
 
-    /*!
-     * \brief eventName
-     */
+    QString owner;
     QString eventName;
 
-    /*!
-     * \brief eventID
-     */
     int eventID;
 
-    /*!
-     * \brief timeSlots
-     */
     QList<int> timeslots;
-
-    /*!
-     * \brief attendees
-     */
     QList<attendee*> attendees;
 
-    /*!
-     * \brief eventDays
-     */
-    QStringList eventDays;
 
-    /*!
-     * \brief eventTasks
-     */
+    QStringList eventDays;
     QStringList eventTasks;
 
 };
