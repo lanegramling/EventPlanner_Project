@@ -5,14 +5,15 @@
 - ~~Multi-day: Functionality is there.~~ (Done.)
 
 **Event - Add Availability Mode**
-- Implement task list funcionality
-	- ~~Implement tasks~~
-	- ~~Implement task signup ability~~
-- Implement calendar functionality
-	- ~~Implement Multi-day functionality.~~
-	- (Need to color calendar cells for days with timeslots)
-- Implement Event Administrator mode
-	- Implement a view for tasks, days, and attendees
+- ~~Implement task list funcionality~~ (Done.)
+	- ~~Implement tasks~~ (Done.)
+	- ~~Implement task signup ability~~ (Done.)
+- ~~Implement calendar functionality~~ (Done.)
+	- ~~Implement Multi-day functionality.~~ (Done.)
+	- ~~Show dates which have timeslots selected~~ (Done.)
+- ~~Implement Event Administrator mode~~ (Done.)
+	- ~~Implement a view for tasks, days, and attendees~~ (Done.)
+- Support Multi-day Selection
 	
 	
 - ~~Should remake the view page and just add visual effects to show which mode.~~
