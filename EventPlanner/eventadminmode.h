@@ -55,37 +55,18 @@ public:
 
 
 private:
-    /*!
-     * \brief ui
-     */
+
     Ui::EventAdminMode *ui;
-    /*!
-     * \brief months
-     */
-    int months; // month
-    /*!
-     * \brief days
-     */
-    int days;   // day
-    /*!
-     * \brief EventName
-     */
+
     QString EventName; // Event Name
 
     QString taskName;
+    Session *session;
+    bool set12HourFormat = true;
 
     /*!
-     * \brief session
-     * \details Session passed between all classes to hold events.
-     */
-    Session *session;
-    /*!
-     * \brief set12HourFormat
-     * \details Tracks which time format is being displayed.
-     */
-    bool set12HourFormat = true;
-    /*!
-     * \brief timeSlots
+     * \brief timeslots
+     * \details Used to keep track of each day's timeslots
      */
     QList< QList<int> > timeslots;
 
@@ -106,8 +87,16 @@ private slots:
     */
     void receiveshow();
 
+    /*!
+     * \brief daySelected
+     * \details Called after a day is selected in the calendar
+     */
     void daySelected();
 
+    /*!
+     * \brief on_addedDatesWidget_clicked
+     * \param index of the item clicked in the list
+     */
     void on_addedDatesWidget_clicked(const QModelIndex &index);
 
     /*!
@@ -146,10 +135,21 @@ private slots:
      */
     void on_clearTimeSlotsButton_clicked();
 
+    /*!
+     * \brief on_clearDatesButton_clicked
+     * \details Clears teh dates
+     */
     void on_clearDatesButton_clicked();
 
+    /*!
+     * \brief on_taskButton_clicked
+     */
     void on_taskButton_clicked();
 
+    /*!
+     * \brief on_taskEdit_textEdited
+     * \param text
+     */
     void on_taskEdit_textEdited(const QString &text);
 
     /*!
