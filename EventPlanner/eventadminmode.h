@@ -108,6 +108,8 @@ private slots:
 
     void daySelected();
 
+    void on_addedDatesWidget_clicked(const QModelIndex &index);
+
     /*!
      * \brief on_saveButton_clicked
      * \details Verifies page contents and provides feedback. If contents are complete, calls Session.addEvent() with provided information. Then calls Session.saveEventsToFile() and on_pushButton_5_clicked().
